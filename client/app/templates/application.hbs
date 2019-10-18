@@ -1,5 +1,9 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+<div class="container">
 
-{{outlet}}
+  <div class="nav">
+    {{#link-to "npcs" class="nav-item"}}Npcs{{/link-to}}
+  </div>
+
+  {{outlet}}
+
+</div>

@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'gm2m',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = DEBUG
 
 ROOT_URLCONF = 'server.urls'
 
@@ -108,7 +112,19 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
   'DEFAULT_PERMISSION_CLASSES': [
     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-  ]
+  ],
+  'DEFAULT_PARSER_CLASSES': (
+    'rest_framework_json_api.parsers.JSONParser',
+    'rest_framework.parsers.FormParser',
+    'rest_framework.parsers.MultiPartParser'
+  ),
+  'DEFAULT_RENDERER_CLASSES': (
+    'rest_framework_json_api.renderers.JSONRenderer',
+    'rest_framework.renderers.BrowsableAPIRenderer',
+  ),
+  'DEFAULT_FILTER_BACKENDS': (
+    'rest_framework.filters.OrderingFilter',
+  ),
 }
 
 
