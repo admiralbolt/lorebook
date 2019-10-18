@@ -41,4 +41,4 @@ class NPC(NamedModel):
   # Whether or not the players have met the npc yet.
   met = models.BooleanField(default=False)
 
-ADMIN_MODELS = [NPC, Song]
+ADMIN_MODELS = [NPC, Song, Tag]
