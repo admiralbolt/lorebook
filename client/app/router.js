@@ -8,6 +8,9 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('npcs');
+  this.route('npc', {
+    path: 'npcs/:id'
+  });
 });
 
 export default Router;

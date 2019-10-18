@@ -3,7 +3,7 @@
 <div class="npcs-list">
   {{#each model as |npc|}}
   <div class="npc">
-    {{npc.name}}
+    {{#link-to "npc" npc.id class="npc"}} {{npc.name}} {{/link-to}}
   </div>
   {{/each}}
 </div>
