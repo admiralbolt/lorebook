@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from . import models
+from . import serializers
+from rest_framework import generics
 
-# Create your views here.
+class NPCListCreate(generics.ListCreateAPIView):
+  queryset = models.NPC.objects.all()
+  serializer_class = serializers.NPCSerializer
+
+class NPCDetail(generics.RetrieveUpdateDestroyAPIView):
+  queryset = models.NPC.objects.all()
+  serializer_class = serializers.NPCSerializer
