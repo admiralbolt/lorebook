@@ -8,14 +8,12 @@ export default Service.extend({
   store: service(),
 
   setActiveModel(model) {
-    console.log("setting active model");
     set(this, 'activeModel', model);
     this.activeModel = model;
   },
 
   getActiveItems() {
-    console.log("get active items: " + this.activeModel);
-    return this.activeModel == null ? [] : this.store.findAll(this.activeModel);
+    return this.activeModel == null ? [] : this.get('store').findAll(this.activeModel);
   }
 
 });

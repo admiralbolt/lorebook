@@ -2,10 +2,15 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-  store: service('api-data'),
+  api_data: service('api-data'),
+
+  beforeModel(transition) {
+    this.api_data.setActiveModel('npc');
+  },
+
   model(route_params) {
-    const store = this.get('store');
-    let npc = store.peekRecord('npc', route_params.id);
-    return npc === null ? store.findRecord('npc', route_params.id) : npc;
+    const api_data = this.get('store');
+    let npc = api_data.peekRecord('npc', route_params.id);
+    return npc === null ? api_data.findRecord('npc', route_params.id) : npc;
   }
 });
