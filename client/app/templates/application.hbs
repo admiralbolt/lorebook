@@ -1,24 +1,38 @@
 <div class="container">
 
-  <div class="nav">
-    {{#link-to "npcs" class="nav-item"}}Npcs{{/link-to}}
+  <div class="row height-100">
+
+    <div class="col-1 sidebar-nav no-padding">
+      <ul>
+        <li>
+          {{#link-to "npcs" class="nav-item"}}<ion-icon name="contact"></ion-icon> <span>Npcs</span>{{/link-to}}
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-2 sidebar-detail no-padding">
+
+    </div>
+
+    <div class="col-9 no-padding main-content">
+      {{outlet}}
+    </div>
+
   </div>
 
-  {{#if session.isAuthenticated}}
-    <a {{action "invalidateSession"}} role="button">Logout</a>
-  {{else}}
-    <form {{action "authenticate" on="submit"}}>
-      <label for="username">Username</label>
-      {{input id="username" placeholder="Username" value=username}}
-      <label for="password">Password</label>
-      {{input id="password" placeholder="Password" type="password" value=password}}
-      <button type="submit">Login</button>
-      {{#if errorMessage}}
-        <p>{{errorMessage}}</p>
-      {{/if}}
-    </form>
-  {{/if}}
-
-  {{outlet}}
+  <div class="floating-login">
+    {{#if session.isAuthenticated}}
+      <button class="btn btn-primary" {{action "invalidateSession"}} role="button">Logout</button>
+    {{else}}
+      <form {{action "authenticate" on="submit"}}>
+        {{input id="username" placeholder="Username" class="form-control" value=username}}
+        {{input id="password" placeholder="Password" class="form-control" type="password" value=password}}
+        <button type="submit" class="btn btn-primary">Login</button>
+        {{#if errorMessage}}
+          <p>{{errorMessage}}</p>
+        {{/if}}
+      </form>
+    {{/if}}
+  </div>
 
 </div>
