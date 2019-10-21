@@ -18,6 +18,7 @@ export default Controller.extend({
       this.get('session').authenticate(authenticator, credentials).then(() => {
         // Reload all data with our updated credentials.
         this.get('store').findAll('npc', {reload: true});
+        this.get('store').findAll('song', {reload: true});
       }, (reason) => {
         this.set('errorMessage', reason.json.non_field_errors || reason);
       });
@@ -28,6 +29,7 @@ export default Controller.extend({
       // Unload all data, and reload with our updated credentials.
       this.get('store').unloadAll();
       this.get('store').findAll('npc');
+      this.get('store').findAll('song');
     }
 
   }

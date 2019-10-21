@@ -28,13 +28,18 @@ body .ember-view {
   height: 100%;
 }
 
+.col-1-5 {
+  width: 12.5% !important;
+  max-width: 12.5% !important;
+  flex-basis: 12.5% !important;
+}
+
 /**
 ======================= SIDEBAR =====================
 **/
 
 .sidebar-nav {
   position: fixed;
-  width: 10em;
   background-color: #19222a;
   height: 100%;
   font-weight: 400;
@@ -44,6 +49,10 @@ body .ember-view {
   z-index: 9;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
+}
+
+.sidebar-primary {
+  width: 300px !important;
 }
 
 .sidebar-detail {

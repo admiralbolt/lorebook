@@ -2,25 +2,26 @@
 
   <div class="row height-100">
 
-    <div class="col-1 sidebar-nav no-padding">
+    <div class="col-1 col-1-5 sidebar-nav sidebar-primary no-padding">
       <ul>
         <li>
-          {{#link-to "npcs" class="nav-item"}}<ion-icon name="contact"></ion-icon> <span>Npcs</span>{{/link-to}}
+          {{#link-to "npcs" class="nav-item"}}<ion-icon name="contact"></ion-icon> <span>NPCs</span>{{/link-to}}
+          {{#link-to "songs" class="nav-item"}}<ion-icon name="musical-notes"></ion-icon> <span>Songs</span>{{/link-to}}
         </li>
       </ul>
     </div>
 
     <div class="col-2 sidebar-nav sidebar-detail no-padding">
       <ul>
-        {{#each menu as |npc|}}
+        {{#each menu as |item|}}
           <li>
-            {{#link-to "npc" npc.id class="npc"}} {{npc.name}} {{/link-to}}
+            {{#link-to api_data.activeModel item.id class="nav-item"}} {{item.name}} {{/link-to}}
           </li>
         {{/each}}
       </ul>
     </div>
 
-    <div class="col-9 no-padding main-content">
+    <div class="col-8 no-padding main-content">
       {{outlet}}
     </div>
 

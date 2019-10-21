@@ -11,6 +11,10 @@ Router.map(function() {
   this.route('npc', {
     path: 'npcs/:id'
   });
+  this.route('songs');
+  this.route('song', {
+    path: 'songs/:id'
+  });
 });
 
 export default Router;

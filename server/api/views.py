@@ -22,7 +22,7 @@ class NPCDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class SongListCreate(generics.ListCreateAPIView):
   queryset = models.Song.objects.all()
-  serializer_class = serializers.NPCSerializer
+  serializer_class = serializers.SongSerializer
 
   def get_queryset(self):
     """We override the default behavior to return only non-hidden songs to unauthenticated users."""
@@ -30,7 +30,7 @@ class SongListCreate(generics.ListCreateAPIView):
 
 class SongDetail(generics.RetrieveUpdateDestroyAPIView):
   queryset = models.Song.objects.all()
-  serializer_class = serializers.NPCSerializer
+  serializer_class = serializers.SongSerializer
 
   def get_queryset(self):
     """We override the default behavior to return only non-hidden songs to unauthenticated users."""
