@@ -46,6 +46,11 @@ body .ember-view {
   -webkit-overflow-scrolling: touch;
 }
 
+.sidebar-detail {
+  border-left: 1px solid white;
+  background-color: #2a333b;
+}
+
 .sidebar-nav ul {
   list-style:none;
   display: block;
@@ -61,7 +66,7 @@ body .ember-view {
 }
 
 .sidebar-nav ul li a {
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.9em;
   padding: 1.05em	1.5em;
   position: relative;
@@ -70,7 +75,11 @@ body .ember-view {
 }
 
 .sidebar-nav ul li a:hover {
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.sidebar-nav ul li a.active {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .sidebar-nav ul li span {

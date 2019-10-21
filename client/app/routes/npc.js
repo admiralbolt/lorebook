@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default Route.extend({
-  store: service(),
+  store: service('api-data'),
   model(route_params) {
     const store = this.get('store');
     let npc = store.peekRecord('npc', route_params.id);
