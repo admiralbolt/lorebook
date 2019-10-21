@@ -11,7 +11,6 @@ Router.map(function() {
   this.route('npc', {
     path: 'npcs/:id'
   });
-  this.route('login');
 });
 
 export default Router;
