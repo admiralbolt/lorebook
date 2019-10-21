@@ -4,6 +4,10 @@
     {{#link-to "npcs" class="nav-item"}}Npcs{{/link-to}}
   </div>
 
+  {{#if session.isAuthenticated}}
+    <a {{action "invalidateSession"}} role="button">Logout</a>
+  {{/if}}
+
   {{outlet}}
 
 </div>

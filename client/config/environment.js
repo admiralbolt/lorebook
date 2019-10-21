@@ -2,6 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
+    host: 'http://localhost:8000',
     modulePrefix: 'client',
     environment,
     rootURL: '/',
@@ -46,6 +47,15 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
   }
+
+  ENV['ember-simple-auth-token'] = {
+    serverTokenEndpoint: ENV.host + '/api-auth-token/',
+    identificationField: 'username',
+    passwordField: 'password',
+    tokenPropertyName: 'token',
+    authorizationHeaderName: 'Authorization',
+    authorizationPrefix: 'Bearer ',
+  };
 
   return ENV;
 };
