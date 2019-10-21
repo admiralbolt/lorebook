@@ -8,8 +8,8 @@ class NPCListCreate(generics.ListCreateAPIView):
 
   def get_queryset(self):
     """We override the default behavior to return only met npcs to unauthenticated users."""
-    return models.NPC.objects.all() if self.request.user.is_authenticated else models.NPC.objects.all().filter(visible=True)
-
+    npcs = models.NPC.objects.order_by('name')
+    return npcs if self.request.user.is_authenticated else npcs.filter(visible=True)
 
 
 class NPCDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -18,7 +18,8 @@ class NPCDetail(generics.RetrieveUpdateDestroyAPIView):
 
   def get_queryset(self):
     """We override the default behavior to return only met npcs to unauthenticated users."""
-    return models.NPC.objects.all() if self.request.user.is_authenticated else models.NPC.objects.all().filter(visible=True)
+    npcs = models.NPC.objects.order_by('name')
+    return npcs if self.request.user.is_authenticated else npcs.filter(visible=True)
 
 class SongListCreate(generics.ListCreateAPIView):
   queryset = models.Song.objects.all()
@@ -26,7 +27,8 @@ class SongListCreate(generics.ListCreateAPIView):
 
   def get_queryset(self):
     """We override the default behavior to return only non-hidden songs to unauthenticated users."""
-    return models.Song.objects.all() if self.request.user.is_authenticated else models.Song.objects.all().filter(visible=True)
+    songs = models.Song.objects.order_by('name')
+    return songs if self.request.user.is_authenticated else songs.filter(visible=True)
 
 class SongDetail(generics.RetrieveUpdateDestroyAPIView):
   queryset = models.Song.objects.all()
@@ -34,4 +36,5 @@ class SongDetail(generics.RetrieveUpdateDestroyAPIView):
 
   def get_queryset(self):
     """We override the default behavior to return only non-hidden songs to unauthenticated users."""
-    return models.Song.objects.all() if self.request.user.is_authenticated else models.Song.objects.all().filter(visible=True)
+    songs = models.Song.objects.order_by('name')
+    return songs if self.request.user.is_authenticated else songs.filter(visible=True)
