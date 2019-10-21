@@ -33,12 +33,13 @@ class Song(NamedModel):
   loop = models.BooleanField(default=False)
   sound_file = models.FileField(upload_to="music/")
   # items = GenericRelation("SessionItem", related_query_name="song")
+  visible = models.BooleanField(default=False)
 
 class NPC(NamedModel):
   """Characters the players meet along the way."""
   appearance = models.TextField(default=None, blank=True)
   lore = models.TextField(default=None, blank=True)
   # Whether or not the players have met the npc yet.
-  met = models.BooleanField(default=False)
+  visible = models.BooleanField(default=False)
 
 ADMIN_MODELS = [NPC, Song, Tag]
