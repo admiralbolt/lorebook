@@ -127,7 +127,7 @@ body .ember-view {
   width: 10vw;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .nav-sidebar {
     width: 25vw;
   }
@@ -148,7 +148,7 @@ body .ember-view {
 
 .nav-sidebar-link {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 2em;
+  font-size: 2vh;
   padding: 0.5vh 0;
   position: relative;
   display:block;
@@ -158,7 +158,7 @@ body .ember-view {
 
 @media (max-width: 500px) {
   .nav-sidebar-link {
-    font-size: 1em;
+    font-size: 2vh;
   }
 }
 
