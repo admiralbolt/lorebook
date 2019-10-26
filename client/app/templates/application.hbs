@@ -21,7 +21,7 @@
 
   <div class="row nav-pad"></div>
   <div class="row">
-    <div class="nav nav-sidebar">
+    <div class="nav-sidebar">
       {{#each menu as |item|}}
         <div class="row nav-sidebar-wrapper">
           {{#link-to api_data.activeModel item.id class="nav-sidebar-link no-padding"}}
@@ -32,11 +32,12 @@
         </div>
       {{/each}}
     </div>
+    <div class="col-pad"></div>
+    <div class="col no-padding main-content flex-center">
+      {{outlet}}
+    </div>
   </div>
 
-    {{!-- <div class="col-8 no-padding main-content">
-      {{outlet}}
-    </div> --}}
 
 <!--
   <div class="floating-login">

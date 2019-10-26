@@ -58,6 +58,7 @@ body .ember-view {
 
 .row {
   margin-right: 0px !important;
+  margin-left: 0px !important;
 }
 
 /**
@@ -119,12 +120,23 @@ body .ember-view {
 ======================== SIDEBAR NAV ================
 **/
 
+.col-pad {
+  width: 10vw;
+}
+
+@media (max-width: 500px) {
+  .col-pad {
+    width: 25vw;
+  }
+}
+
 .nav-sidebar {
   background-color: rgb(26, 34, 48);
   position: fixed;
   height: 100%;
   left: 0;
   width: 10vw;
+  z-index: 0;
 }
 
 @media (max-width: 500px) {
