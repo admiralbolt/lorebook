@@ -1,0 +1,118 @@
+$nav-height: 8vh;
+$nav-width-large-screen: 10vw;
+$nav-width-small-screen: 25vw;
+
+
+
+.nav-primary {
+  background-color: rgb(20, 28, 40);
+  top: 0;
+  border-bottom: 1px solid #aaa;
+  position: fixed;
+  width: 100vw;
+  min-width: 100vw;
+  font-weight: 400;
+  font-size: 1.8vh;
+  height: $nav-height;
+  overflow: auto;
+  z-index: 9;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  margin: 0px !important;
+
+  div {
+    a {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9em;
+      padding: 0.5vh 0;
+      position: relative;
+      display:block;
+      text-decoration: none;
+      text-align: center;
+
+      :hover {
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+
+      .active {
+        background-color: rgba(125, 125, 125, 0.3);
+      }
+    }
+
+    span {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    ion-icon {
+      font-size: 1.8em;
+      vertical-align:middle;
+    }
+  }
+}
+
+.nav-pad {
+  height: $nav-height;
+}
+
+.nav-sidebar {
+  background-color: rgb(26, 34, 48);
+  position: fixed;
+  height: 100%;
+  left: 0;
+  width: $nav-width-large-screen;
+  z-index: 0;
+
+  @media (max-width: 500px) {
+    width: $nav-width-small-screen;
+  }
+
+  .nav-sidebar-wrapper {
+    width: 100%;
+    padding: 0px !important;
+    margin: 0px !important;
+    height: 6vh;
+
+    @media (max-width: 500px) {
+      height: 10vh;
+    }
+
+    .nav-sidebar-link {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 2vh;
+      padding: 0.5vh 0;
+      position: relative;
+      display:block;
+      text-decoration: none;
+      text-align: center;
+
+      @media (max-width: 500px) {
+        font-size: 2vh;
+      }
+
+      .nav-sidebar-item {
+        font-size: 0.8em;
+      }
+    }
+  }
+
+  div {
+    a {
+      :hover {
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+      :active {
+        background-color: rgba(125, 125, 125, 0.3);
+      }
+    }
+  }
+
+}
+
+.col-pad {
+  width: $nav-width-large-screen;
+
+  @media (max-width: 500px) {
+    width: $nav-width-small-screen;
+  }
+}

@@ -1,0 +1,81 @@
+@use 'nav.scss';
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: rgb(37, 52, 76) !important;
+}
+
+body .ember-view {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 100%;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.height-100 {
+  height: 100%;
+}
+
+.col-1-5 {
+  width: 12.5% !important;
+  max-width: 12.5% !important;
+  flex-basis: 12.5% !important;
+}
+
+.flex-center {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.full {
+  height: 100%;
+  width: 100%;
+}
+
+.row {
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
+/**
+======================= LOGIN =================
+**/
+
+.floating-login {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-top: 10px;
+  padding-right: 10px;
+  max-width: 14em;
+}
+
+.floating-login form input {
+  margin-bottom: 10px;
+}
