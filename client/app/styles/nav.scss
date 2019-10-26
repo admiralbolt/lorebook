@@ -3,7 +3,6 @@ $nav-width-large-screen: 10vw;
 $nav-width-small-screen: 25vw;
 
 
-
 .nav-primary {
   background-color: rgb(20, 28, 40);
   top: 0;
@@ -30,12 +29,12 @@ $nav-width-small-screen: 25vw;
       text-decoration: none;
       text-align: center;
 
-      :hover {
-        background-color: rgba(0, 0, 0, 0.9);
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.8);
       }
 
-      .active {
-        background-color: rgba(125, 125, 125, 0.3);
+      &.active {
+        background-color: rgba(125, 125, 125, 0.2);
       }
     }
 
@@ -74,7 +73,7 @@ $nav-width-small-screen: 25vw;
     height: 6vh;
 
     @media (max-width: 500px) {
-      height: 10vh;
+      height: 8vh;
     }
 
     .nav-sidebar-link {
@@ -90,22 +89,21 @@ $nav-width-small-screen: 25vw;
         font-size: 2vh;
       }
 
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.9);
+      }
+
+      &.active {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+
       .nav-sidebar-item {
         font-size: 0.8em;
       }
     }
   }
 
-  div {
-    a {
-      :hover {
-        background-color: rgba(0, 0, 0, 0.9);
-      }
-      :active {
-        background-color: rgba(125, 125, 125, 0.3);
-      }
-    }
-  }
+
 
 }
 

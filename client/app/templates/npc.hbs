@@ -1,9 +1,25 @@
-<div class="npc-detail">
-  <div class="npc">
-    {{model.name}}
-    <br>
-    {{model.appearance}}
-    <br>
-    {{model.lore}}
+<div class="item-detail">
+  <div class="row">
+    <div class="item-title npc">
+      {{model.name}}
+    </div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="item-label">Description</div>
+    <div class="item-description npc">
+      {{{model.appearance}}}
+    </div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="item-label">Lore</div>
+    <div class="item-lore npc">
+      {{{model.lore}}}
+    </div>
   </div>
 </div>

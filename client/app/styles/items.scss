@@ -1,0 +1,44 @@
+$base-text-color: rgb(190, 190, 190);
+$base-font-size: 2.1vh;
+$npc-primary-color: rgb(100, 140, 220);
+
+
+.item-detail {
+  color: $base-text-color;
+  font-size: $base-font-size;
+  width: 100%;
+
+  .item-title {
+    width: 100%;
+    font-size: 3vh;
+    text-align: center;
+
+    &.npc {
+      color: $npc-primary-color;
+    }
+  }
+
+  .item-label {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.6vh;
+    font-weight: bold;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .item-description {
+    width: 100%;
+  }
+
+  .item-lore {
+    width: 100%;
+  }
+
+  br {
+    content: "";
+    display: block;
+    margin: 15px 0;
+  }
+}

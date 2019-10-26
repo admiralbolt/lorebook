@@ -2,7 +2,7 @@
 
   <div class="row nav nav-primary">
     <div class="col-2 col-sm-1 no-padding">
-        {{#link-to "npcs" class="no-padding"}}
+        {{#link-to "npcs" current-when="npcs npc"}}
           <div class="full flex-center">
             <ion-icon name="contact"></ion-icon>
             <span>NPCs</span>
@@ -10,7 +10,7 @@
         {{/link-to}}
     </div>
     <div class="col-2 col-sm-1 no-padding">
-      {{#link-to "songs"}}
+      {{#link-to "songs" current-when="songs song"}}
         <div class="full flex-center">
           <ion-icon name="musical-notes"></ion-icon>
           <span>Songs</span>
@@ -33,7 +33,7 @@
       {{/each}}
     </div>
     <div class="col-pad"></div>
-    <div class="col no-padding main-content flex-center">
+    <div class="col main-content flex-center">
       {{outlet}}
     </div>
   </div>
