@@ -2,7 +2,7 @@
 
   <div class="row nav nav-primary">
     <div class="col-2 col-sm-1 no-padding">
-        {{#link-to "npcs" class="nav-item no-padding"}}
+        {{#link-to "npcs" class="no-padding"}}
           <div class="full flex-center">
             <ion-icon name="contact"></ion-icon>
             <span>NPCs</span>
@@ -10,7 +10,7 @@
         {{/link-to}}
     </div>
     <div class="col-2 col-sm-1 no-padding">
-      {{#link-to "songs" class="nav-item"}}
+      {{#link-to "songs"}}
         <div class="full flex-center">
           <ion-icon name="musical-notes"></ion-icon>
           <span>Songs</span>
@@ -20,13 +20,18 @@
   </div>
 
   <div class="row nav-pad"></div>
-  <div class="row nav nav-detail">
-    {{#each menu as |item|}}
-      <li>
-        {{#link-to api_data.activeModel item.id class="nav-item"}}
-          {{item.name}} {{/link-to}}
-      </li>
-    {{/each}}
+  <div class="row">
+    <div class="nav nav-sidebar">
+      {{#each menu as |item|}}
+        <div class="row nav-sidebar-wrapper">
+          {{#link-to api_data.activeModel item.id class="nav-sidebar-link no-padding"}}
+            <div class="full flex-center nav-sidebar-item">
+              <span>{{item.name}}</span>
+            </div>
+          {{/link-to}}
+        </div>
+      {{/each}}
+    </div>
   </div>
 
     {{!-- <div class="col-8 no-padding main-content">

@@ -61,19 +61,22 @@ body .ember-view {
 }
 
 /**
-======================= SIDEBAR =====================
+================== PRIMARY NAV ===================
 **/
 
 .nav-pad {
   height: 8vh;
 }
 
-.nav {
+.nav-primary {
+  background-color: rgb(20, 28, 40);
+  top: 0;
+  border-bottom: 1px solid #aaa;
   position: fixed;
   width: 100vw;
   min-width: 100vw;
   font-weight: 400;
-  font-size: 1.5vh;
+  font-size: 1.8vh;
   height: 8vh;
   overflow: auto;
   z-index: 9;
@@ -82,19 +85,9 @@ body .ember-view {
   margin: 0px !important;
 }
 
-.nav-primary {
-  background-color: rgb(20, 28, 40);
-  top: 0;
-  border-bottom: 1px solid #aaa;
-}
 
-.nav-detail {
-  border-left: 1px solid #aaa;
-  border-right: 1px solid #aaa;
-  background-color: rgb(26, 34, 48);
-}
 
-.nav div a {
+.nav-primary div a {
   color: rgba(255, 255, 255, 0.9);
   font-size: 0.9em;
   padding: 0.5vh 0;
@@ -104,22 +97,81 @@ body .ember-view {
   text-align: center;
 }
 
-.nav div a:hover {
+.nav-primary div a:hover {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-.nav div a.active {
+.nav-primary div a.active {
   background-color: rgba(125, 125, 125, 0.3);
 }
 
-.nav div span {
+.nav-primary div span {
   font-size: 1.2em;
   font-weight: bold;
 }
 
-.nav div ion-icon {
+.nav-primary div ion-icon {
   font-size: 1.8em;
   vertical-align:middle;
+}
+
+/**
+======================== SIDEBAR NAV ================
+**/
+
+.nav-sidebar {
+  background-color: rgb(26, 34, 48);
+  position: fixed;
+  height: 100%;
+  left: 0;
+  width: 10vw;
+}
+
+@media (max-width: 600px) {
+  .nav-sidebar {
+    width: 25vw;
+  }
+}
+
+.nav-sidebar-wrapper {
+  width: 100%;
+  padding: 0px !important;
+  margin: 0px !important;
+  height: 6vh;
+}
+
+@media (max-width: 500px) {
+  .nav-sidebar-wrapper {
+    height: 10vh;
+  }
+}
+
+.nav-sidebar-link {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 2em;
+  padding: 0.5vh 0;
+  position: relative;
+  display:block;
+  text-decoration: none;
+  text-align: center;
+}
+
+@media (max-width: 500px) {
+  .nav-sidebar-link {
+    font-size: 1em;
+  }
+}
+
+.nav-sidebar-item {
+  font-size: 0.8em;
+}
+
+.nav-sidebar div a:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.nav-sidebar div a.active {
+  background-color: rgba(125, 125, 125, 0.3);
 }
 
 /**

@@ -29,7 +29,8 @@ SECRET_KEY = config['API_KEY']
 DEBUG = True
 
 ALLOWED_HOSTS = [
-  '192.168.0.197'
+  '192.168.0.197',
+  'localhost'
 ]
 
 
