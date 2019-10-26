@@ -6,7 +6,7 @@ import { computed } from '@ember/object';
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   session: service('session'),
   host: computed(function() {
-    return 'http://localhost:8000';
+    return 'http://192.168.0.197:8000';
   }),
 
   headers: computed('session.data.authenticated.token', function() {
