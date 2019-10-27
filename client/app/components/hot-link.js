@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
+import config from '../config/environment';
 
 export default Component.extend({
   text: null,
@@ -8,23 +9,20 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    this._tokenize();
+    var parent = this;
+    this._getLinks().then(function(result) {
+      parent._tokenize(result);
+    });
   },
 
-  _tokenize() {
-    let links = [
-      {
-        aliases: ["Lord William Nakal", "William Nakal"],
-        model: "npc",
-        id: 4
-      },
-      {
-        aliases: ["Lady Gertrude Nakal", "Gertrude Nakal"],
-        model: "npc",
-        id: 1
-      }
-    ]
+  _getLinks() {
+    return $.ajax({
+      url: config.host + '/links',
+      type: 'GET'
+    });
+  },
 
+  _tokenize(links) {
     // Build an array of matches that track the text matched, it's position,
     // and the model / id to link to.
     let matches = [];
