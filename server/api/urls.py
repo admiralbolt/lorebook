@@ -8,4 +8,5 @@ urlpatterns = [
   path("songs/", views.SongListCreate.as_view()),
   path("songs/<int:pk>/", views.SongDetail.as_view()),
   path("api-auth-token/", obtain_auth_token),
+  path("links/", views.links),
 ]

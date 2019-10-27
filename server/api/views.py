@@ -1,5 +1,7 @@
 from . import models
 from . import serializers
+from django.core.serializers import serialize
+from django.http import JsonResponse
 from rest_framework import generics
 
 class NPCListCreate(generics.ListCreateAPIView):
@@ -38,3 +40,22 @@ class SongDetail(generics.RetrieveUpdateDestroyAPIView):
     """We override the default behavior to return only non-hidden songs to unauthenticated users."""
     songs = models.Song.objects.order_by('name')
     return songs if self.request.user.is_authenticated else songs.filter(visible=True)
+
+def links(self):
+  links = []
+  for model_name, model in models.LINKABLE_MODELS:
+    all_objects = model.objects.all()
+    data = all_objects if self.user.is_authenticated else all_objects.filter(visible=True)
+    for item in data:
+      link = {
+        "aliases": [item.name],
+        "model": model_name,
+        "id": item.id
+      }
+      if hasattr(item, "aliases"):
+        for alias in item.aliases.splitlines():
+          link["aliases"].append(alias)
+        link["aliases"].sort(key=lambda s: len(s), reverse=True)
+      links.append(link)
+
+  return JsonResponse(links, safe=False)

@@ -37,9 +37,15 @@ class Song(NamedModel):
 
 class NPC(NamedModel):
   """Characters the players meet along the way."""
+  aliases = models.TextField(default="", blank=True)
   appearance = models.TextField(default=None, blank=True)
   lore = models.TextField(default=None, blank=True)
   # Whether or not the players have met the npc yet.
   visible = models.BooleanField(default=False)
 
 ADMIN_MODELS = [NPC, Song, Tag]
+SEARCHABLE_MODELS = [NPC, Song]
+LINKABLE_MODELS = [
+  ("npc", NPC),
+  ("song", Song)
+]
