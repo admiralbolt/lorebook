@@ -1,12 +1,13 @@
 import DS from 'ember-data';
-import DataAdapterMixin from "ember-simple-auth/mixins/data-adapter-mixin";
+import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import config from '../config/environment';
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   session: service('session'),
   host: computed(function() {
-    return 'http://192.168.0.197:8000';
+    return config.host;
   }),
 
   headers: computed('session.data.authenticated.token', function() {
@@ -16,4 +17,5 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     }
     return headers;
   })
+  
 });

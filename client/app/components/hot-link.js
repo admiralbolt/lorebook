@@ -3,8 +3,6 @@ import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
 export default Component.extend({
-  api_data: service('api_data'),
-
   text: null,
   tokens: A(),
 
