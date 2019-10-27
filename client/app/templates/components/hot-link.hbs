@@ -1,0 +1,9 @@
+{{#each this.tokens as |token|}}
+  {{#if token.model}}
+    <LinkTo @route={{token.model}} @model={{token.id}} class="hot-link {{token.model}}">
+      {{token.text}}
+    </LinkTo>
+  {{else}}
+    {{{token.text}}}
+  {{/if}}
+{{/each}}
