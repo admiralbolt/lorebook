@@ -17,43 +17,35 @@
         </div>
       {{/link-to}}
     </div>
+    <div class="col-2 col-sm-1 no-padding">
+      {{#link-to "login"}}
+        <div class="full flex-center">
+          <ion-icon name="key"></ion-icon>
+          <span>Login</span>
+        </div>
+      {{/link-to}}
+    </div>
   </div>
 
   <div class="row nav-pad"></div>
   <div class="row">
-    <div class="nav-sidebar">
-      {{#each menu as |item|}}
-        <div class="row nav-sidebar-wrapper">
-          {{#link-to api_data.activeModel item.id class="nav-sidebar-link no-padding"}}
-            <div class="full flex-center nav-sidebar-item">
-              <span>{{item.name}}</span>
-            </div>
-          {{/link-to}}
-        </div>
-      {{/each}}
-    </div>
-    <div class="col-pad"></div>
+    {{#if displayMenu}}
+      <div class="nav-sidebar">
+        {{#each menu as |item|}}
+          <div class="row nav-sidebar-wrapper">
+            {{#link-to api_data.activeModel item.id class="nav-sidebar-link no-padding"}}
+              <div class="full flex-center nav-sidebar-item">
+                <span>{{item.name}}</span>
+              </div>
+            {{/link-to}}
+          </div>
+        {{/each}}
+      </div>
+      <div class="col-pad"></div>
+    {{/if}}
     <div class="col main-content flex-center">
       {{outlet}}
     </div>
   </div>
-
-
-<!--
-  <div class="floating-login">
-    {{#if session.isAuthenticated}}
-      <button class="btn btn-primary" {{action "invalidateSession"}} role="button">Logout</button>
-    {{else}}
-      <form {{action "authenticate" on="submit"}}>
-        {{input id="username" placeholder="Username" class="form-control" value=username}}
-        {{input id="password" placeholder="Password" class="form-control" type="password" value=password}}
-        <button type="submit" class="btn btn-primary">Login</button>
-        {{#if errorMessage}}
-          <p>{{errorMessage}}</p>
-        {{/if}}
-      </form>
-    {{/if}}
-  </div>
--->
 
 </div>

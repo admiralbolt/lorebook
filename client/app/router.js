@@ -15,6 +15,7 @@ Router.map(function() {
   this.route('song', {
     path: 'songs/:id'
   });
+  this.route('login');
 });
 
 export default Router;

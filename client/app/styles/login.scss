@@ -1,0 +1,27 @@
+.login {
+  padding-top: 1vh;
+  width: 100%;
+  text-align: center;
+
+
+  .login-input {
+    font-size: 2vh;
+    margin: 0px auto 3px auto;
+    width: 50%;
+
+    @media (max-width: 500px) {
+      width: 100%;
+    }
+
+  }
+
+  .login-button {
+    font-size: 2vh;
+    margin-top: 3px;
+    width: 50%;
+
+    @media (max-width: 500px) {
+      width: 100%;
+    }
+  }
+}
