@@ -1,8 +1,11 @@
 from django.db import models
 
+
 class NamedModel(models.Model):
   """Abstract base class to save some boilerplate."""
   name = models.CharField(max_length=128)
+  # Controls whether or not the players can see the item.
+  visible = models.BooleanField(default=False)
 
   class Meta:
     abstract = True
@@ -33,19 +36,25 @@ class Song(NamedModel):
   loop = models.BooleanField(default=False)
   sound_file = models.FileField(upload_to="music/")
   # items = GenericRelation("SessionItem", related_query_name="song")
-  visible = models.BooleanField(default=False)
+
+
+class City(NamedModel):
+  """Cities the players have been to along the way."""
+  description = models.TextField(default="", blank=True)
+  lore = models.TextField(default=None, blank=True)
+
 
 class NPC(NamedModel):
   """Characters the players meet along the way."""
   aliases = models.TextField(default="", blank=True)
   appearance = models.TextField(default=None, blank=True)
   lore = models.TextField(default=None, blank=True)
-  # Whether or not the players have met the npc yet.
-  visible = models.BooleanField(default=False)
+  city = models.ForeignKey(City, on_delete=models.CASCADE, blank=True, null=True)
 
-ADMIN_MODELS = [NPC, Song, Tag]
-SEARCHABLE_MODELS = [NPC, Song]
+ADMIN_MODELS = [City, NPC, Song, Tag]
+SEARCHABLE_MODELS = [City, NPC, Song]
 LINKABLE_MODELS = [
+  ("city", City),
   ("npc", NPC),
   ("song", Song)
 ]
