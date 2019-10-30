@@ -10,12 +10,14 @@ Router.map(function() {
   this.route('npcs');
   this.route('npc', {
     path: 'npcs/:id'
-  });
+  }, function() {});
   this.route('songs');
   this.route('song', {
     path: 'songs/:id'
   });
   this.route('login');
+  this.route('npc-create');
+  this.route('song-create');
 });
 
 export default Router;

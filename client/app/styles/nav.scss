@@ -99,6 +99,12 @@ $nav-width-small-screen: 25vw;
 
       .nav-sidebar-item {
         font-size: 0.8em;
+        flex-direction: row;
+
+        ion-icon {
+          font-size: 2em;
+          margin-right: 0.4em;
+        }
       }
     }
   }
