@@ -2,7 +2,17 @@ from . import models
 from . import serializers
 from django.core.serializers import serialize
 from django.http import JsonResponse
-from rest_framework import generics
+from rest_framework import generics, viewsets
+
+class NPCViewSet(viewsets.ModelViewSet):
+  resource_name = 'npcs'
+  queryset = models.NPC.objects.all()
+  serializer_class = serializers.NPCSerializer
+
+  def get_queryset(self):
+    """We override the default behavior to return only met npcs to unauthenticated users."""
+    npcs = models.NPC.objects.order_by('name')
+    return npcs if self.request.user.is_authenticated else npcs.filter(visible=True)
 
 class NPCListCreate(generics.ListCreateAPIView):
   queryset = models.NPC.objects.all()

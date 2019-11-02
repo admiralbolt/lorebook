@@ -12,7 +12,7 @@ class AliasSerializer(serializers.Field):
 
 class NPCSerializer(serializers.ModelSerializer):
 
-  aliases = AliasSerializer()
+  aliases = AliasSerializer(required=False)
 
   class Meta:
     model = models.NPC

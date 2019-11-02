@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
   'localhost'
 ]
 
+JSON_API_PLURALIZE_RELATION_TYPE = True
 
 # Application definition
 

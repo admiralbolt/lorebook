@@ -6,12 +6,6 @@ export default Route.extend({
 
   beforeModel(transition) {
     this.api_data.setActiveModel('npc');
-  },
-
-  actions: {
-    create() {
-
-    }
   }
 
 });
