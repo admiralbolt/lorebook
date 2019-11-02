@@ -75,10 +75,11 @@ class Lore(NamedModel):
   
 
 ADMIN_MODELS = [City, Lore, NPC, Song, Tag]
+LINKABLE_MODELS = [City, Lore, NPC, Song]
 SEARCHABLE_MODELS = [City, Lore, NPC, Song]
-LINKABLE_MODELS = [
-  ("city", City),
-  ("lore", Lore),
-  ("npc", NPC),
-  ("song", Song)
-]
+MODEL_NAME_MAP = {
+  City: "city",
+  Lore: "lore",
+  NPC: "npc",
+  Song: "song"
+}

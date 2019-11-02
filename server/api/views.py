@@ -43,13 +43,13 @@ class SongDetail(generics.RetrieveUpdateDestroyAPIView):
 
 def links(self):
   links = []
-  for model_name, model in models.LINKABLE_MODELS:
+  for model in models.LINKABLE_MODELS:
     all_objects = model.objects.all()
     data = all_objects if self.user.is_authenticated else all_objects.filter(visible=True)
     for item in data:
       link = {
         "aliases": [item.name],
-        "model": model_name,
+        "model": models.MODEL_NAME_MAP[type(item)],
         "id": item.id
       }
       if hasattr(item, "aliases"):

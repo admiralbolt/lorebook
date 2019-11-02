@@ -1,3 +1,4 @@
+from . import search
 from . import views
 from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
@@ -9,4 +10,5 @@ urlpatterns = [
   path("songs/<int:pk>/", views.SongDetail.as_view()),
   path("api-auth-token/", obtain_auth_token),
   path("links/", views.links),
+  path("search/", search.auto_complete),
 ]

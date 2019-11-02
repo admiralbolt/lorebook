@@ -4,6 +4,6 @@ const { Model } = DS;
 export default Model.extend({
   name: DS.attr(),
   appearance: DS.attr(),
-  lore: DS.attr(),
+  info: DS.attr(),
   visible: DS.attr()
 });
