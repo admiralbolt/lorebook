@@ -1,6 +1,7 @@
-@import 'nav.scss';
 @import 'items.scss';
+@import 'forms.scss';
 @import 'login.scss';
+@import 'nav.scss';
 
 html {
   height: 100%;
@@ -8,24 +9,19 @@ html {
 }
 
 body {
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  margin: 0;
   background-color: rgb(26, 26, 26) !important;
-}
-
-body .ember-view {
   height: 100%;
+  margin: 0;
+  padding: 0;
   width: 100%;
 }
 
 .container {
-  max-width: 100% !important;
-  width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
   height: 100%;
+  margin: 0 !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  width: 100% !important;
 }
 
 .no-padding {
@@ -36,23 +32,34 @@ body .ember-view {
   height: 100%;
 }
 
+.width-100 {
+  width: 100%;
+}
+
+.center-text {
+  text-align: center;
+}
+
 .col-1-5 {
-  width: 12.5% !important;
   max-width: 12.5% !important;
+  width: 12.5% !important;
+
   flex-basis: 12.5% !important;
 }
 
 .flex-center {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
+
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
 
 .flex-break {
-  flex-basis: 100%;
   height: 0;
+
+  flex-basis: 100%;
 }
 
 .full {
@@ -61,8 +68,8 @@ body .ember-view {
 }
 
 .row {
-  margin-right: 0px !important;
   margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 .main-content {
@@ -73,7 +80,7 @@ body .ember-view {
   text-decoration: none !important;
 
   &.npc {
-    color: $npc-primary-color;
+    color: $npc-color;
   }
 }
 
@@ -82,12 +89,12 @@ body .ember-view {
 **/
 
 .floating-login {
-  position: absolute;
   bottom: 0;
-  right: 0;
-  padding-top: 10px;
-  padding-right: 10px;
   max-width: 14em;
+  padding-right: 10px;
+  padding-top: 10px;
+  position: absolute;
+  right: 0;
 }
 
 .floating-login form input {

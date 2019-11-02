@@ -1,0 +1,11 @@
+$primary-color: rgb(190, 190, 190);
+$button-color: rgb(60, 60, 60);
+$npc-color: rgb(100, 140, 220);
+
+.npc-color {
+  color: $npc-color;
+}
+
+.npc-background {
+  background-color: $npc-color;
+}

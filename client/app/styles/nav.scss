@@ -5,29 +5,30 @@ $nav-width-small-screen: 25vw;
 
 .nav-primary {
   background-color: rgb(20, 28, 40);
-  top: 0;
   border-bottom: 1px solid #aaa;
-  position: fixed;
-  width: 100vw;
-  min-width: 100vw;
-  font-weight: 400;
   font-size: 1.8vh;
+  font-weight: 400;
   height: $nav-height;
+  margin: 0px !important;
+  min-width: 100vw;
   overflow: auto;
-  z-index: 9;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
-  margin: 0px !important;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 9;
 
   div {
     a {
       color: rgba(255, 255, 255, 0.9);
+      display:block;
       font-size: 0.9em;
+      height: 100%;
       padding: 0.5vh 0;
       position: relative;
-      display:block;
-      text-decoration: none;
       text-align: center;
+      text-decoration: none;
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.8);
@@ -56,9 +57,9 @@ $nav-width-small-screen: 25vw;
 
 .nav-sidebar {
   background-color: rgb(26, 34, 48);
-  position: fixed;
   height: 100%;
   left: 0;
+  position: fixed;
   width: $nav-width-large-screen;
   z-index: 0;
 
@@ -67,10 +68,10 @@ $nav-width-small-screen: 25vw;
   }
 
   .nav-sidebar-wrapper {
-    width: 100%;
-    padding: 0px !important;
-    margin: 0px !important;
     height: 6vh;
+    margin: 0px !important;
+    padding: 0px !important;
+    width: 100%;
 
     @media (max-width: 500px) {
       height: 8vh;
@@ -78,12 +79,13 @@ $nav-width-small-screen: 25vw;
 
     .nav-sidebar-link {
       color: rgba(255, 255, 255, 0.9);
+      display:block;
       font-size: 2vh;
       padding: 0.5vh 0;
       position: relative;
-      display:block;
-      text-decoration: none;
       text-align: center;
+      text-decoration: none;
+      width: 100%;
 
       @media (max-width: 500px) {
         font-size: 2vh;
@@ -98,8 +100,8 @@ $nav-width-small-screen: 25vw;
       }
 
       .nav-sidebar-item {
-        font-size: 0.8em;
         flex-direction: row;
+        font-size: 0.8em;
 
         ion-icon {
           font-size: 2em;

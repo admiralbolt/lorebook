@@ -1,0 +1,53 @@
+.item-form {
+  width: 100%;
+
+  .form-input-label {
+    color: $primary-color;
+    font-size: 1.6vh;
+    font-weight: bold;
+    margin-bottom: 3px;
+  }
+
+  .item-input {
+    border: 0;
+    border-radius: 5px;
+    font-size: $input-font-size;
+    padding: 5px;
+    width: 100%;
+  }
+
+  textarea {
+    height: 8vh;
+
+    @media (max-width: 500px) {
+      height: 12vh;
+    }
+  }
+
+}
+
+.create-title {
+  font-size: 2.5vh;
+  text-align: center;
+
+  @media (max-width: 500px) {
+    font-size: 3.5vh;
+  }
+}
+
+.save-button {
+  border: 0;
+  border-radius: 5px;
+  color: $primary-color;
+  font-size: 1.5vh;
+  font-weight: bold;
+  height: 3vh;
+  padding: 5px;
+  width: 30%;
+
+  @media (max-width: 500px) {
+    font-size: 2.3vh;
+    height: 5vh;
+    width: 100%;
+  }
+}

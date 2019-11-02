@@ -1,20 +1,21 @@
-$base-text-color: rgb(190, 190, 190);
+@import "_colors.scss";
+
 $base-font-size: 2.1vh;
-$npc-primary-color: rgb(100, 140, 220);
+$input-font-size: 1.8vh;
 
 
 .item-detail {
-  color: $base-text-color;
+  color: $primary-color;
   font-size: $base-font-size;
   width: 100%;
 
   .item-title {
-    width: 100%;
     font-size: 3vh;
     text-align: center;
+    width: 100%;
 
     &.npc {
-      color: $npc-primary-color;
+      color: $npc-color;
     }
   }
 
@@ -24,8 +25,8 @@ $npc-primary-color: rgb(100, 140, 220);
     font-weight: bold;
     margin-bottom: 4px;
     padding-bottom: 4px;
-    width: 100%;
     text-align: left;
+    width: 100%;
   }
 
   .item-description {
@@ -41,4 +42,5 @@ $npc-primary-color: rgb(100, 140, 220);
     display: block;
     margin: 15px 0;
   }
+
 }
