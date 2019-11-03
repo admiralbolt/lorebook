@@ -11,6 +11,7 @@ export default Controller.extend({
   success: function(reason) {
     this.toast.success('NPC Created successfully!');
     this.set('npc', {});
+    this.get('api_data').reloadMenu();
   },
 
   fail: function(reason) {
