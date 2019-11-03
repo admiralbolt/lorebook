@@ -16,6 +16,12 @@ export default Component.extend({
   modelName: '',
   route: null,
 
+  // Need to reset isEditing if we transition between items while editing one.
+  didReceiveAttrs() {
+    this._super(...arguments);
+    this.set('isEditing', false);
+  },
+
   title: computed('model.name', function() {
     return `Editing ${this.get('model.name')}`;
   }),
