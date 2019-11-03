@@ -8,8 +8,12 @@ export default Controller.extend({
   session: service('session'),
   api_data: service('api-data'),
 
-  menu: computed('api_data.activeModel', function() {
+  menuItems: computed('api_data.activeModel', function() {
     return this.get('api_data').getActiveItems();
+  }),
+
+  menu: computed('menuItems.@each.name', function() {
+    return this.get('menuItems').sortBy('name');
   }),
 
   displayMenu: computed('currentRouteName', function() {
