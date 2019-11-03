@@ -14,23 +14,17 @@ export default Controller.extend({
     return this.get('model').toJSON();
   }),
 
-  success: function(reason) {
-    this.toast.success('NPC Updated successfully!');
-    this.set('isEditing', false);
-    this.get('api_data').reloadMenu();
-  },
-
-  fail: function(reason) {
-    this.toast.error(formatErrors(reason.errors));
-    let model = this.get('model').rollbackAttributes();
-  },
-
   actions: {
     edit() {
       this.set('isEditing', true);
     },
     delete() {
-      console.log('TBD');
+      let model = this.get('model');
+      model.deleteRecord();
+      model.save().then(function() {
+        this.toast.success('NPC Deleted.');
+        this.transitionToRoute('npcs');
+      }.bind(this));
     },
     cancel() {
       this.set('isEditing', false);
@@ -40,7 +34,14 @@ export default Controller.extend({
       for (let prop in npc) {
         model.set(prop, npc[prop]);
       }
-      model.save().then(this.success.bind(this), this.fail.bind(this));
+      model.save().then(function() {
+        this.toast.success('NPC Updated successfully!');
+        this.set('isEditing', false);
+        this.get('api_data').reloadMenu();
+      }.bind(this), function(reason) {
+        this.toast.error(formatErrors(reason.errors));
+        let model = this.get('model').rollbackAttributes();
+      }.bind(this));
     }
   }
 
