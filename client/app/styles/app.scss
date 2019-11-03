@@ -51,25 +51,22 @@ button:focus {
 }
 
 .col-1-5 {
+  flex-basis: 12.5% !important;
   max-width: 12.5% !important;
   width: 12.5% !important;
-
-  flex-basis: 12.5% !important;
 }
 
 .flex-center {
+  align-items: center;
   display: flex;
   flex-direction: column;
-
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
 }
 
 .flex-break {
-  height: 0;
-
   flex-basis: 100%;
+  height: 0;
 }
 
 .full {
