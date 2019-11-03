@@ -44,11 +44,13 @@
     "ember-simple-auth": "^1.9.2",
     "ember-simple-auth-token": "^4.0.7",
     "ember-source": "~3.13.0",
+    "ember-toastr": "^2.0.1",
     "ember-welcome-page": "^4.0.0",
     "eslint-plugin-ember": "^7.1.0",
     "eslint-plugin-node": "^10.0.0",
     "loader.js": "^4.7.0",
-    "sass": "^1.23.1"
+    "sass": "^1.23.1",
+    "toastr": "^2.1.4"
   },
   "engines": {
     "node": "8.* || >= 10.*"

@@ -42,13 +42,15 @@
           </div>
         {{/if}}
         {{#each menu as |item|}}
-          <div class="row nav-sidebar-wrapper">
-            {{#link-to api_data.activeModel item.id class="nav-sidebar-link no-padding"}}
-              <div class="full flex-center nav-sidebar-item">
-                <span>{{item.name}}</span>
-              </div>
-            {{/link-to}}
-          </div>
+          {{#unless item.isNew}}
+            <div class="row nav-sidebar-wrapper">
+              {{#link-to api_data.activeModel item.id class="nav-sidebar-link no-padding"}}
+                <div class="full flex-center nav-sidebar-item">
+                  <span>{{item.name}}</span>
+                </div>
+              {{/link-to}}
+            </div>
+          {{/unless}}
         {{/each}}
       </div>
       <div class="col-pad"></div>

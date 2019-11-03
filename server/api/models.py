@@ -3,7 +3,7 @@ from django.db import models
 
 class NamedModel(models.Model):
   """Abstract base class to save some boilerplate."""
-  name = models.CharField(max_length=128)
+  name = models.CharField(max_length=128, unique=True)
   # Alternate names for a model to make them more searchable.
   # In order for them to work as intended, they should be separated on new lines.
   aliases = models.TextField(default="", blank=True)
@@ -72,7 +72,7 @@ class Lore(NamedModel):
   date_received = models.DateField(default=None, blank=True)
   date_written = models.DateField(default=None, blank=True)
   text = models.TextField(default="", blank=True)
-  
+
 
 ADMIN_MODELS = [City, Lore, NPC, Song, Tag]
 LINKABLE_MODELS = [City, Lore, NPC, Song]

@@ -57,5 +57,11 @@ module.exports = function(environment) {
     authorizationPrefix: 'Bearer ',
   };
 
+  ENV['ember-toastr'] = {
+    toastrOptions: {
+      toastClass: 'alert'
+    }
+  }
+
   return ENV;
 };
