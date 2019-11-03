@@ -10,16 +10,8 @@ export default Controller.extend({
   toast: service('toast'),
 
   isEditing: false,
-  modelSnapshot: null,
   npc: computed('isEditing', function() {
-    let model = this.get('model');
-    return {
-      name: model.name,
-      appearance: model.appearance,
-      visible: model.visible,
-      info: model.info,
-      aliases: model.aliases
-    }
+    return this.get('model').toJSON();
   }),
 
   success: function(reason) {
@@ -44,16 +36,10 @@ export default Controller.extend({
       this.set('isEditing', false);
     },
     save(model) {
-      // Save the current model params in case our patch fails. We want to
-      // restore the original properties so that the local model is not
-      // out of date.
-      this.set('modelSnapshot', model);
       let npc = this.get('npc');
-      model.set('name', npc.name);
-      model.set('appearance', npc.appearance);
-      model.set('visible', npc.visible);
-      model.set('info', npc.info);
-      model.set('aliases', npc.aliases);
+      for (let prop in npc) {
+        model.set(prop, npc[prop]);
+      }
       model.save().then(this.success.bind(this), this.fail.bind(this));
     }
   }
