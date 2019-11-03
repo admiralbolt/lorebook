@@ -1,1 +1,28 @@
-{{outlet}}
+<ItemDetail @modelName="song" @componentName="song-form" @route="songs" @model={{model}}>
+
+  <div class="row">
+    <div class="item-title song-color">
+      {{model.name}}
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="item-label">Artist</div>
+    <div class="item-description">
+      {{model.artist}}
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="item-label">Flavor</div>
+    <div class="item-flavor">
+      {{model.flavor}}
+    </div>
+  </div>
+
+
+</ItemDetail>

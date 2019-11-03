@@ -1,52 +1,25 @@
-{{#if isEditing}}
-  <div class="full">
-    <NpcForm @title="Editing {{model.name}}" @npc={{npc}} />
-    <div class="row">
-      <div class="col flex-center">
-        <button {{action "cancel"}} class="action-button">Cancel</button>
-      </div>
-      <div class="col flex-center">
-        <button {{action "save" model}} class="action-button">Save</button>
-      </div>
+<ItemDetail @modelName="npc" @componentName="npc-form" @route="npcs" @model={{model}}>
+  <div class="row">
+    <div class="item-title npc-color">
+      {{model.name}}
     </div>
   </div>
-{{else}}
-  <div class="item-detail">
-    <div class="row">
-      <div class="item-title npc">
-        {{model.name}}
-      </div>
+
+  <br>
+
+  <div class="row">
+    <div class="item-label">Description</div>
+    <div class="item-description">
+      {{model.appearance}}
     </div>
-
-    <br>
-
-    <div class="row">
-      <div class="item-label">Description</div>
-      <div class="item-description npc">
-        {{model.appearance}}
-      </div>
-    </div>
-
-    <br>
-
-    <div class="row">
-      <div class="item-label">Lore</div>
-      <div class="item-lore npc">
-        <HotLink @text={{model.info}} />
-      </div>
-    </div>
-
-    {{#if session.isAuthenticated}}
-      <br>
-
-      <div class="row">
-        <div class="col flex-center">
-          <button {{action "edit"}} class="action-button">Edit</button>
-        </div>
-        <div class="col flex-center">
-          <button {{action "delete" model}} class="action-button">Delete</button>
-        </div>
-      </div>
-    {{/if}}
   </div>
-{{/if}}
+
+  <br>
+
+  <div class="row">
+    <div class="item-label">Lore</div>
+    <div class="item-lore">
+      <HotLink @text={{model.info}} />
+    </div>
+  </div>
+</ItemDetail>

@@ -1,0 +1,28 @@
+{{#if isEditing}}
+  {{component componentName title=title model=model}}
+  <div class="row">
+    <div class="col flex-center">
+      <button {{action "cancel"}} class="action-button">Cancel</button>
+    </div>
+    <div class="col flex-center">
+      <button {{action "save" model}} class="action-button">Save</button>
+    </div>
+  </div>
+{{else}}
+  <div class="item-detail">
+    {{yield}}
+
+    {{#if session.isAuthenticated}}
+      <br>
+
+      <div class="row">
+        <div class="col flex-center">
+          <button {{action "edit"}} class="action-button">Edit</button>
+        </div>
+        <div class="col flex-center">
+          <button {{action "delete" model}} class="action-button">Delete</button>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+{{/if}}

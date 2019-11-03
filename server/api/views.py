@@ -14,23 +14,17 @@ class NPCViewSet(viewsets.ModelViewSet):
     npcs = models.NPC.objects.order_by('name')
     return npcs if self.request.user.is_authenticated else npcs.filter(visible=True)
 
-class SongListCreate(generics.ListCreateAPIView):
+
+class SongViewSet(viewsets.ModelViewSet):
+  resource_name = 'songs'
   queryset = models.Song.objects.all()
   serializer_class = serializers.SongSerializer
 
   def get_queryset(self):
-    """We override the default behavior to return only non-hidden songs to unauthenticated users."""
+    """We override the default behavior to return only met songs to unauthenticated users."""
     songs = models.Song.objects.order_by('name')
     return songs if self.request.user.is_authenticated else songs.filter(visible=True)
 
-class SongDetail(generics.RetrieveUpdateDestroyAPIView):
-  queryset = models.Song.objects.all()
-  serializer_class = serializers.SongSerializer
-
-  def get_queryset(self):
-    """We override the default behavior to return only non-hidden songs to unauthenticated users."""
-    songs = models.Song.objects.order_by('name')
-    return songs if self.request.user.is_authenticated else songs.filter(visible=True)
 
 def links(self):
   links = []
