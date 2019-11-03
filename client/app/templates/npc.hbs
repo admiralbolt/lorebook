@@ -16,12 +16,6 @@
       <div class="item-title npc">
         {{model.name}}
       </div>
-      {{#if session.isAuthenticated}}
-      <div class="action-buttons">
-        <button {{action "edit"}}>Edit</button>
-        <button {{action "delete"}}>Delete</button>
-      </div>
-      {{/if}}
     </div>
 
     <br />
@@ -41,5 +35,18 @@
         <HotLink @text={{model.info}} />
       </div>
     </div>
+
+    {{#if session.isAuthenticated}}
+      <br />
+
+      <div class="row">
+        <div class="col flex-center">
+          <button {{action "edit"}} class="action-button">Edit</button>
+        </div>
+        <div class="col flex-center">
+          <button {{action "delete" model}} class="action-button">Delete</button>
+        </div>
+      </div>
+    {{/if}}
   </div>
 {{/if}}
