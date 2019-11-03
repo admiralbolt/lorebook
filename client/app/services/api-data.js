@@ -1,16 +1,17 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
-import { set } from '@ember/object';
-import { tracked } from '@glimmer/tracking';
 
 export default Service.extend({
-  @tracked activeModel: null,
   store: service(),
+  activeModel: null,
+  menuItems: null,
 
-  menuItems: [],
+  init() {
+    this._super(...arguments);
+    this.menuItems = this.menuItems || [];
+  },
 
-  reloadMenu(records) {
+  reloadMenu() {
     this.get('store').findAll(this.activeModel).then(function(records) {
       let menuItems = [];
       records.forEach((record) => {
@@ -24,8 +25,7 @@ export default Service.extend({
   },
 
   setActiveModel(model) {
-    set(this, 'activeModel', model);
-    this.activeModel = model;
+    this.set('activeModel', model);
     this.reloadMenu();
   },
 

@@ -1,7 +1,7 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import config from '../config/environment';
+import fetch from 'fetch';
 
 export default Component.extend({
   text: null,
@@ -10,15 +10,10 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     var parent = this;
-    this._getLinks().then(function(result) {
-      parent._tokenize(result);
-    });
-  },
-
-  _getLinks() {
-    return $.ajax({
-      url: config.host + '/links',
-      type: 'GET'
+    fetch(`${config.host}/links`).then(function(result) {
+      result.json().then(function(data) {
+        parent._tokenize(data);
+      });
     });
   },
 

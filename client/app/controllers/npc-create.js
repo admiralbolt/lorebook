@@ -6,9 +6,14 @@ import formatErrors from 'client/utils/utils';
 export default Controller.extend({
   api_data: service('api_data'),
   toast: service('toast'),
-  npc: {},
+  npc: null,
 
-  success: function(reason) {
+  init() {
+    this._super(...arguments);
+    this.npc = this.npc || {};
+  },
+
+  success: function() {
     this.toast.success('NPC Created successfully!');
     this.set('npc', {});
     this.get('api_data').reloadMenu();
@@ -28,7 +33,6 @@ export default Controller.extend({
         info: npcData.info,
         visible: npcData.visible
       });
-      var self = this;
       npc.save().then(this.success.bind(this), this.fail.bind(this));
     }
   }

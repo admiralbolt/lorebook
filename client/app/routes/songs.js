@@ -5,7 +5,7 @@ export default Route.extend({
 
   api_data: service('api-data'),
 
-  beforeModel(transition) {
+  beforeModel() {
     this.api_data.setActiveModel('song');
   },
 

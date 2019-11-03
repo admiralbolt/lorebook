@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { copy } from '@ember/object/internals';
 import formatErrors from 'client/utils/utils';
 
 export default Controller.extend({
@@ -40,7 +39,7 @@ export default Controller.extend({
         this.get('api_data').reloadMenu();
       }.bind(this), function(reason) {
         this.toast.error(formatErrors(reason.errors));
-        let model = this.get('model').rollbackAttributes();
+        model.rollbackAttributes();
       }.bind(this));
     }
   }
