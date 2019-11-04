@@ -12,6 +12,7 @@ router.register(r"songs", views.SongViewSet)
 urlpatterns = [
   path("api-auth-token/", obtain_auth_token),
   path("links/", views.links),
+  path("songs/upload/", views.upload_song),
   path("search/", search.auto_complete),
   url(r"^", include(router.urls)),
 ]

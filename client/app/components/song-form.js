@@ -7,5 +7,11 @@ export default Component.extend({
   init() {
     this._super(...arguments);
     this.song = this.get('model') || {};
+  },
+
+  actions: {
+    addFileForUpload(file) {
+      this.sendAction('addFileForUpload', 'sound_file', file);
+    }
   }
 });

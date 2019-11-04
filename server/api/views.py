@@ -2,7 +2,12 @@ from . import models
 from . import serializers
 from django.core.serializers import serialize
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics, viewsets
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import api_view, authentication_classes, parser_classes, permission_classes
+from rest_framework.parsers import FileUploadParser, JSONParser
+from rest_framework.permissions import IsAuthenticated
 
 class NPCViewSet(viewsets.ModelViewSet):
   resource_name = 'npcs'
@@ -26,11 +31,11 @@ class SongViewSet(viewsets.ModelViewSet):
     return songs if self.request.user.is_authenticated else songs.filter(visible=True)
 
 
-def links(self):
+def links(request):
   links = []
   for model in models.LINKABLE_MODELS:
     all_objects = model.objects.all()
-    data = all_objects if self.user.is_authenticated else all_objects.filter(visible=True)
+    data = all_objects if request.user.is_authenticated else all_objects.filter(visible=True)
     for item in data:
       link = {
         "aliases": [item.name],
@@ -44,3 +49,22 @@ def links(self):
       links.append(link)
 
   return JsonResponse(links, safe=False)
+
+
+@api_view(["POST"])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+# @parser_classes([JSONParser, FileUploadParser])
+def upload_song(request):
+  print(request.data)
+  print(request.GET)
+  try:
+    song = models.Song.objects.get(id=request.GET.get("id"))
+  except:
+    return JsonResponse({
+      "status": "failure",
+      "message": f"Could not find song with id = {request.GET.get('id')}"
+    })
+  f = request.data['file']
+  song.sound_file.save(f.name, f, save=True)
+  return JsonResponse({"status": "success", "message": ""})

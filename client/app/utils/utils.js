@@ -4,9 +4,13 @@
 export default function formatErrors(errors) {
   let errorString = "";
   for (let property in errors) {
-    errors[property].forEach(error => {
-      errorString += `Field '${property}' has error: ${error} <br />`
-    });
+    if (Array.isArray(errors[property])) {
+      errors[property].forEach(error => {
+        errorString += `Field '${property}' has error: ${error} <br />`;
+      });
+    } else {
+      errorString += `Field '${property}' has error: ${errors[property]} <br />`;
+    }
   }
   return errorString;
 }

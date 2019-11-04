@@ -7,6 +7,6 @@ export default Model.extend({
   flavor: DS.attr(),
   tags: DS.attr(),
   loop: DS.attr(),
-  soundFile: DS.attr(),
+  sound_file: DS.attr(),
   visible: DS.attr()
 });

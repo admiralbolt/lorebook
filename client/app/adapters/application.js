@@ -13,9 +13,8 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   headers: computed('session.data.authenticated.token', function() {
     let headers = {};
     if (this.session.isAuthenticated) {
-      headers['Authorization'] = `Token ${this.session.data.authenticated.token}`
+      headers['Authorization'] = `Token ${this.session.data.authenticated.token}`;
     }
     return headers;
   })
-  
 });
