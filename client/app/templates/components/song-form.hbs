@@ -1,4 +1,4 @@
-<form enctype="multipart/form-data" class="item-form">
+<form class="item-form">
   <h1 class="create-title song-color"> {{title}} </h1>
   <div class="form-group">
     <div class="form-input-label">Name</div>
@@ -23,11 +23,11 @@
   <div class="form-group">
     <div class="form-input-label">Sound File</div>
     <FileUpload @name="sound_file" @for="sound_file" @accept="audio/*" @onfileadd={{action "addFileForUpload"}} as |queue|>
-      <a style="color: white;" class="button">
+      <a class="upload-button">
         {{#if queue.files.length}}
           {{queue.files.0.name}}
         {{else}}
-          Upload File
+          {{song.getFileName}}
         {{/if}}
       </a>
     </FileUpload>

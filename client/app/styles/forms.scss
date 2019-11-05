@@ -1,5 +1,5 @@
 .item-form {
-  width: 100%;
+  // width: 100%;
 
   .form-input-label {
     color: $primary-color;
@@ -24,6 +24,30 @@
     }
   }
 
+  .upload-button {
+    background-color: white;
+    border-radius: 5px;
+    display: block;
+    font-size: $input-font-size;
+    overflow-wrap: break-word;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+    }
+
+    @media (max-width: 500px) {
+      max-width: 67vw;
+    }
+  }
+
+}
+
+.file-upload {
+  width: 100% !important;
 }
 
 .create-title {
