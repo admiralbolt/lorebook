@@ -66,7 +66,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_HEADERS = [
   'authorization',
-  'content-disposition'
+  'content-disposition',
+  'content-type'
 ]
 
 ROOT_URLCONF = 'server.urls'

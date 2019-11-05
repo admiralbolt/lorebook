@@ -6,7 +6,6 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics, viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import api_view, authentication_classes, parser_classes, permission_classes
-from rest_framework.parsers import FileUploadParser, JSONParser
 from rest_framework.permissions import IsAuthenticated
 
 class NPCViewSet(viewsets.ModelViewSet):
@@ -54,10 +53,7 @@ def links(request):
 @api_view(["POST"])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
-# @parser_classes([JSONParser, FileUploadParser])
 def upload_song(request):
-  print(request.data)
-  print(request.GET)
   try:
     song = models.Song.objects.get(id=request.GET.get("id"))
   except:

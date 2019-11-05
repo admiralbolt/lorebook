@@ -50,7 +50,6 @@ export default Component.extend({
         Accept: 'application/vnd.api+json'
       };
       headers['Content-Disposition'] = `attachment; filename=${fileForUpload.file.name}`;
-      console.log(headers);
       uploadPromises.push(fileForUpload.file.upload(`${config.host}/songs/upload/?id=${model.id}`, {
         headers: headers
       }).then(function(response) {
