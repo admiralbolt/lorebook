@@ -7,6 +7,7 @@ import { isNone } from '@ember/utils';
 
 export default Component.extend({
   api_data: service('api_data'),
+  router: service('router'),
   session: service('session'),
   toast: service('toast'),
 
@@ -90,10 +91,11 @@ export default Component.extend({
 
     delete() {
       let model = this.get('model');
+      let modelName = model.name;
       model.deleteRecord();
       model.save().then(function() {
-        this.toast.success(`${this.get('modelName')} Deleted.`);
-        this.transitionToRoute(this.get('route'));
+        this.toast.success(`${this.get('formattedModelName')} '${modelName}' Deleted.`);
+        this.get('router').transitionTo(this.get('route'));
       }.bind(this));
     },
 

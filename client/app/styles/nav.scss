@@ -55,26 +55,34 @@ $nav-width-small-screen: 25vw;
   height: $nav-height;
 }
 
+::-webkit-scrollbar {
+  width: 0px !important;
+  -webkit-appearance: none;
+}
+
 .nav-sidebar {
   background-color: rgb(26, 34, 48);
-  height: 100%;
+  height: calc(100% - #{$nav-height});
   left: 0;
+  overflow-y: scroll;
   position: fixed;
   width: $nav-width-large-screen;
   z-index: 0;
+
 
   @media (max-width: 500px) {
     width: $nav-width-small-screen;
   }
 
   .nav-sidebar-wrapper {
-    height: 6vh;
+    border-bottom: 1px solid rgb(20, 30, 40);
+    height: 5vh;
     margin: 0px !important;
     padding: 0px !important;
     width: 100%;
 
     @media (max-width: 500px) {
-      height: 8vh;
+      height: 7vh;
     }
 
     .nav-sidebar-link {
