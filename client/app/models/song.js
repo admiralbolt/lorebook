@@ -11,7 +11,7 @@ export default Model.extend({
   sound_file: DS.attr(),
   visible: DS.attr(),
 
-  getFileName: computed('sound_file', function() {
+  soundFileName: computed('sound_file', function() {
     return this.get('sound_file').split(/(\\|\/)/g).pop();
   })
 });
