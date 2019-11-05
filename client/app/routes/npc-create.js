@@ -7,5 +7,4 @@ export default Route.extend({
   beforeModel() {
     this.api_data.setActiveModel('npc');
   }
-
 });

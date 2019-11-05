@@ -1,7 +1,7 @@
 // Format errors in a sane way. Errors from the backend come in as an object
 // that map the model field -> array of error messages. i.e.:
 // {'description': ['This field is required', ...]}
-export default function formatErrors(errors) {
+export function formatErrors(errors) {
   let errorString = "";
   for (let property in errors) {
     if (Array.isArray(errors[property])) {
@@ -13,4 +13,13 @@ export default function formatErrors(errors) {
     }
   }
   return errorString;
+}
+
+// Format model names for display. This is mostly to titleize names but in
+// cases like NPC every letter is capital.
+export function formatModelName(modelName) {
+  return {
+    'npc': 'NPC',
+    'song': 'Song'
+  }[modelName] || modelName;
 }

@@ -1,12 +1,19 @@
-{{#if isEditing}}
-  {{component componentName title=title model=modelCopy addFileForUpload="addFileForUpload"}}
+{{#if displayForm}}
+  {{component componentName title=title model=modelCopy addFileForUpload=(action "addFileForUpload")}}
   <div class="row">
-    <div class="col flex-center">
-      <button {{action "cancel"}} class="action-button">Cancel</button>
-    </div>
-    <div class="col flex-center">
-      <button {{action "save" model}} class="action-button">Save</button>
-    </div>
+    {{#if isEditing}}
+      <div class="col flex-center">
+        <button {{action "cancel"}} class="action-button">Cancel</button>
+      </div>
+      <div class="col flex-center">
+        <button {{action "save" model}} class="action-button">Save</button>
+      </div>
+    {{/if}}
+    {{#if isNew}}
+      <div class="width-100 center-text">
+        <button {{action "create"}} class="action-button primary-color {{modelName}}-background">Create {{formattedModelName}}</button>
+      </div>
+    {{/if}}
   </div>
 {{else}}
   <div class="item-detail">

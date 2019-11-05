@@ -37,7 +37,7 @@ class Song(NamedModel):
   # Whether or not to loop the song continuously. This is generally true for
   # things like battle & ambient music.
   loop = models.BooleanField(default=False)
-  sound_file = models.FileField(upload_to="music/")
+  sound_file = models.FileField(upload_to="music/", blank=True)
   # items = GenericRelation("SessionItem", related_query_name="song")
 
 
