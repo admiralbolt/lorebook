@@ -1,6 +1,2 @@
-<div class="full">
-  <NpcForm @npc={{npc}} />
-  <div class="width-100 center-text">
-    <button {{action "create"}} class="action-button primary-color npc-background">Create NPC</button>
-  </div>
-</div>
+<ItemDetail @modelName="npc" @componentName="npc-form" @route="npcs" @model={{model}} @isNew=true>
+</ItemDetail>
