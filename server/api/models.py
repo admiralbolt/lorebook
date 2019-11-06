@@ -45,6 +45,7 @@ class City(NamedModel):
   """Cities the players have been to along the way."""
   description = models.TextField(default="", blank=True)
   info = models.TextField(default="", blank=True)
+  image_file = models.FileField(upload_to="cities/", blank=True)
 
 
 class NPC(NamedModel):
@@ -60,13 +61,10 @@ class Lore(NamedModel):
   Rather than creating several separate models (Lore, Letters, Books, e.t.c),
   everything will be kept underneath a single 'Lore' type.
   """
-  BOOK = "Book"
-  GENERAL = "General"
-  LETTER = "Letter"
   lore_type = models.CharField(max_length=32, choices=(
-    (BOOK, BOOK),
-    (GENERAL, GENERAL),
-    (LETTER, LETTER),
+    ("Book", "Book"),
+    ("General", "General"),
+    ("Letter", "Letter"),
   ))
   author = models.ForeignKey(NPC, on_delete=models.SET_NULL, blank=True, null=True)
   date_received = models.DateField(default=None, blank=True)
