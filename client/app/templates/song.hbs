@@ -22,4 +22,15 @@
       {{model.flavor}}
     </div>
   </div>
+
+  <br>
+
+  <div class="row">
+    <div class="item-label">Audio</div>
+    <div class="item-audio">
+      <audio controls {{#if model.loop}}loop{{/if}}>
+        <source src={{model.sound_file}}>
+      </audio>
+    </div>
+  </div>
 </ItemDetail>
