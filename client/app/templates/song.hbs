@@ -28,9 +28,16 @@
   <div class="row">
     <div class="item-label">Audio</div>
     <div class="item-audio">
-      <audio controls {{#if model.loop}}loop{{/if}}>
-        <source src={{model.sound_file}}>
-      </audio>
+      {{!- I hate that I have to do this but handlebars sucks sometimes -}}
+      {{#if model.loop}}
+        <audio class="item-audio" controls loop>
+          <source src={{model.sound_file}}>
+        </audio>
+      {{else}}
+        <audio class="item-audio" controls>
+          <source src={{model.sound_file}}>
+        </audio>
+      {{/if}}
     </div>
   </div>
 </ItemDetail>

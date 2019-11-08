@@ -33,6 +33,9 @@ ALLOWED_HOSTS = [
   'localhost'
 ]
 
+MEDIA_ROOT = '/home/admiralbolt/git/gmhelper/gmhelper/uploads'
+MEDIA_URL = '/uploads/'
+
 JSON_API_PLURALIZE_RELATION_TYPE = True
 
 # Application definition

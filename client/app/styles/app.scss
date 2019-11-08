@@ -18,7 +18,12 @@ body {
 }
 
 // https://stackoverflow.com/questions/20340138/remove-blue-border-from-css-custom-styled-button-in-chrome
+// Don't focus buttons when you click on them.
 button:focus {
+  outline: 0 !important;
+}
+
+audio:focus {
   outline: 0 !important;
 }
 
@@ -105,21 +110,4 @@ button:focus {
     height: 5vh;
     width: 100%;
   }
-}
-
-/**
-======================= LOGIN =================
-**/
-
-.floating-login {
-  bottom: 0;
-  max-width: 14em;
-  padding-right: 10px;
-  padding-top: 10px;
-  position: absolute;
-  right: 0;
-}
-
-.floating-login form input {
-  margin-bottom: 10px;
 }
