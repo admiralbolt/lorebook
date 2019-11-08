@@ -5,10 +5,6 @@ import { isNone } from '@ember/utils';
 export default Component.extend({
   song: null,
 
-  init() {
-    this._super(...arguments);
-  },
-
   didReceiveAttrs() {
     this._super(...arguments);
     this.set('song', this.get('model') || {});

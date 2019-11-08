@@ -103,6 +103,7 @@ export default Component.extend({
       this.set('isEditing', false);
     },
 
+    // Called when creating a new model instance.
     create() {
       let record = this.api_data.get('store').createRecord(this.get('modelName'), this.get('modelCopy'));
       record.save().then(function(response) {

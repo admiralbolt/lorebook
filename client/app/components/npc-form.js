@@ -1,11 +1,11 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  title: "Create New NPC",
   npc: null,
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
-    this.npc = this.get('model') || {};
+    this.set('npc', this.get('model') || {});
   }
+
 });
