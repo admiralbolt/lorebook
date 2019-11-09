@@ -10,7 +10,7 @@ Router.map(function() {
   this.route('npcs');
   this.route('npc', {
     path: 'npcs/:id'
-  }, function() {});
+  });
   this.route('songs');
   this.route('song', {
     path: 'songs/:id'
@@ -18,6 +18,11 @@ Router.map(function() {
   this.route('login');
   this.route('npc-create');
   this.route('song-create');
+  this.route('places');
+  this.route('place', {
+    path: 'places/:id'
+  });
+  this.route('place-create');
 });
 
 export default Router;

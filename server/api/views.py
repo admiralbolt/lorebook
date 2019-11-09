@@ -18,6 +18,16 @@ class NPCViewSet(viewsets.ModelViewSet):
     npcs = models.NPC.objects.order_by('name')
     return npcs if self.request.user.is_authenticated else npcs.filter(visible=True)
 
+class PlaceViewSet(viewsets.ModelViewSet):
+  resource_name = 'places'
+  queryset = models.Place.objects.all()
+  serializer_class = serializers.PlaceSerializer
+
+  def get_queryset(self):
+    """We override the default behavior to return only met npcs to unauthenticated users."""
+    npcs = models.Place.objects.order_by('name')
+    return npcs if self.request.user.is_authenticated else npcs.filter(visible=True)
+
 
 class SongViewSet(viewsets.ModelViewSet):
   resource_name = 'songs'

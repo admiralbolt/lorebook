@@ -9,6 +9,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r"npcs", views.NPCViewSet)
+router.register(r"places", views.PlaceViewSet)
 router.register(r"songs", views.SongViewSet)
 
 urlpatterns = [

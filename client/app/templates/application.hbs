@@ -12,8 +12,16 @@
     <div class="col-2 col-sm-1 no-padding">
       <LinkTo @route="songs" @current-when="song songs song-create">
         <div class="full flex-center">
-          <ion-icon name="musical-notes"></ion-icon>
+          <ion-icon name="musical-note"></ion-icon>
           <span>Songs</span>
+        </div>
+      </LinkTo>
+    </div>
+    <div class="col-2 col-sm-1 no-padding">
+      <LinkTo @route="places" @current-when="place places place-create">
+        <div class="full flex-center">
+          <ion-icon name="pin"></ion-icon>
+          <span>Places</span>
         </div>
       </LinkTo>
     </div>

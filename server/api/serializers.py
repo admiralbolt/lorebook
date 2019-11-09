@@ -11,7 +11,14 @@ class AliasSerializer(serializers.Field):
 
 
 class NPCSerializer(serializers.ModelSerializer):
+  aliases = AliasSerializer(required=False)
 
+  class Meta:
+    model = models.NPC
+    fields = "__all__"
+
+
+class PlaceSerializer(serializers.ModelSerializer):
   aliases = AliasSerializer(required=False)
 
   class Meta:
