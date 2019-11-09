@@ -55,7 +55,6 @@ export default Component.extend({
 
     let tokens = [];
     let start = 0;
-    console.log(tokens);
     matches.forEach(match => {
       this._addTokens(tokens, start, match);
       start = match.end;
