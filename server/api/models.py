@@ -41,18 +41,18 @@ class Song(NamedModel):
   # items = GenericRelation("SessionItem", related_query_name="song")
 
 
-class City(NamedModel):
-  """Cities the players have been to along the way."""
+class Place(NamedModel):
+  """Cities, dungeons, and features the players have been to along the way."""
   description = models.TextField(default="", blank=True)
   info = models.TextField(default="", blank=True)
-  image_file = models.FileField(upload_to="cities/", blank=True)
+  image_file = models.FileField(upload_to="places/", blank=True)
 
 
 class NPC(NamedModel):
   """Characters the players meet along the way."""
   appearance = models.TextField(default="", blank=True)
   info = models.TextField(default="", blank=True)
-  city = models.ForeignKey(City, on_delete=models.SET_NULL, blank=True, null=True)
+  city = models.ForeignKey(Place, on_delete=models.SET_NULL, blank=True, null=True)
 
 
 class Lore(NamedModel):
@@ -72,11 +72,11 @@ class Lore(NamedModel):
   text = models.TextField(default="", blank=True)
 
 
-ADMIN_MODELS = [City, Lore, NPC, Song, Tag]
-LINKABLE_MODELS = [City, Lore, NPC, Song]
-SEARCHABLE_MODELS = [City, Lore, NPC, Song]
+ADMIN_MODELS = [Place, Lore, NPC, Song, Tag]
+LINKABLE_MODELS = [Place, Lore, NPC, Song]
+SEARCHABLE_MODELS = [Place, Lore, NPC, Song]
 MODEL_NAME_MAP = {
-  City: "city",
+  Place: "place",
   Lore: "lore",
   NPC: "npc",
   Song: "song"
