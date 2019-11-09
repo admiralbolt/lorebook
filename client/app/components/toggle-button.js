@@ -6,7 +6,7 @@ export default Component.extend({
   negativeText: 'Hidden',
   positiveText: 'Visible',
   statusClass: computed('value', function() {
-    return this.get('value') ? 'toggle-positive' : 'toggle-negative';
+    return this.get('value') ? 'positive-background' : 'negative-background';
   }),
 
   actions: {

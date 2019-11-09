@@ -1,1 +1,31 @@
-{{yield}}
+<form class="item-form">
+  <h1 class="create-title place-color"> {{title}} </h1>
+  <div class="form-group">
+    <div class="form-input-label">Name</div>
+    {{input type="text" class="item-input" placeholder="Name" value=place.name}}
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Visibility</div>
+    <ToggleButton @value={{place.visible}} />
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Description</div>
+    {{input type="text" class="item-input" placeholder="Description" value=place.description}}
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Info</div>
+    {{textarea class="item-input" placeholder="Info" value=place.info}}
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Image File</div>
+    <FileUpload @name="image_file" @for="image_file" @accept="image/*" @onfileadd={{action "addImageFile"}} as |queue|>
+      <a class="upload-button">
+        {{#if queue.files.length}}
+          {{queue.files.0.name}}
+        {{else}}
+          {{imageFileName}}
+        {{/if}}
+      </a>
+    </FileUpload>
+  </div>
+</form>

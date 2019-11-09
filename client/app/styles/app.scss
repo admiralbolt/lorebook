@@ -2,7 +2,6 @@
 @import 'forms.scss';
 @import 'login.scss';
 @import 'nav.scss';
-@import 'components/toggle-button.scss';
 
 html {
   height: 100%;
@@ -51,10 +50,6 @@ audio:focus {
   text-align: center;
 }
 
-.primary-color {
-  color: $primary-color;
-}
-
 .col-1-5 {
   flex-basis: 12.5% !important;
   max-width: 12.5% !important;
@@ -90,9 +85,10 @@ audio:focus {
 
 .hot-link {
   text-decoration: none !important;
+  display: inline-block;
 
-  &.npc {
-    color: $npc-color;
+  &:hover {
+    filter: brightness(80%);
   }
 }
 

@@ -1,8 +1,10 @@
+@use "sass:map";
+
 .item-form {
   // width: 100%;
 
   .form-input-label {
-    color: $primary-color;
+    color: map.get($colors, "primary");
     font-size: 1.6vh;
     font-weight: bold;
     margin-bottom: 3px;

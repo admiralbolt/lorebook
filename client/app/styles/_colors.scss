@@ -1,31 +1,23 @@
-$primary-color: rgb(190, 190, 190);
-$positive-color: rgb(30, 140, 39);
-$negative-color: rgb(207, 37, 35);
-$button-color: rgb(60, 60, 60);
-$npc-color: rgb(100, 140, 220);
-$place-color: rgb(210, 125, 50);
-$song-color: rgb(159, 83, 226);
+$colors: (
+  npc: rgb(100, 140, 220),
+  place: rgb(210, 125, 50),
+  song: rgb(159, 83, 226),
+  primary: rgb(190, 190, 190),
+  primary-light: rgb(210, 210, 210),
+  positive: rgb(30, 140, 39),
+  negative: rgb(207, 37, 35)
+);
 
-.npc-color {
-  color: $npc-color;
-}
+@each $name, $rgb in $colors {
+  .#{$name}-color {
+    color: $rgb;
 
-.npc-background {
-  background-color: $npc-color;
-}
+    &:hover {
+      color: $rgb;
+    }
+  }
 
-.place-color {
-  color: $place-color;
-}
-
-.place-background {
-  background-color: $place-color;
-}
-
-.song-color {
-  color: $song-color;
-}
-
-.song-background {
-  background-color: $song-color;
+  .#{$name}-background {
+    background-color: $rgb;
+  }
 }

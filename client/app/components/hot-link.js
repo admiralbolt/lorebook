@@ -5,7 +5,7 @@ import fetch from 'fetch';
 
 export default Component.extend({
   text: null,
-  tokens: A(),
+  tokens: null,
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -47,9 +47,15 @@ export default Component.extend({
       });
     });
 
-    // Use each match to tokenize the text.
-    let tokens = A();
+    // Matches need to be processed in order they appear in the text, so
+    // we sort by end index.
+    matches.sort((a, b) => {
+      return a.end - b.end;
+    });
+
+    let tokens = [];
     let start = 0;
+    console.log(tokens);
     matches.forEach(match => {
       this._addTokens(tokens, start, match);
       start = match.end;

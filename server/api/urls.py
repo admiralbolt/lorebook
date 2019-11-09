@@ -16,6 +16,7 @@ urlpatterns = [
   path("api-auth-token/", obtain_auth_token),
   path("links/", views.links),
   path("songs/upload/", views.upload_song),
+  path("places/upload/", views.upload_place),
   path("search/", search.auto_complete),
   url(r"^", include(router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
