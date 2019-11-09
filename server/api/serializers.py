@@ -22,7 +22,7 @@ class PlaceSerializer(serializers.ModelSerializer):
   aliases = AliasSerializer(required=False)
 
   class Meta:
-    model = models.NPC
+    model = models.Place
     fields = "__all__"
 
 

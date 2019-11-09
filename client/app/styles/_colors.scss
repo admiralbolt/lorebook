@@ -3,6 +3,7 @@ $positive-color: rgb(30, 140, 39);
 $negative-color: rgb(207, 37, 35);
 $button-color: rgb(60, 60, 60);
 $npc-color: rgb(100, 140, 220);
+$place-color: rgb(210, 125, 50);
 $song-color: rgb(159, 83, 226);
 
 .npc-color {
@@ -11,6 +12,14 @@ $song-color: rgb(159, 83, 226);
 
 .npc-background {
   background-color: $npc-color;
+}
+
+.place-color {
+  color: $place-color;
+}
+
+.place-background {
+  background-color: $place-color;
 }
 
 .song-color {

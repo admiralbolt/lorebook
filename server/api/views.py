@@ -25,8 +25,8 @@ class PlaceViewSet(viewsets.ModelViewSet):
 
   def get_queryset(self):
     """We override the default behavior to return only met npcs to unauthenticated users."""
-    npcs = models.Place.objects.order_by('name')
-    return npcs if self.request.user.is_authenticated else npcs.filter(visible=True)
+    places = models.Place.objects.order_by('name')
+    return places if self.request.user.is_authenticated else places.filter(visible=True)
 
 
 class SongViewSet(viewsets.ModelViewSet):

@@ -1,1 +1,26 @@
-{{outlet}}
+<ItemDetail @modelName="place" @componentName="place-form" @route="places" @model={{model}}>
+  <div class="row">
+    <div class="item-title place-color">
+      {{model.name}}
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="item-label">Description</div>
+    <div class="item-description">
+      {{model.description}}
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="item-label">Lore</div>
+    <div class="item-lore">
+      <HotLink @text={{model.info}} />
+    </div>
+  </div>
+
+</ItemDetail>

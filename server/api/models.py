@@ -57,7 +57,6 @@ class NPC(NamedModel):
   """Characters the players meet along the way."""
   appearance = models.TextField(default="", blank=True)
   info = models.TextField(default="", blank=True)
-  city = models.ForeignKey(Place, on_delete=models.SET_NULL, blank=True, null=True)
 
 
 class Lore(NamedModel):
