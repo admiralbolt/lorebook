@@ -1,4 +1,5 @@
 from . import models
+import json
 from rest_framework import serializers
 
 class AliasSerializer(serializers.Field):
@@ -8,6 +9,14 @@ class AliasSerializer(serializers.Field):
 
   def to_internal_value(self, aliases_list):
     return "\n".join(aliases_list)
+
+class JsonSerializer(serializers.Field):
+
+  def to_representation(self, json_string):
+    return json.loads(json_string)
+
+  def to_internal_value(self, json_data):
+    return json.dumps(json_data)
 
 
 class NPCSerializer(serializers.ModelSerializer):
@@ -20,6 +29,7 @@ class NPCSerializer(serializers.ModelSerializer):
 
 class PlaceSerializer(serializers.ModelSerializer):
   aliases = AliasSerializer(required=False)
+  points_of_interest = JsonSerializer(required=False)
 
   class Meta:
     model = models.Place

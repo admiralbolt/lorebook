@@ -51,6 +51,11 @@ class Place(NamedModel):
     ("Dungeon", "Dungeon"),
     ("Location", "Location")
   ))
+  # Points of interest within a place will be stored as serialized JSON. I feel
+  # like creating a whole new table for this isn't worthwhile. The JSON for
+  # points of interest will be simple:
+  # [{"name": "The Painted Pony", "info": "..."}, ...]
+  points_of_interest = models.TextField(default="", blank=True)
 
 
 class NPC(NamedModel):

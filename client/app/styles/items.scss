@@ -12,6 +12,7 @@ $input-font-size: 1.8vh;
 
   .item-title {
     font-size: 3vh;
+    font-weight: bold;
     text-align: center;
     width: 100%;
   }
@@ -37,11 +38,17 @@ $input-font-size: 1.8vh;
   br {
     content: "";
     display: block;
-    margin: 15px 0;
+    margin: 25px 0;
   }
 
   .item-audio {
     margin-top: 5px;
+    width: 100%;
+  }
+
+  .poi-title {
+    font-weight: bold;
+    font-size: 2.2vh;
     width: 100%;
   }
 

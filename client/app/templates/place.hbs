@@ -23,4 +23,19 @@
     </div>
   </div>
 
+  <br>
+
+  <div class="row">
+    <div class="item-label">Points of Interest</div>
+  </div>
+
+  {{#each model.points_of_interest as |point|}}
+    <div class="row">
+      <div class="poi-title primary-light-color">{{point.name}}</div>
+      <div class="poi-info">
+        <HotLink @text={{point.info}} />
+      </div>
+    </div><br>
+  {{/each}}
+
 </ItemDetail>
