@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
+import { isNone } from '@ember/utils';
 
 export default Service.extend({
   store: service(),
@@ -12,8 +13,13 @@ export default Service.extend({
   },
 
   reloadMenu() {
-    this.get('store').findAll(this.activeModel).then(function(records) {
-      let menuItems = [];
+    let menuItems = this.get('store').peekAll(this.get('activeModel'));
+    if (!isNone(menuItems)) {
+      this.set('menuItems', menuItems);
+      return;
+    }
+
+    this.get('store').findAll(this.get('activeModel')).then(function(records) {
       records.forEach((record) => {
         menuItems.push({
           id: record.id,
@@ -27,10 +33,6 @@ export default Service.extend({
   setActiveModel(model) {
     this.set('activeModel', model);
     this.reloadMenu();
-  },
-
-  getActiveItems() {
-    return this.activeModel == null ? [] : this.get('store').findAll(this.activeModel);
   }
 
 });

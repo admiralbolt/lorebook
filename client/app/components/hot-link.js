@@ -19,8 +19,6 @@ export default Component.extend({
     var parent = this;
     if (isNone(this.get('text'))) return;
 
-    console.log(this.get('links').getLinks());
-
     this.get('links').getLinks().then(function(data) {
       parent._tokenize(data);
     });

@@ -136,7 +136,6 @@ export default Component.extend({
     // uploading if applicable.
     save(model) {
       let modelCopy = this.get('modelCopy');
-      console.log(modelCopy);
       for (let prop in modelCopy) {
         // Honestly this is a little suspect, but it's gonna stay.
         if (prop.includes('file')) continue;

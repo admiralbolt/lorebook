@@ -10,8 +10,9 @@ export default Route.extend({
   },
 
   model() {
-    return this.get('store').findAll('song');
+    const api_data = this.get('store');
+    let songs = api_data.peekAll('song');
+    return songs.length == 0 ? api_data.findAll('song') : songs;
   }
-
 
 });

@@ -13,7 +13,6 @@ export default Service.extend({
   },
 
   reloadLinks() {
-    console.log('fetching...');
     return fetch(`${config.host}/links`).then(function(result) {
       return result.json().then(function(data) {
         this.set('links', data);

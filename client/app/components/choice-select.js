@@ -7,7 +7,6 @@ export default Component.extend({
   actions: {
     setSelection(value) {
       this.set('value', value);
-      console.log(value);
     }
   }
 });

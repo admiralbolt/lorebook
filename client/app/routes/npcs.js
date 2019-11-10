@@ -9,6 +9,8 @@ export default Route.extend({
   },
 
   model() {
-    return this.get('store').findAll('npc');
+    const api_data = this.get('store');
+    let npcs = api_data.peekAll('npc');
+    return npcs.length == 0 ? api_data.findAll('npc') : npcs;
   }
 });
