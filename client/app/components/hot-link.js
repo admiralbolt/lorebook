@@ -4,8 +4,10 @@ import config from '../config/environment';
 import { computed } from '@ember/object';
 import fetch from 'fetch';
 import { isNone } from '@ember/utils';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
+  links: service('links'),
   text: '',
   newlineText: computed('text', function() {
     return !isNone(this.get('text')) ? this.get('text').replace('\n', '<br>') : '';
@@ -17,10 +19,10 @@ export default Component.extend({
     var parent = this;
     if (isNone(this.get('text'))) return;
 
-    fetch(`${config.host}/links`).then(function(result) {
-      result.json().then(function(data) {
-        parent._tokenize(data);
-      });
+    console.log(this.get('links').getLinks());
+
+    this.get('links').getLinks().then(function(data) {
+      parent._tokenize(data);
     });
   },
 
