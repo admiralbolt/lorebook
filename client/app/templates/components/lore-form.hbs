@@ -1,1 +1,27 @@
-{{yield}}
+<form class="item-form">
+  <h1 class="create-title lore-color"> {{title}} </h1>
+  <div class="form-group">
+    <div class="form-input-label">Name</div>
+    {{input type="text" class="item-input" placeholder="Name" value=lore.name}}
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Author</div>
+    {{input type="text" class="item-input" placeholder="Author" value=lore.author}}
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Visibility</div>
+    <ToggleButton @value={{lore.visible}} />
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Type</div>
+    <Choice-Select @choices={{loreTypes}} @value={{lore.type}} />
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Date Received</div>
+    {{input type="text" class="item-input" placeholder="Date Received" value=lore.date_received}}
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Text</div>
+    {{textarea class="item-input extra-long" placeholder="Text" value=lore.text}}
+  </div>
+</form>

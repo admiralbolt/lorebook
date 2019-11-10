@@ -27,6 +27,14 @@
     @media (max-width: 500px) {
       height: 12vh;
     }
+
+    &.extra-long {
+      height: 20vh;
+
+      @media (max-width: 500px) {
+        height: 24vh;
+      }
+    }
   }
 
   .poi-edit {
