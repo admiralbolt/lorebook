@@ -13,7 +13,7 @@ class AliasSerializer(serializers.Field):
 class JsonSerializer(serializers.Field):
 
   def to_representation(self, json_string):
-    return json.loads(json_string)
+    return json.loads(json_string) if json_string else []
 
   def to_internal_value(self, json_data):
     return json.dumps(json_data)
