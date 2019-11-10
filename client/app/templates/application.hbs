@@ -1,6 +1,13 @@
 <div class="container">
-
   <div class="row nav nav-primary">
+    <div class="col-2 col-sm-1 no-padding">
+      <LinkTo @route="beasts" @current-when="beast beasts beast-create">
+        <div class="full flex-center flex-column">
+          <ion-icon name="bug"></ion-icon>
+          <span>Beasts</span>
+        </div>
+      </LinkTo>
+    </div>
     <div class="col-2 col-sm-1 no-padding">
       <LinkTo @route="lores" @current-when="lore lores lore-create">
         <div class="full flex-center flex-column">
@@ -75,5 +82,4 @@
       {{outlet}}
     </div>
   </div>
-
 </div>

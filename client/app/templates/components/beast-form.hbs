@@ -1,0 +1,31 @@
+<form class="item-form">
+  <h1 class="create-title beast-color"> {{title}} </h1>
+  <div class="form-group">
+    <div class="form-input-label">Name</div>
+    {{input type="text" class="item-input" beastholder="Name" value=beast.name}}
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Visibility</div>
+    <ToggleButton @value={{beast.visible}} />
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Appearance</div>
+    {{input type="text" class="item-input" beastholder="Appearance" value=beast.appearance}}
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Info</div>
+    {{textarea class="item-input" beastholder="Info" value=beast.info}}
+  </div>
+  <div class="form-group">
+    <div class="form-input-label">Image File</div>
+    <FileUpload @name="image_file" @for="image_file" @accept="image/*" @onfileadd={{action "addImageFile"}} as |queue|>
+      <a class="upload-button">
+        {{#if queue.files.length}}
+          {{queue.files.0.name}}
+        {{else}}
+          {{imageFileName}}
+        {{/if}}
+      </a>
+    </FileUpload>
+  </div>
+</form>

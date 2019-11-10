@@ -31,6 +31,11 @@ Router.map(function() {
     path: 'lores/:id'
   });
   this.route('lore-create');
+  this.route('beasts');
+  this.route('beast', {
+    path: 'beast/:id'
+  });
+  this.route('beast-create');
 });
 
 export default Router;

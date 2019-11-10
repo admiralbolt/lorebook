@@ -106,3 +106,18 @@ def upload_place(request):
   f = request.data["file"]
   place.image_file.save(f.name, f, save=True)
   return JsonResponse({"status": "success", "message": ""})
+
+@api_view(["POST"])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def upload_beast(request):
+  try:
+    beast = models.Beast.objects.get(id=request.GET.get("id"))
+  except:
+    return JsonResponse({
+      "status": "failure",
+      "message": f"Could not find place with id = {request.GET.get('id')}"
+    })
+  f = request.data["file"]
+  beast.image_file.save(f.name, f, save=True)
+  return JsonResponse({"status": "success", "message": ""})

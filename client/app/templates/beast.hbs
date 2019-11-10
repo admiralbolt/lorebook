@@ -1,9 +1,15 @@
-<ItemDetail @modelName="npc" @componentName="npc-form" @route="npcs" @model={{model}}>
+<ItemDetail @modelName="beast" @componentName="beast-form" @route="beasts" @model={{model}}>
   <div class="row">
-    <div class="item-title npc-color">
+    <div class="item-title beast-color">
       {{model.name}}
     </div>
   </div>
+
+  {{#if model.image_file}}
+    <div class="row">
+      <img class="item-image" src={{model.image_file}} />
+    </div>
+  {{/if}}
 
   <br>
 
