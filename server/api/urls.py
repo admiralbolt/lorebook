@@ -12,6 +12,7 @@ router.register(r"beasts", views.BeastViewSet)
 router.register(r"lores", views.LoreViewSet)
 router.register(r"npcs", views.NPCViewSet)
 router.register(r"places", views.PlaceViewSet)
+router.register(r"sessions", views.SessionViewSet)
 router.register(r"songs", views.SongViewSet)
 
 urlpatterns = [

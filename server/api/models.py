@@ -57,6 +57,12 @@ class NPC(NamedModel):
   info = models.TextField(default="", blank=True)
 
 
+class Session(NamedModel):
+  """Sessions"""
+  ordinal = models.IntegerField()
+  summary = models.TextField(default="", blank=True)
+
+
 class Lore(NamedModel):
   """Lore!
 
@@ -74,13 +80,14 @@ class Lore(NamedModel):
   text = models.TextField(default="", blank=True)
 
 
-ADMIN_MODELS = [Beast, Lore, NPC, Place, Song]
+ADMIN_MODELS = [Beast, Lore, NPC, Place, Session, Song]
 LINKABLE_MODELS = [Beast, Lore, Place, NPC, Song]
-SEARCHABLE_MODELS = [Beast, Lore, Place, NPC, Song]
+SEARCHABLE_MODELS = [Beast, Lore, Place, NPC, Session, Song]
 MODEL_NAME_MAP = {
   Beast: "beast",
   Lore: "lore",
   NPC: "npc",
   Place: "place",
+  Session: "session",
   Song: "song"
 }

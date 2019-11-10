@@ -48,6 +48,13 @@ class PlaceSerializer(serializers.ModelSerializer):
     fields = "__all__"
 
 
+class SessionSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = models.Session
+    fields = "__all__"
+
+
 class SongSerializer(serializers.ModelSerializer):
 
   class Meta:

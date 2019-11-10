@@ -47,6 +47,16 @@ class PlaceViewSet(viewsets.ModelViewSet):
     return places if self.request.user.is_authenticated else places.filter(visible=True)
 
 
+class SessionViewSet(viewsets.ModelViewSet):
+  resource_name = "sessions"
+  queryset = models.Session.objects.all()
+  serializer_class = serializers.SessionSerializer
+
+  def get_queryset(self):
+    sessions = models.Session.objects.order_by("ordinal")
+    return sessions if self.request.user.is_authenticated else sessions.filter(visible=True)
+
+
 class SongViewSet(viewsets.ModelViewSet):
   resource_name = "songs"
   queryset = models.Song.objects.all()
