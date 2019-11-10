@@ -1,0 +1,47 @@
+<ItemDetail @modelName="lore" @componentName="lore-form" @route="lores" @model={{model}}>
+  <div class="row">
+    <div class="item-title lore-color">
+      {{model.name}}
+    </div>
+  </div>
+
+  <br>
+
+  {{#if model.author}}
+    <div class="row">
+      <div class="item-label">Author</div>
+      <div class="item-author">
+        <HotLink @text={{model.author}} />
+      </div>
+    </div>
+
+    <br>
+  {{/if}}
+
+  <div class="row">
+    <div class="item-label">Lore Type</div>
+    <div class="item-date">
+      {{model.type}}
+    </div>
+  </div>
+
+  <br>
+
+  {{#if model.date_received}}
+    <div class="row">
+      <div class="item-label">Date {{dateSuffix}}</div>
+      <div class="item-date">
+        {{formattedDate}}
+      </div>
+    </div>
+
+    <br>
+  {{/if}}
+
+  <div class="row">
+    <div class="item-label">Text</div>
+    <div class="item-lore">
+      <HotLink @text={{model.text}} />
+    </div>
+  </div>
+</ItemDetail>

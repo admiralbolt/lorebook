@@ -2,6 +2,14 @@
 
   <div class="row nav nav-primary">
     <div class="col-2 col-sm-1 no-padding">
+      <LinkTo @route="lores" @current-when="lore lores lore-create">
+        <div class="full flex-center flex-column">
+          <ion-icon name="book"></ion-icon>
+          <span>Lore</span>
+        </div>
+      </LinkTo>
+    </div>
+    <div class="col-2 col-sm-1 no-padding">
       <LinkTo @route="npcs" @current-when="npc npcs npc-create">
         <div class="full flex-center flex-column">
           <ion-icon name="contact"></ion-icon>

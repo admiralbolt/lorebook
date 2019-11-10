@@ -70,7 +70,7 @@ class Lore(NamedModel):
   Rather than creating several separate models (Lore, Letters, Books, e.t.c),
   everything will be kept underneath a single 'Lore' type.
   """
-  lore_type = models.CharField(max_length=32, choices=(
+  type = models.CharField(max_length=32, choices=(
     ("Book", "Book"),
     ("General", "General"),
     ("Letter", "Letter"),
@@ -78,7 +78,6 @@ class Lore(NamedModel):
   ))
   author = models.CharField(default="", max_length=128, blank=True);
   date_received = models.DateField(default=None, blank=True, null=True)
-  date_written = models.DateField(default=None, blank=True, null=True)
   text = models.TextField(default="", blank=True)
 
 

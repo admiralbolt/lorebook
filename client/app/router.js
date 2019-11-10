@@ -7,6 +7,9 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('not-found', {
+    path: '/*path'
+  });
   this.route('npcs');
   this.route('npc', {
     path: 'npcs/:id'
@@ -23,9 +26,11 @@ Router.map(function() {
     path: 'places/:id'
   });
   this.route('place-create');
-  this.route('not-found', {
-    path: '/*path'
+  this.route('lores');
+  this.route('lore', {
+    path: 'lores/:id'
   });
+  this.route('lore-create');
 });
 
 export default Router;
