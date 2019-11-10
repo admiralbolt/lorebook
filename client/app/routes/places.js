@@ -6,11 +6,5 @@ export default Route.extend({
 
   beforeModel() {
     this.api_data.setActiveModel('place');
-  },
-
-  model() {
-    const api_data = this.get('store');
-    let places = api_data.peekAll('place');
-    return places.length == 0 ? api_data.findAll('place') : places;
   }
 });
