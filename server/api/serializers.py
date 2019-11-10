@@ -19,6 +19,12 @@ class JsonSerializer(serializers.Field):
     return json.dumps(json_data)
 
 
+class LoreSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = models.Lore
+    fields = "__all__"
+
 class NPCSerializer(serializers.ModelSerializer):
   aliases = AliasSerializer(required=False)
 

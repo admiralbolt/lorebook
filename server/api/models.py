@@ -74,10 +74,11 @@ class Lore(NamedModel):
     ("Book", "Book"),
     ("General", "General"),
     ("Letter", "Letter"),
+    ("Story", "Story"),
   ))
-  author = models.ForeignKey(NPC, on_delete=models.SET_NULL, blank=True, null=True)
-  date_received = models.DateField(default=None, blank=True)
-  date_written = models.DateField(default=None, blank=True)
+  author = models.CharField(default="", max_length=128, blank=True);
+  date_received = models.DateField(default=None, blank=True, null=True)
+  date_written = models.DateField(default=None, blank=True, null=True)
   text = models.TextField(default="", blank=True)
 
 

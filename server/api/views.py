@@ -8,15 +8,26 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import api_view, authentication_classes, parser_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
+
+class LoreViewSet(viewsets.ModelViewSet):
+  resource_name = 'lores'
+  queryset = models.Lore.objects.all()
+  serializer_class = serializers.LoreSerializer
+
+  def get_queryset(self):
+    lores = models.Lore.objects.order_by('name')
+    return lores if self.request.user.is_authenticated else lores.filter(visible=True)
+
+
 class NPCViewSet(viewsets.ModelViewSet):
   resource_name = 'npcs'
   queryset = models.NPC.objects.all()
   serializer_class = serializers.NPCSerializer
 
   def get_queryset(self):
-    """We override the default behavior to return only met npcs to unauthenticated users."""
     npcs = models.NPC.objects.order_by('name')
     return npcs if self.request.user.is_authenticated else npcs.filter(visible=True)
+
 
 class PlaceViewSet(viewsets.ModelViewSet):
   resource_name = 'places'
@@ -24,7 +35,6 @@ class PlaceViewSet(viewsets.ModelViewSet):
   serializer_class = serializers.PlaceSerializer
 
   def get_queryset(self):
-    """We override the default behavior to return only met npcs to unauthenticated users."""
     places = models.Place.objects.order_by('name')
     return places if self.request.user.is_authenticated else places.filter(visible=True)
 
@@ -35,7 +45,6 @@ class SongViewSet(viewsets.ModelViewSet):
   serializer_class = serializers.SongSerializer
 
   def get_queryset(self):
-    """We override the default behavior to return only met songs to unauthenticated users."""
     songs = models.Song.objects.order_by('name')
     return songs if self.request.user.is_authenticated else songs.filter(visible=True)
 
