@@ -12,5 +12,11 @@ export default Route.extend({
     const api_data = this.get('store');
     let npc = api_data.peekRecord('npc', route_params.id);
     return npc === null ? api_data.findRecord('npc', route_params.id) : npc;
+  },
+
+  actions: {
+    error(error, transition) {
+      this.transitionTo('npcs');
+    }
   }
 });

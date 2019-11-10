@@ -23,6 +23,9 @@ Router.map(function() {
     path: 'places/:id'
   });
   this.route('place-create');
+  this.route('not-found', {
+    path: '/*path'
+  });
 });
 
 export default Router;

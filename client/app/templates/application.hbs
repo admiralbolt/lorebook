@@ -39,7 +39,7 @@
   <div class="row">
     {{#if displayMenu}}
       <div class="nav-sidebar">
-        {{#if session.isAuthenticated}}
+        {{#if (and session.isAuthenticated api_data.activeModel)}}
           <div class="row nav-sidebar-wrapper">
             <LinkTo @route="{{api_data.activeModel}}-create" class="nav-sidebar-link no-padding">
               <div class="full flex-center nav-sidebar-item">

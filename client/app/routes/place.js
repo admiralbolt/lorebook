@@ -12,5 +12,11 @@ export default Route.extend({
     const api_data = this.get('store');
     let place = api_data.peekRecord('place', route_params.id);
     return place === null ? api_data.findRecord('place', route_params.id) : place;
+  },
+
+  actions: {
+    error(error, transition) {
+      this.transitionTo('places');
+    }
   }
 });
