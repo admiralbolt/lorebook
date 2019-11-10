@@ -13,7 +13,7 @@ export default Service.extend({
   },
 
   reloadLinks() {
-    return fetch(`${config.host}/links`).then(function(result) {
+    return fetch(`${config.host}/links/`).then(function(result) {
       return result.json().then(function(data) {
         this.set('links', data);
       }.bind(this));
