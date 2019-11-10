@@ -1,7 +1,6 @@
 @use "sass:map";
 
 .item-form {
-  // width: 100%;
 
   .form-input-label {
     color: map.get($colors, "primary");
@@ -14,7 +13,7 @@
     border: 0;
     border-radius: 5px;
     font-size: $input-font-size;
-    padding: 5px;
+    padding: 8px 5px 8px 5px;
     width: 100%;
   }
 
@@ -23,10 +22,18 @@
   }
 
   textarea {
-    height: 8vh;
+    height: 10vh;
 
     @media (max-width: 500px) {
       height: 12vh;
+    }
+  }
+
+  .poi-edit {
+    padding-left: 40px;
+
+    @media (max-width: 500px) {
+      padding-left: 20px;
     }
   }
 

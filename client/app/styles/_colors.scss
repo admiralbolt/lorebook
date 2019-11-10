@@ -20,4 +20,8 @@ $colors: (
   .#{$name}-background {
     background-color: $rgb;
   }
+
+  .#{$name}-border {
+    border-color: $rgb;
+  }
 }

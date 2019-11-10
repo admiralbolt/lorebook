@@ -29,11 +29,11 @@
     <div class="item-label">Points of Interest</div>
   </div>
 
-  {{#each model.points_of_interest as |point|}}
+  {{#each model.points_of_interest as |poi|}}
     <div class="row">
-      <div class="poi-title primary-light-color">{{point.name}}</div>
+      <div class="poi-title primary-light-color">{{poi.name}}</div>
       <div class="poi-info">
-        <HotLink @text={{point.info}} />
+        <HotLink @text={{poi.info}} />
       </div>
     </div><br>
   {{/each}}

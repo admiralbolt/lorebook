@@ -3,17 +3,20 @@ import { A } from '@ember/array';
 import config from '../config/environment';
 import { computed } from '@ember/object';
 import fetch from 'fetch';
+import { isNone } from '@ember/utils';
 
 export default Component.extend({
-  text: null,
+  text: '',
   newlineText: computed('text', function() {
-    return this.get('text').replace('\n', '<br>');
+    return !isNone(this.get('text')) ? this.get('text').replace('\n', '<br>') : '';
   }),
   tokens: null,
 
   didReceiveAttrs() {
     this._super(...arguments);
     var parent = this;
+    if (isNone(this.get('text'))) return;
+
     fetch(`${config.host}/links`).then(function(result) {
       result.json().then(function(data) {
         parent._tokenize(data);

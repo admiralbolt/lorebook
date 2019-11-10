@@ -17,6 +17,36 @@
     {{textarea class="item-input" placeholder="Info" value=place.info}}
   </div>
   <div class="form-group">
+    <div class="form-input-label">Places of Interest</div>
+    <div class="poi-edit">
+      {{#each place.points_of_interest key="name" as |poi index|}}
+        <div class="row">
+          <div class="form-input-label">Name</div>
+          {{input type="text" class="item-input" placeholder="Poi Name" value=poi.name}}
+        </div>
+        <br>
+        <div class="row">
+          <div class="form-input-label">Info</div>
+          {{textarea class="item-input" placeholder="Poi Info" value=poi.info}}
+        </div>
+        <br>
+        <div class="row">
+          <button {{action "removePointOfInterest" index}} class="primary-light-color negative-background action-button">Delete Poi</button>
+        </div>
+        <br>
+        {{#unless (eq poi place.points_of_interest.lastObject)}}
+          <hr class="primary-border">
+        {{/unless}}
+      {{/each}}
+    </div>
+    <button {{action "addPointOfInterest"}} class="action-button primary-light-background full">
+      <div class="full flex-center">
+        <ion-icon name="add"></ion-icon>
+        <span>Add Place of Interest</span>
+      </div>
+    </button>
+  </div>
+  <div class="form-group">
     <div class="form-input-label">Image File</div>
     <FileUpload @name="image_file" @for="image_file" @accept="image/*" @onfileadd={{action "addImageFile"}} as |queue|>
       <a class="upload-button">

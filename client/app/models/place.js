@@ -8,5 +8,6 @@ export default Model.extend({
   image_file: DS.attr(),
   name: DS.attr(),
   points_of_interest: DS.attr(),
+  type: DS.attr(),
   visible: DS.attr()
 });

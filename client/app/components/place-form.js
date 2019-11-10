@@ -17,6 +17,16 @@ export default Component.extend({
   actions: {
     addImageFile(file) {
       this.addFileForUpload('image_file', file);
+    },
+    addPointOfInterest() {
+      let [...pois] = this.get('place.points_of_interest') || [];
+      pois.push({});
+      this.set('place.points_of_interest', pois);
+    },
+    removePointOfInterest(index) {
+      let [...pois] = this.get('place.points_of_interest') || [];
+      pois.splice(index, 1);
+      this.set('place.points_of_interest', pois);
     }
   }
 });
