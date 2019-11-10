@@ -46,7 +46,7 @@ class Place(NamedModel):
   description = models.TextField(default="", blank=True)
   info = models.TextField(default="", blank=True)
   image_file = models.FileField(upload_to="places/", blank=True)
-  place_type = models.CharField(max_length=32, choices=(
+  type = models.CharField(max_length=32, choices=(
     ("City", "City"),
     ("Dungeon", "Dungeon"),
     ("Location", "Location")

@@ -9,6 +9,10 @@
     <ToggleButton @value={{place.visible}} />
   </div>
   <div class="form-group">
+    <div class="form-input-label">Type</div>
+    <Choice-Select @choices={{placeTypes}} @value={{place.type}} />
+  </div>
+  <div class="form-group">
     <div class="form-input-label">Description</div>
     {{input type="text" class="item-input" placeholder="Description" value=place.description}}
   </div>

@@ -1,0 +1,9 @@
+<select class="item-input white-background" onchange={{action "setSelection" value="target.value"}}>
+  {{#each choices as |choice|}}
+    {{#if (eq choice value)}}
+      <option value={{choice}} selected>{{choice}}</option>
+    {{else}}
+      <option value={{choice}}>{{choice}}</option>
+    {{/if}}
+  {{/each}}
+</select>
