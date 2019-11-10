@@ -8,6 +8,7 @@ from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 
 router = routers.DefaultRouter(trailing_slash=False)
+router.register(r"beasts", views.BeastViewSet)
 router.register(r"lores", views.LoreViewSet)
 router.register(r"npcs", views.NPCViewSet)
 router.register(r"places", views.PlaceViewSet)

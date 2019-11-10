@@ -9,43 +9,51 @@ from rest_framework.decorators import api_view, authentication_classes, parser_c
 from rest_framework.permissions import IsAuthenticated
 
 
+class BeastViewSet(viewsets.ModelViewSet):
+  resource_name = "beasts"
+  queryset = models.Beast.objects.all()
+  serializer_class = serializers.BeastSerializer
+
+  def get_queryset(self):
+    beasts = models.Beast.objects.order_by("name")
+    return beasts if self.request.user.is_authenticated else beasts.filter(visible=True)
+
 class LoreViewSet(viewsets.ModelViewSet):
-  resource_name = 'lores'
+  resource_name = "lores"
   queryset = models.Lore.objects.all()
   serializer_class = serializers.LoreSerializer
 
   def get_queryset(self):
-    lores = models.Lore.objects.order_by('name')
+    lores = models.Lore.objects.order_by("name")
     return lores if self.request.user.is_authenticated else lores.filter(visible=True)
 
-
 class NPCViewSet(viewsets.ModelViewSet):
-  resource_name = 'npcs'
+  resource_name = "npcs"
   queryset = models.NPC.objects.all()
   serializer_class = serializers.NPCSerializer
 
   def get_queryset(self):
-    npcs = models.NPC.objects.order_by('name')
+    npcs = models.NPC.objects.order_by("name")
     return npcs if self.request.user.is_authenticated else npcs.filter(visible=True)
 
 
 class PlaceViewSet(viewsets.ModelViewSet):
-  resource_name = 'places'
+  resource_name = "places"
   queryset = models.Place.objects.all()
   serializer_class = serializers.PlaceSerializer
 
   def get_queryset(self):
-    places = models.Place.objects.order_by('name')
+    places = models.Place.objects.order_by("name")
     return places if self.request.user.is_authenticated else places.filter(visible=True)
 
 
 class SongViewSet(viewsets.ModelViewSet):
-  resource_name = 'songs'
+  resource_name = "songs"
   queryset = models.Song.objects.all()
   serializer_class = serializers.SongSerializer
 
   def get_queryset(self):
-    songs = models.Song.objects.order_by('name')
+    songs = models.Song.objects.order_by("name")
     return songs if self.request.user.is_authenticated else songs.filter(visible=True)
 
 
@@ -80,7 +88,7 @@ def upload_song(request):
       "status": "failure",
       "message": f"Could not find song with id = {request.GET.get('id')}"
     })
-  f = request.data['file']
+  f = request.data["file"]
   song.sound_file.save(f.name, f, save=True)
   return JsonResponse({"status": "success", "message": ""})
 
@@ -95,6 +103,6 @@ def upload_place(request):
       "status": "failure",
       "message": f"Could not find place with id = {request.GET.get('id')}"
     })
-  f = request.data['file']
+  f = request.data["file"]
   place.image_file.save(f.name, f, save=True)
   return JsonResponse({"status": "success", "message": ""})

@@ -19,6 +19,12 @@ class JsonSerializer(serializers.Field):
     return json.dumps(json_data)
 
 
+class BeastSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = models.Beast
+    fields = "__all__"
+
 class LoreSerializer(serializers.ModelSerializer):
 
   class Meta:

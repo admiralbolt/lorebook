@@ -16,29 +16,22 @@ class NamedModel(models.Model):
   def __str__(self):
     return self.name
 
-class Tag(models.Model):
-  """An abstract class for classifying data items.
 
-  Will be used to make things more searchable in the future. Music will be
-  tagged with things like 'Battle' and 'Ambient'.
-  """
-  name = models.CharField(max_length=64)
-  flavor = models.TextField(default="", blank=True)
-
-  def __str__(self):
-    return self.name
+class Beast(NamedModel):
+  """Raawwwwrrr."""
+  appearance = models.TextField(default="", blank=True)
+  info = models.TextField(default="", blank=True)
+  image_file = models.FileField(upload_to="beasts/", blank=True)
 
 
 class Song(NamedModel):
   """Music makes the world go round."""
   artist = models.CharField(max_length=255, blank=True)
   flavor = models.TextField(default="", blank=True)
-  tags = models.ManyToManyField(Tag, blank=True)
   # Whether or not to loop the song continuously. This is generally true for
   # things like battle & ambient music.
   loop = models.BooleanField(default=False)
   sound_file = models.FileField(upload_to="music/", blank=True)
-  # items = GenericRelation("SessionItem", related_query_name="song")
 
 
 class Place(NamedModel):
@@ -81,12 +74,13 @@ class Lore(NamedModel):
   text = models.TextField(default="", blank=True)
 
 
-ADMIN_MODELS = [Place, Lore, NPC, Song, Tag]
-LINKABLE_MODELS = [Place, Lore, NPC, Song]
-SEARCHABLE_MODELS = [Place, Lore, NPC, Song]
+ADMIN_MODELS = [Beast, Lore, NPC, Place, Song]
+LINKABLE_MODELS = [Beast, Lore, Place, NPC, Song]
+SEARCHABLE_MODELS = [Beast, Lore, Place, NPC, Song]
 MODEL_NAME_MAP = {
-  Place: "place",
+  Beast: "beast",
   Lore: "lore",
   NPC: "npc",
+  Place: "place",
   Song: "song"
 }
