@@ -1,10 +1,14 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
 import config from '../config/environment';
+import { computed } from '@ember/object';
 import fetch from 'fetch';
 
 export default Component.extend({
   text: null,
+  newlineText: computed('text', function() {
+    return this.get('text').replace('\n', '<br>');
+  }),
   tokens: null,
 
   didReceiveAttrs() {
@@ -61,7 +65,7 @@ export default Component.extend({
     });
     tokens.push({
       link: null,
-      text: this.text.substring(start, this.text.length)
+      text: this.newlineText.substring(start, this.newlineText.length)
     });
     this.set('tokens', tokens);
   },
@@ -69,13 +73,13 @@ export default Component.extend({
   _addTokens(tokens, start, match) {
     if (match.start != start) {
       tokens.push({
-        text: this.text.substring(start, match.start)
+        text: this.newlineText.substring(start, match.start)
       });
     }
     tokens.push({
       model: match.model,
       id: match.id,
-      text: this.text.substring(match.start, match.end)
+      text: this.newlineText.substring(match.start, match.end)
     });
   },
 
@@ -86,7 +90,7 @@ export default Component.extend({
     let i = -1;
     let indices = [];
     while (pos != -1) {
-      pos = this.text.indexOf(keyword, i + 1);
+      pos = this.newlineText.indexOf(keyword, i + 1);
       i = pos;
       if (pos != -1) {
         indices.push(pos);
