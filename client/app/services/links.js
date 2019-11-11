@@ -2,8 +2,10 @@ import Service from '@ember/service';
 import config from '../config/environment';
 import fetch from 'fetch';
 import { isNone } from '@ember/utils';
+import { inject as service } from '@ember/service';
 
 export default Service.extend({
+  session: service('session'),
   links: null,
   // Don't want to do concurrent fetches if multiple getLinks() calls are made.
   // Store a promise here to prevent extraneous calls.
@@ -22,7 +24,14 @@ export default Service.extend({
   },
 
   reloadLinks() {
-    return fetch(`${config.host}/links/`).then(function(result) {
+    let headers = {
+      Accept: 'application/vnd.api+json'
+    };
+    if (this.session.isAuthenticated) {
+      // Apparently authorization has to be lower case, wtf?
+      headers.authorization = `Token ${this.session.data.authenticated.token}`;
+    }
+    return fetch(`${config.host}/links/`, {headers: headers}).then(function(result) {
       return result.json().then(function(data) {
         this.set('links', data);
         this._resolveIsFetching();

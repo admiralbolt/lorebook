@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import generics, viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import api_view, authentication_classes, parser_classes, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated
 
 
 class BeastViewSet(viewsets.ModelViewSet):
@@ -66,7 +66,9 @@ class SongViewSet(viewsets.ModelViewSet):
     songs = models.Song.objects.order_by("name")
     return songs if self.request.user.is_authenticated else songs.filter(visible=True)
 
-
+@api_view(["GET"])
+@authentication_classes([TokenAuthentication])
+@permission_classes([AllowAny])
 def links(request):
   links = []
   for model in models.LINKABLE_MODELS:
@@ -102,6 +104,7 @@ def upload_song(request):
   song.sound_file.save(f.name, f, save=True)
   return JsonResponse({"status": "success", "message": ""})
 
+
 @api_view(["POST"])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
@@ -116,6 +119,7 @@ def upload_place(request):
   f = request.data["file"]
   place.image_file.save(f.name, f, save=True)
   return JsonResponse({"status": "success", "message": ""})
+
 
 @api_view(["POST"])
 @authentication_classes([TokenAuthentication])
