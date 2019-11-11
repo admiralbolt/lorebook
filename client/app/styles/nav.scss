@@ -11,42 +11,55 @@ $nav-width-small-screen: 25vw;
   height: $nav-height;
   margin: 0px !important;
   min-width: 100vw;
-  overflow: auto;
-  overflow: hidden;
   -webkit-overflow-scrolling: touch;
   position: fixed;
   top: 0;
   width: 100vw;
   z-index: 9;
 
-  div {
-    a {
-      color: rgba(255, 255, 255, 0.9);
-      display:block;
-      font-size: 0.9em;
-      height: 100%;
-      padding: 0.5vh 0;
-      position: relative;
-      text-align: center;
-      text-decoration: none;
+  .flex-scroll {
+    flex-direction: row;
+    display: flex;
+    overflow-x: auto;
 
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.8);
+    .tab {
+
+      div {
+        width: 10vw;
+
+        @media (max-width: 500px) {
+          width: 18vw;
+        }
       }
 
-      &.active {
-        background-color: rgba(125, 125, 125, 0.2);
+      a {
+        color: rgba(255, 255, 255, 0.9);
+        display:block;
+        font-size: 0.9em;
+        height: 100%;
+        padding: 0.5vh 0;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        &.active {
+          background-color: rgba(125, 125, 125, 0.2);
+        }
       }
-    }
 
-    span {
-      font-size: 1.2em;
-      font-weight: bold;
-    }
+      span {
+        font-size: 1.2em;
+        font-weight: bold;
+      }
 
-    ion-icon {
-      font-size: 1.8em;
-      vertical-align:middle;
+      ion-icon {
+        font-size: 1.8em;
+        vertical-align:middle;
+      }
     }
   }
 }
@@ -56,6 +69,7 @@ $nav-width-small-screen: 25vw;
 }
 
 ::-webkit-scrollbar {
+  height: 0px !important;
   width: 0px !important;
   -webkit-appearance: none;
 }

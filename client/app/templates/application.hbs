@@ -1,60 +1,62 @@
 <div class="container">
-  <div class="row nav nav-primary">
-    <div class="col-2 col-sm-1 no-padding">
-      <LinkTo @route="beasts" @current-when="beast beasts beast-create">
-        <div class="full flex-center flex-column">
-          <ion-icon name="bug"></ion-icon>
-          <span>Beasts</span>
-        </div>
-      </LinkTo>
-    </div>
-    <div class="col-2 col-sm-1 no-padding">
-      <LinkTo @route="lores" @current-when="lore lores lore-create">
-        <div class="full flex-center flex-column">
-          <ion-icon name="book"></ion-icon>
-          <span>Lore</span>
-        </div>
-      </LinkTo>
-    </div>
-    <div class="col-2 col-sm-1 no-padding">
-      <LinkTo @route="npcs" @current-when="npc npcs npc-create">
-        <div class="full flex-center flex-column">
-          <ion-icon name="contact"></ion-icon>
-          <span>NPCs</span>
-        </div>
-      </LinkTo>
-    </div>
-    <div class="col-2 col-sm-1 no-padding">
-      <LinkTo @route="places" @current-when="place places place-create">
-        <div class="full flex-center flex-column">
-          <ion-icon name="pin"></ion-icon>
-          <span>Places</span>
-        </div>
-      </LinkTo>
-    </div>
-    <div class="col-2 col-sm-1 no-padding">
-      <LinkTo @route="sessions" @current-when="session sessions session-create">
-        <div class="full flex-center flex-column">
-          <ion-icon name="brush"></ion-icon>
-          <span>Seshes</span>
-        </div>
-      </LinkTo>
-    </div>
-    <div class="col-2 col-sm-1 no-padding">
-      <LinkTo @route="songs" @current-when="song songs song-create">
-        <div class="full flex-center flex-column">
-          <ion-icon name="musical-note"></ion-icon>
-          <span>Songs</span>
-        </div>
-      </LinkTo>
-    </div>
-    <div class="col-2 col-sm-1 no-padding">
-      <LinkTo @route="login">
-        <div class="full flex-center flex-column">
-          <ion-icon name="key"></ion-icon>
-          <span>Login</span>
-        </div>
-      </LinkTo>
+  <div class="nav nav-primary">
+    <div class="flex-scroll">
+      <div class="tab no-padding">
+        <LinkTo @route="beasts" @current-when="beast beasts beast-create">
+          <div class="full flex-center flex-column">
+            <ion-icon name="bug"></ion-icon>
+            <span>Beasts</span>
+          </div>
+        </LinkTo>
+      </div>
+      <div class="tab no-padding">
+        <LinkTo @route="lores" @current-when="lore lores lore-create">
+          <div class="full flex-center flex-column">
+            <ion-icon name="book"></ion-icon>
+            <span>Lore</span>
+          </div>
+        </LinkTo>
+      </div>
+      <div class="tab no-padding">
+        <LinkTo @route="npcs" @current-when="npc npcs npc-create">
+          <div class="full flex-center flex-column">
+            <ion-icon name="contact"></ion-icon>
+            <span>NPCs</span>
+          </div>
+        </LinkTo>
+      </div>
+      <div class="tab no-padding">
+        <LinkTo @route="places" @current-when="place places place-create">
+          <div class="full flex-center flex-column">
+            <ion-icon name="pin"></ion-icon>
+            <span>Places</span>
+          </div>
+        </LinkTo>
+      </div>
+      <div class="tab no-padding">
+        <LinkTo @route="sessions" @current-when="session sessions session-create">
+          <div class="full flex-center flex-column">
+            <ion-icon name="brush"></ion-icon>
+            <span>Seshes</span>
+          </div>
+        </LinkTo>
+      </div>
+      <div class="tab no-padding">
+        <LinkTo @route="songs" @current-when="song songs song-create">
+          <div class="full flex-center flex-column">
+            <ion-icon name="musical-note"></ion-icon>
+            <span>Songs</span>
+          </div>
+        </LinkTo>
+      </div>
+      <div class="tab no-padding">
+        <LinkTo @route="login">
+          <div class="full flex-center flex-column">
+            <ion-icon name="key"></ion-icon>
+            <span>Login</span>
+          </div>
+        </LinkTo>
+      </div>
     </div>
   </div>
 
