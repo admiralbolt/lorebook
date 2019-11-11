@@ -36,6 +36,11 @@ Router.map(function() {
     path: 'beast/:id'
   });
   this.route('beast-create');
+  this.route('sessions');
+  this.route('session', {
+    path: 'session/:id'
+  });
+  this.route('session-create');
 });
 
 export default Router;

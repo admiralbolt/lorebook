@@ -1,0 +1,16 @@
+<ItemDetail @modelName="session" @componentName="session-form" @route="sessions" @model={{model}}>
+  <div class="row">
+    <div class="item-title session-color">
+      {{model.name}}
+    </div>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="item-label">Summary</div>
+    <div class="item-lore">
+      <HotLink @text={{model.summary}} />
+    </div>
+  </div>
+</ItemDetail>
