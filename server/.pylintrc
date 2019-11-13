@@ -1,0 +1,11 @@
+[Master]
+
+# Load django pylint rules.
+load-plugins=pylint_django
+
+# Set indent to be two spaces instead of 4.
+indent-string='  '
+indent-after-paren=2
+
+# Pylint doesn't like single character variable names.
+good-names=a,b
