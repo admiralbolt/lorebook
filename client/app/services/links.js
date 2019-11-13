@@ -18,7 +18,7 @@ export default Service.extend({
   },
 
   _setIsFetching() {
-    this.set('_isFetching', new Promise(function(resolve, reject) {
+    this.set('_isFetching', new Promise(function(resolve) {
       this.set('_resolveIsFetching', resolve);
     }.bind(this)));
   },
@@ -44,13 +44,13 @@ export default Service.extend({
       await this.get('_isFetching');
     }
     if (this.get('links').length > 0) {
-      return new Promise(function(resolve, reject) {
+      return new Promise(function(resolve) {
         resolve(this.get('links'));
       }.bind(this));
     }
 
     this._setIsFetching();
-    return this.reloadLinks().then(function(result) {
+    return this.reloadLinks().then(function() {
       return this.get('links');
     }.bind(this));
   }

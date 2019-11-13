@@ -15,7 +15,7 @@ export default Route.extend({
   },
 
   actions: {
-    error(error, transition) {
+    error() {
       this.transitionTo('beasts');
     }
   }

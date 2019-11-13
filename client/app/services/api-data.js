@@ -10,11 +10,12 @@ export default Service.extend({
   // we are in a state where a model is loaded from the route before the menu
   // items are. This means that peekAll() returns something and we get a menu
   // with only one item. This tracks which models have been fully loaded.
-  warmModels: new Set(),
+  warmModels: null,
   menuItems: null,
 
   init() {
     this._super(...arguments);
+    this.warmModels = new Set();
     this.menuItems = this.menuItems || [];
   },
 

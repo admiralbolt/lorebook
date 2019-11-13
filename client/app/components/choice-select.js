@@ -1,11 +1,12 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  choices: [],
+  choices: null,
   value: null,
 
   init() {
     this._super(...arguments);
+    this.choices = this.choices || [];
     if (this.choices.length == 0) return;
 
     // I don't really understand this, but in order for this to work I need to

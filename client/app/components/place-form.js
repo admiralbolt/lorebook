@@ -4,8 +4,13 @@ import { isNone } from '@ember/utils';
 
 export default Component.extend({
   place: null,
-  // This needs to stay in sync with the types defined in models.py
-  placeTypes: ["City", "Dungeon", "Location"],
+  placeTypes: null,
+
+  init() {
+    this._super(...arguments);
+    // This needs to stay in sync with the types defined in models.py
+    this.placeTypes = ['City', 'Dungeon', 'Location'];
+  },
 
   didReceiveAttrs() {
     this._super(...arguments);

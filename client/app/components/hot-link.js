@@ -1,8 +1,5 @@
 import Component from '@ember/component';
-import { A } from '@ember/array';
-import config from '../config/environment';
 import { computed } from '@ember/object';
-import fetch from 'fetch';
 import { isNone } from '@ember/utils';
 import { inject as service } from '@ember/service';
 
