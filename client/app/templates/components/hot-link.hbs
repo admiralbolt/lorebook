@@ -1,9 +1,12 @@
+{{!-- Using htmlSafe instead of triple curlies would be a pain in the ass --}}
+{{! template-lint-disable no-triple-curlies }}
+
 {{#each this.tokens as |token|}}
   {{#if token.model}}
     <LinkTo @route={{token.model}} @model={{token.id}} class="hot-link {{token.model}}-color">
       {{token.text}}
     </LinkTo>
   {{else}}
-   <span>{{{token.text}}}</span>
+    <span>{{{token.text}}}</span>
   {{/if}}
 {{/each}}

@@ -38,9 +38,9 @@
           <button {{action "removePointOfInterest" index}} class="primary-light-color negative-background action-button">Delete Poi</button>
         </div>
         <br>
-        {{#unless (eq poi place.points_of_interest.lastObject)}}
+        {{#if (not-eq poi place.points_of_interest.lastObject)}}
           <hr class="primary-border">
-        {{/unless}}
+        {{/if}}
       {{/each}}
     </div>
     <button {{action "addPointOfInterest"}} class="action-button primary-light-background full">
