@@ -18,6 +18,26 @@
   <div class="search">
     <div class="search-input">
       <input type="text" id="search-keyword" />
+      <div class="search-results {{displayClass}}">
+        <div class="search-result">
+          <LinkTo @route="beast" @model={{1}}>
+            <span>Cannisphinx</span>
+            <span>Beast</span>
+          </LinkTo>
+        </div>
+        <div class="search-result">
+          <LinkTo @route="npc" @model={{2}}>
+            <span>Galrand</span>
+            <span>NPC</span>
+          </LinkTo>
+        </div>
+        <div class="search-result">
+          <LinkTo @route="session" @model={{2}}>
+            <span>Harvest Festival</span>
+            <span>Session</span>
+          </LinkTo>
+        </div>
+      </div>
     </div>
     <div class="search-button" onclick={{action "toggleSearch"}}>
       <div class="tab no-padding">

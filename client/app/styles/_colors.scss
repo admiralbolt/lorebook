@@ -1,3 +1,6 @@
+$primary: rgb(190, 190, 190);
+$primary-light: rgb(210, 210, 210);
+
 $colors: (
   beast: rgb(212, 98, 94),
   lore: rgb(70, 180, 100),
@@ -5,8 +8,8 @@ $colors: (
   place: rgb(210, 125, 50),
   session: rgb(50, 170, 200),
   song: rgb(159, 83, 226),
-  primary: rgb(190, 190, 190),
-  primary-light: rgb(210, 210, 210),
+  primary: $primary,
+  primary-light: $primary-light,
   positive: rgb(30, 140, 39),
   negative: rgb(207, 37, 35),
   white: rgb(255, 255, 255)

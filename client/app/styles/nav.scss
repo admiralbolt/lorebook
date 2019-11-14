@@ -1,3 +1,5 @@
+@import "_colors.scss";
+
 $nav-height: 8vh;
 $nav-width-large-screen: 15vw;
 $nav-width-small-screen: 25vw;
@@ -64,23 +66,68 @@ $nav-width-small-screen: 25vw;
       right: 0;
     }
 
+    // Since it's a flex column, align items / justify content are swapped.
+    // We don't want to justify-content since that'll vertically align the items.
+    // Instead we center it using a vh margin, that way the results div is
+    // appropriately positioned.
     .search-input {
       align-items: center;
       display: flex;
-      height: 100%;
-      justify-content: center;
+      flex-direction: column;
+      height: $nav-height;
       margin-left: 10px;
+      // I have no clue why margin-top: 10% centers the text-input. Just doesn't
+      // make any sense at all. I would expect 30% for full screen and 20% for
+      // mobile.
+      margin-top: 10%;
       width: 100%;
+      position: relative;
+
+      @media(max-width: 500px) {
+        margin-top: 6.67%;
+      }
 
       input {
         border: none;
         border-radius: 5px;
-        height: 40%;
-        width: 80%;
+        height: calc($nav-height * 0.4);
         padding: 5px;
+        width: 80%;
 
         @media (max-width: 500px) {
-          height: 60%;
+          height: calc($nav-height * 0.6);
+        }
+      }
+
+      .search-results {
+        border-radius: 5px;
+        color: $primary;
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        z-index: 10000000;
+        margin-top: 1px;
+
+        .search-result a {
+          border-radius: 5px;
+          background-color: rgb(15, 23, 35);
+          border-bottom: 1px solid rgb(90, 90, 90);
+          color: $primary;
+          display: flex;
+          justify-content: space-between;
+          text-decoration: none;
+          align-items: center;
+          padding: 0px 10px;
+          height: 3.5vh;
+
+          @media (max-width: 500px) {
+            height: 6vh;
+          }
+
+          &:hover {
+            background-color: rgb(8, 16, 25);
+            color: $primary-light;
+          }
         }
       }
 
