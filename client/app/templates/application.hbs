@@ -1,24 +1,6 @@
 <div class="container">
-  <div class="nav nav-primary">
-    <div class="flex-scroll">
-      <NavTab @modelName="beast" @icon="bug" />
-      <NavTab @modelName="lore" @icon="book" />
-      <NavTab @modelName="npc" @icon="contact" />
-      <NavTab @modelName="place" @icon="pin" />
-      <NavTab @modelName="session" @icon="brush" />
-      <NavTab @modelName="song" @icon="musical-note" />
-      <div class="tab no-padding">
-        <LinkTo @route="login">
-          <div class="full flex-center flex-column">
-            <ion-icon name="key"></ion-icon>
-            <span>Login</span>
-          </div>
-        </LinkTo>
-      </div>
-    </div>
-  </div>
+  <PrimaryNavBar />
 
-  <div class="row nav-pad"></div>
   <div class="row">
     {{#if displayMenu}}
       <div class="nav-sidebar">

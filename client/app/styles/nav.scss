@@ -18,48 +18,112 @@ $nav-width-small-screen: 25vw;
   z-index: 9;
 
   .flex-scroll {
-    flex-direction: row;
+    background-color: rgb(20, 28, 40);
+    border-right: 1px solid gray;
     display: flex;
+    flex-direction: row;
     overflow-x: auto;
+    transition: width 1s;
+    z-index: 10;
 
-    .tab {
+    &.normal {
+      width: 90vw;
 
-      div {
-        width: 10vw;
+      @media (max-width: 500px) {
+        width: 82vw;
+      }
+    }
+
+    &.shrink {
+      width: 50vw;
+
+      @media(max-width: 500px) {
+        width: 0vw;
+      }
+    }
+  }
+
+  .search {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 100%;
+    width: 50vw;
+    position: absolute;
+    right: 0;
+    z-index: 0;
+
+    @media(max-width: 500px) {
+      width: 100vw;
+    }
+
+    .search-button {
+      cursor: pointer;
+      height: 100%;
+      right: 0;
+    }
+
+    .search-input {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+
+      input {
+        border: none;
+        border-radius: 5px;
+        height: 40%;
+        width: 80%;
 
         @media (max-width: 500px) {
-          width: 18vw;
+          height: 60%;
         }
       }
 
-      a {
-        color: rgba(255, 255, 255, 0.9);
-        display:block;
-        font-size: 0.9em;
-        height: 100%;
-        padding: 0.5vh 0;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
+    }
+  }
 
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.8);
-        }
+  .tab {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9em;
+    height: 100%;
 
-        &.active {
-          background-color: rgba(125, 125, 125, 0.2);
-        }
+    div {
+      width: 10vw;
+
+      @media (max-width: 500px) {
+        width: 18vw;
+      }
+    }
+
+    a {
+      color: inherit;
+      display:block;
+      height: 100%;
+      padding: 0.5vh 0;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.8);
       }
 
-      span {
-        font-size: 1.2em;
-        font-weight: bold;
+      &.active {
+        background-color: rgba(125, 125, 125, 0.2);
       }
+    }
 
-      ion-icon {
-        font-size: 1.8em;
-        vertical-align:middle;
-      }
+    span {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    ion-icon {
+      font-size: 1.8em;
+      vertical-align:middle;
     }
   }
 }
@@ -71,6 +135,7 @@ $nav-width-small-screen: 25vw;
 ::-webkit-scrollbar {
   height: 0px !important;
   width: 0px !important;
+
   -webkit-appearance: none;
 }
 
