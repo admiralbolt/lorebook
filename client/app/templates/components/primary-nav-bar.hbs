@@ -17,13 +17,18 @@
   </div>
   <div class="search">
     <div class="search-input">
-      <input type="text" />
+      <input type="text" id="search-keyword" />
     </div>
     <div class="search-button" onclick={{action "toggleSearch"}}>
       <div class="tab no-padding">
         <div class="full flex-center flex-column">
-          <ion-icon name="search"></ion-icon>
-          <span>Search</span>
+          {{#if showSearchBar}}
+            <ion-icon name="close-circle-outline"></ion-icon>
+            <span>Hide</span>
+          {{else}}
+            <ion-icon name="search"></ion-icon>
+            <span>Search</span>
+          {{/if}}
         </div>
       </div>
     </div>

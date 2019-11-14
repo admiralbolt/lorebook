@@ -6,7 +6,11 @@ export default Component.extend({
 
   actions: {
     toggleSearch: function() {
-      this.set('showSearchBar', !this.get('showSearchBar'));
+      let showSearchBar = this.get('showSearchBar');
+      this.set('showSearchBar', !showSearchBar);
+      if (!showSearchBar) {
+        this.get('element').querySelector('#search-keyword').focus();
+      }
       let widthClass = this.get('widthClass');
       this.set('widthClass', (widthClass == 'normal') ? 'shrink' : 'normal');
     }
