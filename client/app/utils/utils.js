@@ -19,7 +19,23 @@ export function formatErrors(errors) {
 // cases like NPC every letter is capital.
 export function formatModelName(modelName) {
   return {
+    'beast': 'Beast',
+    'lore': 'Lore',
+    'place': 'Place',
     'npc': 'NPC',
+    'session': 'Sesh',
     'song': 'Song'
+  }[modelName] || modelName;
+}
+
+// Format model names for *plural* display.
+export function formatModelNamePlural(modelName) {
+  return {
+    'beast': 'Beasts',
+    'lore': 'Lore',
+    'place': 'Places',
+    'npc': 'NPCs',
+    'session': 'Seshes',
+    'song': 'Songs'
   }[modelName] || modelName;
 }
