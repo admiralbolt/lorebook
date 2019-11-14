@@ -21,6 +21,6 @@ urlpatterns = [
   path("beasts/upload/", views.upload_beast),
   path("songs/upload/", views.upload_song),
   path("places/upload/", views.upload_place),
-  path("search/", search.auto_complete),
+  path("search/", search.search),
   url(r"^", include(router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

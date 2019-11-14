@@ -1,7 +1,12 @@
 import Component from '@ember/component';
+import { inject as service } from '@ember/service';
+import config from '../config/environment';
 import { computed } from '@ember/object';
+import { debounce } from '@ember/runloop';
+import fetch from 'fetch';
 
 export default Component.extend({
+  session: service('session'),
   showSearchBar: false,
   widthClass: 'normal',
   displayResults: false,
@@ -11,6 +16,12 @@ export default Component.extend({
   // For some reason clicking on a link fires both focusOut and focusIn.
   // Make sure we only fire one focus event at a time.
   _isFocusing: false,
+  searchResults: null,
+
+  init() {
+    this._super(...arguments);
+    this.searchResults = [];
+  },
 
   focusOut: function() {
     if (!this.get('_isFocusing')) {
@@ -23,11 +34,27 @@ export default Component.extend({
   },
 
   focusIn: function() {
-    if (!this.get('_isFocusing')) {
+    if (this.get('showSearchBar') && !this.get('_isFocusing')) {
       setTimeout(function() {
         this.set('displayResults', true);
       }.bind(this), 0);
     }
+  },
+
+  search: function() {
+    let keyword = this.get('element').querySelector('#search-keyword').value;
+    let headers = {};
+    if (this.session.isAuthenticated) {
+      // Apparently authorization has to be lower case, wtf?
+      headers.authorization = `Token ${this.session.data.authenticated.token}`;
+    }
+    return fetch(`${config.host}/search/?keyword=${keyword}`, {
+      headers: headers,
+    }).then(function(result) {
+      return result.json().then(function(data) {
+        this.set('searchResults', data);
+      }.bind(this));
+    }.bind(this));
   },
 
   actions: {
@@ -41,6 +68,11 @@ export default Component.extend({
       }
       let widthClass = this.get('widthClass');
       this.set('widthClass', (widthClass == 'normal') ? 'shrink' : 'normal');
+    },
+
+    search: function() {
+      let keyword = this.get('element').querySelector('#search-keyword').value;
+      debounce(this, this.search, 300);
     }
   }
 });

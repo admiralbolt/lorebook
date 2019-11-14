@@ -4,6 +4,14 @@ from collections import Counter
 from django.http import JsonResponse
 from fuzzywuzzy import fuzz
 from api import models
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import api_view, authentication_classes, parser_classes, permission_classes
+from rest_framework.permissions import AllowAny, IsAuthenticated
+
+_PARTIAL_RATIO_WEIGHT = 0.6
+_TOKEN_RATIO_WEIGHT = 1
+_JACCARD_WEIGHT = 0.5
+_SCORE_THRESHOLD = 50
 
 def jaccard(a, b):
   """Get the jaccard similarity of two strings.
@@ -34,24 +42,39 @@ def score(name, keyword):
   # Rescale jaccard to 0-100
   jc_score = jaccard(name_lower, keyword_lower) * 100
 
-  return partial_ratio + 0.5 * token_ratio + 0.5 * jc_score
+  return (
+    partial_ratio * _PARTIAL_RATIO_WEIGHT +
+    token_ratio * _TOKEN_RATIO_WEIGHT +
+    jc_score * _JACCARD_WEIGHT
+  ) / sum([_PARTIAL_RATIO_WEIGHT, _TOKEN_RATIO_WEIGHT, _JACCARD_WEIGHT])
 
-def convert_item_to_json(item):
+def convert_item_to_json(item, score):
   """Helper to convert an item to easy to use json."""
   return {
     "id": item.id,
     "model": models.MODEL_NAME_MAP[type(item)],
     "name": item.name,
+    "score": score
   }
 
-def auto_complete(request):
+@api_view(["GET"])
+@authentication_classes([TokenAuthentication])
+@permission_classes([AllowAny])
+def search(request):
   """Auto complete a keyword and return top 5 results!"""
-  keyword = request.GET["keyword"]
+  print(request.GET)
+  keyword = request.GET.get("keyword")
   if not keyword:
     return JsonResponse({
       "status": "error",
       "message": "No keyword supplied"
     })
-  data = [x for z in models.SEARCHABLE_MODELS for x in z.objects.all()]
-  data = sorted(data, key=lambda item: score(item, keyword), reverse=True)
-  return JsonResponse([convert_item_to_json(item) for item in data[:5]], safe=False)
+  data = []
+  for model in models.SEARCHABLE_MODELS:
+    data.extend(model.objects.all() if request.user.is_authenticated else model.objects.all().filter(visible=True))
+  data = list(map(
+    lambda item: convert_item_to_json(item, score(item.name, keyword)
+  ), data))
+  data = list(filter(lambda item : item["score"] > _SCORE_THRESHOLD, data))
+  data = sorted(data, key=lambda item: item["score"], reverse=True)
+  return JsonResponse(data[:5], safe=False)

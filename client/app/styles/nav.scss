@@ -121,11 +121,11 @@ $nav-width-small-screen: 25vw;
           height: 3.5vh;
 
           @media (max-width: 500px) {
-            height: 6vh;
+            height: 6.5vh;
           }
 
           &:hover {
-            background-color: rgb(8, 16, 25);
+            background-color: rgb(5, 10, 15);
             color: $primary-light;
           }
         }
