@@ -1,0 +1,28 @@
+<div class="search">
+  <div class="search-input">
+    <input type="text" onkeyup={{action "search"}} id="search-keyword" />
+    <div class="search-results {{displayClass}}">
+      {{#each searchResults as |result|}}
+        <div class="search-result">
+          <LinkTo @route="{{result.model}}" @model={{result.id}}>
+            <span class="{{result.model}}-color">{{result.name}}</span>
+            <span>{{format-name result.model}}</span>
+          </LinkTo>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="search-button" onclick={{action "toggleSearch"}}>
+    <div class="tab no-padding">
+      <div class="full flex-center flex-column">
+        {{#if showSearchBar}}
+          <ion-icon name="close-circle-outline"></ion-icon>
+          <span>Hide</span>
+        {{else}}
+          <ion-icon name="search"></ion-icon>
+          <span>Search</span>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</div>
