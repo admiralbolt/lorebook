@@ -74,18 +74,10 @@ $nav-width-small-screen: 25vw;
       align-items: center;
       display: flex;
       flex-direction: column;
-      height: $nav-height;
+      height: calc($nav-height * 0.4);
       margin-left: 10px;
-      // I have no clue why margin-top: 10% centers the text-input. Just doesn't
-      // make any sense at all. I would expect 30% for full screen and 20% for
-      // mobile.
-      margin-top: 10%;
       width: 100%;
       position: relative;
-
-      @media(max-width: 500px) {
-        margin-top: 6.67%;
-      }
 
       input {
         border: none;
