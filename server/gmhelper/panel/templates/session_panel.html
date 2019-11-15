@@ -1,0 +1,22 @@
+{% load custom_filters %}
+
+{% for session_item in session.sessionitem_set.all %}
+  {% include "card.html" with si_id=session_item.pk item=session_item.item class=session_item.item|class_name %}
+{% endfor %}
+
+{% for image in session.images.all|dictsort:"name" %}
+  {% include "cards/image.html" with image=image %}
+{% endfor %}
+
+{% for letter in session.letters.all %}
+  <h3>{{letter.name}}</h3>
+  <button onclick="send_message({type: 'letter', text: '{{letter.text | escapejs}}'})">Send to Client</button>
+{% endfor %}
+<br /><br />
+{% for song in session.songs.all|dictsort:"name" %}
+  <h3 class="song-name">{{song.name}}</h3>
+  <audio controls {% if song.loop %} loop {% endif %}>
+    <source src="{{song.sound_file.url}}" />
+  </audio>
+  <br /><br />
+{% endfor %}

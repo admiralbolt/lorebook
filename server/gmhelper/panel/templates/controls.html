@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static "css/controls.css" %}?version={% now "U" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/jquery-ui.css" %}" />
+    <script src="{% static "js/jquery-3.4.1.js" %}"></script>
+    <script src="{% static "js/controls.js" %}?version={{no_cache}}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{% static "js/jquery-ui.js" %}"></script>
+  </head>
+  <body>
+    <div class="container-fluid main-content">
+      <div class="row main-content">
+
+        <div class="content-panel col-lg-9">
+          <div class="content-controls">
+            <button id="edit-session" class="control-button flex-center">
+              <img class="icon-button" src="{% static "icons/pencil.svg" %}" />
+              <img style="display:none" class="icon-button" src="{% static "icons/clippy.svg" %}" />
+            </button>
+          </div>
+          <div class="session-content">
+            {% include "session_content.html" with session=session %}
+          </div>
+        </div>
+
+        <div class="session-panel col-lg-3">
+          <div class="selectors">
+            <div class="row selector-row flex-center">
+              <select id="campaign-selector" class="pretty-select form-control">
+                {% for campaign in campaigns %}
+                  <option value="{{campaign.pk}}"
+                  {% if campaign.pk == request.session.campaign %}
+                  selected="selected"
+                  {% endif %}
+                  >{{campaign.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="row selector-row flex-center">
+              <select id="session-selector" class="pretty-select form-control">
+                {% for session in sessions %}
+                  <option value="{{session.pk}}"
+                  {% if session.pk == request.session.session %}
+                  selected="selected"
+                  {% endif %}
+                  >{{session.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="auto-complete-input flex-center">
+            <input type="text" id="input-keyword" class="form-control" placeholder="Search for stuff..." aria-label="Search for stuff...">
+          </div>
+          <div class="auto-complete">
+            <ul id="auto-complete-results" class="auto-complete-ul">
+            </ul>
+          </div>
+          <div class="session-items">
+            {% include "session_panel.html" with images=images letters=letters songs=songs %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<h1>{{dungeon.name}}</h1>
+
+<div id="tabs_{{dungeon.id}}">
+  <ul>
+    {% for item in dungeon.dungeonitem_set.all %}
+    <li><a href="#tabs-{{dungeon.id}}-{{item.number}}">{{item.number}}{% if item.name %} - {{item.name}}{% endif %}</a></li>
+    {% endfor %}
+  </ul>
+  {% for item in dungeon.dungeonitem_set.all %}
+  <div id="tabs-{{dungeon.id}}-{{item.number}}">
+    <p>{{item.text}}</p>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- So this is a bit jank still, but since we convert newlines into <br />
+     tags, scripts directly rendered onto the page won't work correctly unless
+     they are on a single line. -->
+<script>$(function() {$("#tabs_{{dungeon.id}}").tabs();});</script>
