@@ -2,7 +2,8 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import config from '../config/environment';
 import { computed } from '@ember/object';
-import { debounce } from '@ember/runloop';
+import { cancel, debounce } from '@ember/runloop';
+import { isNone } from '@ember/utils';
 import fetch from 'fetch';
 
 export default Component.extend({
@@ -16,6 +17,7 @@ export default Component.extend({
   // For some reason clicking on a link fires both focusOut and focusIn.
   // Make sure we only fire one focus event at a time.
   _isFocusing: false,
+  _debouncedSearch: null,
   searchResults: null,
 
   init() {
@@ -39,6 +41,16 @@ export default Component.extend({
         this.set('displayResults', true);
       }.bind(this), 0);
     }
+  },
+
+  // If we hit enter immediately run search and cancel the debounce.
+  keyPress: function(event) {
+    if (event.key !== 'Enter') return;
+
+    if (isNone(this.get('_debouncedSearch'))) {
+      cancel(this.get('_debouncedSearch'));
+    }
+    this.search();
   },
 
   search: function() {
@@ -72,7 +84,7 @@ export default Component.extend({
 
     search: function() {
       let keyword = this.get('element').querySelector('#search-keyword').value;
-      debounce(this, this.search, 300);
+      this.set('_debouncedSearch', debounce(this, this.search, 300));
     }
   }
 });
