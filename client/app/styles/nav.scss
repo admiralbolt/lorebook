@@ -182,7 +182,7 @@ $nav-width-small-screen: 25vw;
 
 .nav-sidebar {
   background-color: rgb(26, 34, 48);
-  height: calc(100% - #{$nav-height});
+  height: calc(100vh - #{$nav-height});
   left: 0;
   overflow-y: scroll;
   position: fixed;
