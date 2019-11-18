@@ -49,8 +49,12 @@ export default Component.extend({
     saveInitialLocation: function(event) {
       this.set('dragStartX', event.x);
       this.set('dragStartY', event.y);
+      event.dataTransfer.setData('text', event.target.getAttribute('data-id'));
     },
     locationDropped: function(event) {
+      // The drop was handled by the remove item dropzone, do nothing.
+      if (this.element == null) return;
+      
       let mapWrapper = this.getMapWrapper(event.path);
       let itemWidth = this.element.getElementsByClassName('map-item')[0].offsetWidth;
       let place = this.get('place');

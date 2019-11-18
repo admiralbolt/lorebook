@@ -1,6 +1,4 @@
-<div style={{position}} draggable={{session.isAuthenticated}} ondragstart={{action 'saveInitialLocation'}} ondragend={{action 'locationDropped'}} class="map-item">
-  <LinkTo @route="place" @model={{place}}>
-    <ion-icon name="home"></ion-icon>
-  </LinkTo>
+<div data-id={{place.id}} style={{position}} draggable={{session.isAuthenticated}} ondragstart={{action 'saveInitialLocation'}} ondragend={{action 'locationDropped'}} class="map-item">
+  <ion-icon name="home"></ion-icon>
   <EmberTooltip @tooltipClass="map-item-tooltip" @text={{place.name}} />
 </div>
