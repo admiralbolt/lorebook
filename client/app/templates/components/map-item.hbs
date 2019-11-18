@@ -1,4 +1,5 @@
-<div data-id={{place.id}} style={{position}} draggable={{session.isAuthenticated}} ondragstart={{action 'saveInitialLocation'}} ondragend={{action 'locationDropped'}} class="map-item">
+{{! template-lint-disable no-inline-styles }}
+<div data-id={{place.id}} style={{position}} draggable={{session.isAuthenticated}} ondragstart={{action "saveInitialLocation"}} ondragend={{action "locationDropped"}} class="map-item">
   <ion-icon name="home"></ion-icon>
   <EmberTooltip @tooltipClass="map-item-tooltip" @text={{place.name}} />
 </div>
