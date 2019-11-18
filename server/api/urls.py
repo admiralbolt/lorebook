@@ -1,5 +1,5 @@
-from . import search
-from . import views
+"""Route urls -> views."""
+
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
@@ -7,7 +7,10 @@ from django.urls import include, path
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 
-router = routers.DefaultRouter(trailing_slash=False)
+from api import search
+from api import views
+
+router = routers.DefaultRouter(trailing_slash=False)  # pylint: disable=invalid-name
 router.register(r"beasts", views.BeastViewSet)
 router.register(r"lores", views.LoreViewSet)
 router.register(r"npcs", views.NPCViewSet)

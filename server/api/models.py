@@ -1,3 +1,5 @@
+"""Database models!"""
+
 from django.db import models
 
 
@@ -78,7 +80,7 @@ class Lore(NamedModel):
     ("Letter", "Letter"),
     ("Story", "Story"),
   ))
-  author = models.CharField(default="", max_length=128, blank=True);
+  author = models.CharField(default="", max_length=128, blank=True)
   date_received = models.DateField(default=None, blank=True, null=True)
   text = models.TextField(default="", blank=True)
 
