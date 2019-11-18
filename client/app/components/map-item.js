@@ -1,23 +1,27 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { htmlSafe } from '@ember/template';
+import { inject as service } from '@ember/service';
 
 // This is based on the pixel amounts set in world.scss.
-// Mobile map is set to 900px width.
+// Mobile map is set to 1400px width.
 // Full screen map is set to 2048px width.
-let MOBILE_SCALE = 0.439453125;
+let MOBILE_SCALE = 0.68359375;
 let WIDTH_THRESHOLD = 500;
 
 export default Component.extend({
+  session: service('session'),
   place: null,
-  offset: 0,
+  offsetX: 0,
+  offsetY: 0,
   dragStartX: null,
   dragStartY: null,
 
   didInsertElement() {
     this._super(...arguments);
     let mapItem = this.element.getElementsByClassName('map-item')[0];
-    this.set('offset', mapItem.offsetWidth / 2);
+    this.set('offsetX', mapItem.offsetWidth / 2);
+    this.set('offsetY', mapItem.offsetHeight / 2);
   },
 
   position: computed('place.x', 'place.y', 'offset', function() {
@@ -27,7 +31,8 @@ export default Component.extend({
       x *= MOBILE_SCALE;
       y *= MOBILE_SCALE;
     }
-    x -= this.get('offset');
+    x -= this.get('offsetX');
+    y -= this.get('offsetY');
     return new htmlSafe(`left: ${x}px; top: ${y}px;`);
   }),
 
