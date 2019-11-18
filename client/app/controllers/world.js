@@ -16,10 +16,10 @@ export default Controller.extend({
     dragOver: function(event) {
       event.preventDefault();
     },
-    highlight: function(event) {
+    highlight: function() {
       this.set('show', true);
     },
-    hide: function(event) {
+    hide: function() {
       this.set('show', false);
     },
     removeItem: function(event) {

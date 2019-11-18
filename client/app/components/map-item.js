@@ -24,7 +24,7 @@ export default Component.extend({
     this.set('offsetY', mapItem.offsetHeight / 2);
   },
 
-  position: computed('place.x', 'place.y', 'offset', function() {
+  position: computed('place.{x, y}', 'offset', function() {
     let x = this.get('place.x');
     let y = this.get('place.y');
     if (window.innerWidth < WIDTH_THRESHOLD) {
@@ -36,15 +36,6 @@ export default Component.extend({
     return new htmlSafe(`left: ${x}px; top: ${y}px;`);
   }),
 
-  getMapWrapper(eventPath) {
-    for (let i = 0; i < eventPath.length; i++) {
-      if (eventPath[i].className === 'map-wrapper') {
-        return eventPath[i];
-      }
-    }
-    return null;
-  },
-
   actions: {
     saveInitialLocation: function(event) {
       this.set('dragStartX', event.x);
@@ -55,10 +46,7 @@ export default Component.extend({
       // The drop was handled by the remove item dropzone, do nothing.
       if (this.element == null) return;
       
-      let mapWrapper = this.getMapWrapper(event.path);
-      let itemWidth = this.element.getElementsByClassName('map-item')[0].offsetWidth;
       let place = this.get('place');
-
       place.set('x', place.get('x') + (event.x - this.get('dragStartX')));
       place.set('y', place.get('y') + (event.y - this.get('dragStartY')));
       place.save();

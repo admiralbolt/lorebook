@@ -82,7 +82,6 @@ export default Component.extend({
     },
 
     search: function() {
-      let keyword = this.get('element').querySelector('#search-keyword').value;
       this.set('_debouncedSearch', debounce(this, this.search, 300));
     }
   }
