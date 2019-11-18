@@ -1,0 +1,50 @@
+@import "_colors.scss";
+
+.map-wrapper {
+  max-width: 100vh;
+  max-height: 91vh;
+  border: 3px solid green;
+  overflow: scroll;
+  position: relative;
+
+  .world-map {
+    user-select: none;
+    position: relative;
+    opacity: 0.7;
+    width: 2048px;
+    z-index: 0;
+
+    @media (max-width: 500px) {
+      width: 900px;
+    }
+  }
+
+  .map-item {
+    position: absolute;
+    color: white;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000000;
+
+    ion-icon {
+      font-size: 1rem;
+
+      @media (max-width: 500px) {
+        font-size: 0.8rem;
+      }
+    }
+
+    .map-location {
+      font-size: 1rem;
+
+      @media (max-width: 500px) {
+        font-size: 0.8rem;
+      }
+    }
+
+  }
+
+
+}

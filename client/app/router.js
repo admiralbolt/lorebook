@@ -41,6 +41,7 @@ Router.map(function() {
     path: 'session/:id'
   });
   this.route('session-create');
+  this.route('world');
 });
 
 export default Router;
