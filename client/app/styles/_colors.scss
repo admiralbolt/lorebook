@@ -13,7 +13,7 @@ $colors: (
   primary-light: $primary-light,
   positive: rgb(30, 140, 39),
   negative: rgb(207, 37, 35),
-  white: rgb(255, 255, 255)
+  "white": rgb(255, 255, 255)
 );
 
 @each $name, $rgb in $colors {
