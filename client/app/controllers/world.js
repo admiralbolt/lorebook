@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 
 export default Controller.extend({
   api_data: service('api-data'),
+  session: service('session'),
   show: false,
 
   style: computed('show', function() {
