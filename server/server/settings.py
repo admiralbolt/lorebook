@@ -29,12 +29,18 @@ SECRET_KEY = CONFIG['API_KEY']
 DEBUG = True
 
 ALLOWED_HOSTS = [
-  '192.168.0.197',
-  'localhost'
+  '*',
+  'http://cornmountain.com',
+  'cornmountain.com',
 ]
 
-MEDIA_ROOT = '/home/admiralbolt/git/gmhelper/gmhelper/uploads'
+MEDIA_ROOT = '/home/admiralbolt/git/lorebook/server/uploads'
 MEDIA_URL = '/uploads/'
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+STATIC_ROOT = '/home/admiralbolt/git/lorebook/server/static'
+STATIC_URL = '/static/'
 
 JSON_API_PLURALIZE_RELATION_TYPE = True
 
@@ -66,6 +72,10 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+  'http://cornmountain.com:80'
+]
 
 CORS_ALLOW_HEADERS = [
   'authorization',
@@ -161,7 +171,3 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATIC_URL = '/static/'
