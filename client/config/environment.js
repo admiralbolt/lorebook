@@ -46,6 +46,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.host = 'http://cornmountain.com:8000';
   }
 
   ENV['ember-simple-auth-token'] = {
