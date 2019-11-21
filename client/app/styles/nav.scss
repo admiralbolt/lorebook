@@ -1,23 +1,27 @@
 @import "_colors.scss";
 
-$nav-height: 8vh;
-$nav-width-large-screen: 15vw;
-$nav-width-small-screen: 25vw;
+$nav-height: 5rem;
+$nav-height-mobile: 4rem;
+$nav-width-large-screen: 12.5rem;
+$nav-width-small-screen: 6.5rem;
 
 
 .nav-primary {
   background-color: rgb(20, 28, 40);
   border-bottom: 1px solid #aaa;
-  font-size: 1.8vh;
   font-weight: 400;
   height: $nav-height;
   margin: 0px !important;
-  min-width: 100vw;
+  min-width: 100%;
   -webkit-overflow-scrolling: touch;
   position: fixed;
   top: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 9;
+
+  @media(max-width: 500px) {
+    height: $nav-height-mobile;
+  }
 
   .flex-scroll {
     background-color: rgb(20, 28, 40);
@@ -29,18 +33,18 @@ $nav-width-small-screen: 25vw;
     z-index: 10;
 
     &.normal {
-      width: 90vw;
+      width: 92%;
 
       @media (max-width: 500px) {
-        width: 82vw;
+        width: 81%;
       }
     }
 
     &.shrink {
-      width: 50vw;
+      width: 50%;
 
       @media(max-width: 500px) {
-        width: 0vw;
+        width: 0%;
       }
     }
   }
@@ -53,11 +57,11 @@ $nav-width-small-screen: 25vw;
     justify-content: flex-end;
     position: absolute;
     right: 0;
-    width: 50vw;
+    width: 50%;
     z-index: 0;
 
     @media(max-width: 500px) {
-      width: 100vw;
+      width: 100%;
     }
 
     .search-button {
@@ -68,7 +72,7 @@ $nav-width-small-screen: 25vw;
 
     // Since it's a flex column, align items / justify content are swapped.
     // We don't want to justify-content since that'll vertically align the items.
-    // Instead we center it using a vh margin, that way the results div is
+    // Instead we center it using a rem margin, that way the results div is
     // appropriately positioned.
     .search-input {
       align-items: center;
@@ -110,10 +114,10 @@ $nav-width-small-screen: 25vw;
           text-decoration: none;
           align-items: center;
           padding: 0px 10px;
-          height: 4.5vh;
+          height: 4.2rem;
 
           @media (max-width: 500px) {
-            height: 6.5vh;
+            height: 2.8rem;
           }
 
           &:hover {
@@ -128,14 +132,14 @@ $nav-width-small-screen: 25vw;
 
   .tab {
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.9em;
+    font-size: 0.8rem;
     height: 100%;
 
     div {
-      width: 10vw;
+      width: 7rem;
 
       @media (max-width: 500px) {
-        width: 18vw;
+        width: 4.5rem;
       }
     }
 
@@ -143,7 +147,7 @@ $nav-width-small-screen: 25vw;
       color: inherit;
       display:block;
       height: 100%;
-      padding: 0.5vh 0;
+      padding: 0.5rem 0;
       position: relative;
       text-align: center;
       text-decoration: none;
@@ -171,6 +175,10 @@ $nav-width-small-screen: 25vw;
 
 .nav-pad {
   height: $nav-height;
+
+  @media (max-width: 500px) {
+    height: $nav-height-mobile;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -182,7 +190,7 @@ $nav-width-small-screen: 25vw;
 
 .nav-sidebar {
   background-color: rgb(26, 34, 48);
-  height: calc(100vh - #{$nav-height});
+  height: calc(100% - #{$nav-height});
   left: 0;
   overflow-y: scroll;
   position: fixed;
@@ -192,31 +200,32 @@ $nav-width-small-screen: 25vw;
 
   @media (max-width: 500px) {
     width: $nav-width-small-screen;
+    height: calc(100% - #{$nav-height-mobile});
   }
 
   .nav-sidebar-wrapper {
     border-bottom: 1px solid rgb(20, 30, 40);
-    height: 5vh;
+    height: 3.9rem;
     margin: 0px !important;
     padding: 0px !important;
     width: 100%;
 
     @media (max-width: 500px) {
-      height: 7vh;
+      height: 3rem;
     }
 
     .nav-sidebar-link {
       color: rgba(255, 255, 255, 0.9);
       display:block;
-      font-size: 2vh;
-      padding: 0.5vh 0;
+      font-size: 1.3rem;
+      padding: 0.5rem 0;
       position: relative;
       text-align: center;
       text-decoration: none;
       width: 100%;
 
       @media (max-width: 500px) {
-        font-size: 2vh;
+        font-size: 0.9rem;
       }
 
       &:hover {
