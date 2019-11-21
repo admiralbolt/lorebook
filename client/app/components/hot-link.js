@@ -7,7 +7,7 @@ export default Component.extend({
   links: service('links'),
   text: '',
   newlineText: computed('text', function() {
-    return !isNone(this.get('text')) ? this.get('text').replace('\n', '<br>') : '';
+    return !isNone(this.get('text')) ? this.get('text').replace(/\n/g, '<br>') : '';
   }),
   tokens: null,
 
