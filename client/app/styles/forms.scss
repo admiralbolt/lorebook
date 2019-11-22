@@ -80,6 +80,11 @@
   }
 }
 
+// Delete overlay
+.delete-overlay {
+  background-color: rgba(50, 50, 50, 0.6) !important;
+}
+
 .delete-overlay-container {
   background-color: $background !important;
   width: 20rem;
