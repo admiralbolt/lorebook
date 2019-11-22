@@ -4,6 +4,10 @@
 @import 'nav.scss';
 @import 'world.scss';
 
+// ember-modal-dialog
+@import 'ember-modal-dialog/ember-modal-structure';
+@import 'ember-modal-dialog/ember-modal-appearance';
+
 html {
   height: 100%;
   width: 100%;

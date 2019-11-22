@@ -79,3 +79,40 @@
     font-size: 3.5rem;
   }
 }
+
+.delete-overlay-container {
+  background-color: $background !important;
+  width: 20rem;
+  height: 9rem;
+
+  @media (max-width: 500px) {
+    height: 12rem;
+  }
+
+  .row {
+    margin-bottom: 1rem;
+    text-align: center;
+
+    .overlay-title {
+      font-size: 1.5rem;
+      margin: auto;
+      font-weight: bold;
+      color: white;
+    }
+  }
+
+  .button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+      width: 45%;
+
+      @media (max-width: 500px) {
+        flex-basis: 100%;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

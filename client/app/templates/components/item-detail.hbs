@@ -27,7 +27,19 @@
           <button {{action "edit"}} class="{{modelName}}-background primary-light-color action-button">Edit</button>
         </div>
         <div class="col flex-center">
-          <button {{action "delete" model}} class="primary-light-color negative-background action-button">Delete</button>
+          <button {{action "toggleConfirmation"}} class="primary-light-color negative-background action-button">Delete</button>
+
+          {{#if showConfirmation}}
+            <ModalDialog @onClose={{action "toggleConfirmation"}} @targetAttachment="center" @translucentOverlay=true @containerClass="delete-overlay-container" @overlayClass="delete-overlay">
+              <div class="row">
+                <p class="overlay-title">Are you sure?</p>
+              </div>
+              <div class="row button-row">
+                <button {{action "toggleConfirmation"}} class="action-button">Cancel</button>
+                <button {{action "delete" model}} class="primary-light-color action-button negative-background">I'm sure</button>
+              </div>
+            </ModalDialog>
+          {{/if}}
         </div>
       </div>
     {{/if}}
