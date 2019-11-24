@@ -1,0 +1,16 @@
+<div class="map-wrapper">
+  <div class="full">
+    <img alt="World Map" class="world-map" src="/assets/world_map.jpg">
+    {{#each model as |place|}}
+      {{#if (and (not-eq place.x null) (not-eq place.y null))}}
+        <MapItem @place={{place}} />
+      {{/if}}
+    {{/each}}
+  </div>
+  {{#if session.isAuthenticated}}
+    {{! template-lint-disable no-inline-styles }}
+    <div class="remove-item" style={{style}} ondragover={{action "dragOver"}} ondragenter={{action "highlight"}} ondragleave={{action "hide"}} ondrop={{action "removeItem"}}>
+      <span>Remove Item</span>
+    </div>
+  {{/if}}
+</div>

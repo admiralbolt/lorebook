@@ -8,4 +8,4 @@ indent-string='  '
 indent-after-paren=2
 
 # Pylint doesn't like single character variable names.
-good-names=a,b
+good-names=a,b,f

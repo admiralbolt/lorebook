@@ -4,7 +4,7 @@
 
   .form-input-label {
     color: map.get($colors, "primary");
-    font-size: 1.6vh;
+    font-size: 1.6rem;
     font-weight: bold;
     margin-bottom: 3px;
   }
@@ -12,7 +12,7 @@
   .item-input {
     border: 0;
     border-radius: 5px;
-    font-size: $input-font-size;
+    font-size:  1.2rem;
     padding: 8px 5px 8px 5px;
     width: 100%;
   }
@@ -22,17 +22,17 @@
   }
 
   textarea {
-    height: 10vh;
+    height: 10rem;
 
     @media (max-width: 500px) {
-      height: 12vh;
+      height: 12rem;
     }
 
     &.extra-long {
-      height: 20vh;
+      height: 20rem;
 
       @media (max-width: 500px) {
-        height: 24vh;
+        height: 24rem;
       }
     }
   }
@@ -49,7 +49,7 @@
     background-color: white;
     border-radius: 5px;
     display: block;
-    font-size: $input-font-size;
+    font-size: 1.6rem;
     overflow-wrap: break-word;
     padding: 5px;
     text-align: center;
@@ -61,7 +61,7 @@
     }
 
     @media (max-width: 500px) {
-      max-width: 67vw;
+      max-width: 100%;
     }
   }
 
@@ -72,10 +72,52 @@
 }
 
 .create-title {
-  font-size: 2.5vh;
+  font-size: 2.5rem;
   text-align: center;
 
   @media (max-width: 500px) {
-    font-size: 3.5vh;
+    font-size: 3.5rem;
+  }
+}
+
+// Delete overlay
+.delete-overlay {
+  background-color: rgba(50, 50, 50, 0.6) !important;
+}
+
+.delete-overlay-container {
+  background-color: $background !important;
+  width: 20rem;
+  height: 9rem;
+
+  @media (max-width: 500px) {
+    height: 12rem;
+  }
+
+  .row {
+    margin-bottom: 1rem;
+    text-align: center;
+
+    .overlay-title {
+      font-size: 1.5rem;
+      margin: auto;
+      font-weight: bold;
+      color: white;
+    }
+  }
+
+  .button-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+      width: 45%;
+
+      @media (max-width: 500px) {
+        flex-basis: 100%;
+        margin-bottom: 1rem;
+      }
+    }
   }
 }

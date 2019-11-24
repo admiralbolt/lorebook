@@ -7,6 +7,14 @@
     <NavTab @modelName="session" @icon="brush" />
     <NavTab @modelName="song" @icon="musical-note" />
     <div class="tab no-padding">
+      <LinkTo @route="world">
+        <div class="full flex-center flex-column">
+          <ion-icon name="globe"></ion-icon>
+          <span>World</span>
+        </div>
+      </LinkTo>
+    </div>
+    <div class="tab no-padding">
       <LinkTo @route="login">
         <div class="full flex-center flex-column">
           <ion-icon name="key"></ion-icon>

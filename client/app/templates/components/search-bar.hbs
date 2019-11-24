@@ -1,10 +1,10 @@
 <div class="search">
   <div class="search-input">
-    <input type="text" onkeyup={{action "search"}} id="search-keyword" />
+    <input type="text" onkeyup={{action "search"}} id="search-keyword">
     <div class="search-results {{displayClass}}">
       {{#each searchResults as |result|}}
         <div class="search-result">
-          <LinkTo @route="{{result.model}}" @model={{result.id}}>
+          <LinkTo @route={{result.model}} @model={{result.id}}>
             <span class="{{result.model}}-color">{{result.name}}</span>
             <span>{{format-name result.model}}</span>
           </LinkTo>

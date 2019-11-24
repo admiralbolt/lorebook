@@ -1,3 +1,5 @@
+"""Database models!"""
+
 from django.db import models
 
 
@@ -49,6 +51,9 @@ class Place(NamedModel):
   # points of interest will be simple:
   # [{"name": "The Painted Pony", "info": "..."}, ...]
   points_of_interest = models.TextField(default="", blank=True)
+  # Map coordinates. Top left corner is (0, 0), bottom right is (Max x, Max y).
+  x = models.IntegerField(default=None, blank=True, null=True)
+  y = models.IntegerField(default=None, blank=True, null=True)
 
 
 class NPC(NamedModel):
@@ -75,7 +80,7 @@ class Lore(NamedModel):
     ("Letter", "Letter"),
     ("Story", "Story"),
   ))
-  author = models.CharField(default="", max_length=128, blank=True);
+  author = models.CharField(default="", max_length=128, blank=True)
   date_received = models.DateField(default=None, blank=True, null=True)
   text = models.TextField(default="", blank=True)
 

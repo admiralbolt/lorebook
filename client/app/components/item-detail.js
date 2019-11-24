@@ -22,6 +22,8 @@ export default Component.extend({
     return this.get('isEditing') || this.get('isNew');
   }),
 
+  showConfirmation: false,
+
   // Input params
   componentName: '',
   modelName: '',
@@ -87,6 +89,10 @@ export default Component.extend({
   actions: {
     edit() {
       this.set('isEditing', true);
+    },
+
+    toggleConfirmation() {
+      this.set('showConfirmation', !this.get('showConfirmation'));
     },
 
     delete() {

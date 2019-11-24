@@ -9,5 +9,7 @@ export default Model.extend({
   name: DS.attr(),
   points_of_interest: DS.attr(),
   type: DS.attr(),
-  visible: DS.attr()
+  visible: DS.attr(),
+  x: DS.attr(),
+  y: DS.attr()
 });

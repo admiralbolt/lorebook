@@ -1,30 +1,41 @@
 @use "sass:map";
 @import "_colors.scss";
 
-$base-font-size: 2.1vh;
-$input-font-size: 1.8vh;
+$input-font-size: 1.8rem;
 
 
 .item-detail {
   color: map.get($colors, "primary");
-  font-size: $base-font-size;
+  font-size: 1.3rem;
   width: 100%;
 
+  @media (max-width: 500px) {
+    font-size: 1.1rem;
+  }
+
   .item-title {
-    font-size: 3vh;
+    font-size: 2.1rem;
     font-weight: bold;
     text-align: center;
     width: 100%;
+
+    @media (max-width: 500px) {
+      font-size: 1.6rem;
+    }
   }
 
   .item-label {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 1.6vh;
+    font-size: 1.1rem;
     font-weight: bold;
     margin-bottom: 4px;
     padding-bottom: 4px;
     text-align: left;
     width: 100%;
+
+    @media (max-width: 500px) {
+      font-size: 0.9rem;
+    }
   }
 
   .item-image {
@@ -52,8 +63,12 @@ $input-font-size: 1.8vh;
 
   .poi-title {
     font-weight: bold;
-    font-size: 2.2vh;
+    font-size: 1.9rem;
     width: 100%;
+
+    @media (max-width: 500px) {
+      font-size: 1.4rem;
+    }
   }
 
 }
