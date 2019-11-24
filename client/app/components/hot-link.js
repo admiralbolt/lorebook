@@ -31,13 +31,18 @@ export default Component.extend({
     // Galrand the Ravager as an alias of Galrand
     let endIndices = new Set();
 
+    // Similarly we also need to track matches on their start index. This is to
+    // correctly handle cases where aliases are subsets of the item name:
+    // Selina as an alias of Selina Lafayatte
+    let startIndices = new Set();
+
     links.forEach(link => {
       link.aliases.forEach(alias => {
         let indexes = this._findAllIndices(alias);
         indexes.forEach(index => {
           let end = index + alias.length;
           // Interesting note here, return acts like continue in lambda functions.
-          if (endIndices.has(end)) return;
+          if (startIndices.has(index) || endIndices.has(end)) return;
 
           matches.push({
             start: index,
@@ -47,6 +52,7 @@ export default Component.extend({
             id: link.id
           });
           endIndices.add(end);
+          startIndices.add(index);
         });
       });
     });
