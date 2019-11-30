@@ -15,5 +15,9 @@ export default Controller.extend({
 
   displayMenu: computed('router.currentRouteName', function() {
     return !HIDE_SIDEBAR_ROUTES.includes(this.router.currentRouteName);
-  })
+  }),
+
+  pathChanged: function() {
+    window.scrollTo(0, 0);
+  }.observes('router.currentURL')
 });
