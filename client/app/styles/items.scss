@@ -72,3 +72,15 @@ $input-font-size: 1.8rem;
   }
 
 }
+
+.full-screen-container {
+  max-width: 100%;
+  width: 100%;
+  padding: 2px !important;
+  background-color: $background !important;
+  border-radius: 0px !important;
+}
+
+.full-screen-overlay {
+  background-color: rgba(50, 50, 50, 0.6) !important;
+}
