@@ -5,6 +5,12 @@
     </div>
   </div>
 
+  {{#if model.image_file}}
+    <div class="row">
+      <img alt="{{model.name}} Image" class="item-image" src={{model.image_file}}>
+    </div>
+  {{/if}}
+
   <br>
 
   <div class="row">
