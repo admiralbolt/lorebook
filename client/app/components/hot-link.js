@@ -21,29 +21,36 @@ export default Component.extend({
     });
   },
 
+  // There are few cases we need to think of. Aliases / names of other items
+  // can be supersets in a few ways:
+  // Lord William Nakal as an alias of William Nakal
+  // Selina as an alias of Selina Lafayette
+  // Letter to Rakad #1 as a letter, and Rakad as an npc.
+  //
+  // We just want to make sure that any given length of text is only matched
+  // once, so make sure there are no existing matches where the start of the
+  // new match is.
+  _isStartInMatch(matches, start) {
+    for (let i = 0; i < matches.length; i++) {
+      let match = matches[i];
+      if (start >= match.start && start <= match.end) return true;
+    }
+    return false;
+  },
+
   _tokenize(links) {
     // Build an array of matches that track the text matched, it's position,
     // and the model / id to link to.
     let matches = [];
-    // Track matches based on their end index. This is to correctly handle cases
-    // where aliases are supersets of the item name, examples:
-    // Lord William Nakal as an alias of William Nakal
-    // Galrand the Ravager as an alias of Galrand
-    let endIndices = new Set();
-
-    // Similarly we also need to track matches on their start index. This is to
-    // correctly handle cases where aliases are subsets of the item name:
-    // Selina as an alias of Selina Lafayatte
-    let startIndices = new Set();
 
     links.forEach(link => {
       link.aliases.forEach(alias => {
         let indexes = this._findAllIndices(alias);
         indexes.forEach(index => {
-          let end = index + alias.length;
           // Interesting note here, return acts like continue in lambda functions.
-          if (startIndices.has(index) || endIndices.has(end)) return;
+          if (this._isStartInMatch(matches, index)) return;
 
+          let end = index + alias.length;
           matches.push({
             start: index,
             end: end,
@@ -51,8 +58,6 @@ export default Component.extend({
             model: link.model,
             id: link.id
           });
-          endIndices.add(end);
-          startIndices.add(index);
         });
       });
     });
