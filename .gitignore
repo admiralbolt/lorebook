@@ -1,3 +1,4 @@
 __pycache__/
 server/static/
+server/uploads/
 server/db.sqlite3
