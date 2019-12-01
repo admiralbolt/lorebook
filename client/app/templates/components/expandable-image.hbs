@@ -1,6 +1,6 @@
 {{#if fullScreen}}
   <ModalDialog @onClose={{action "toggleFullScreen"}} @targetAttachment="center" @translucentOverlay=true @containerClass="full-screen-container" @overlayClass="full-screen-overlay">
-    <img onclick={{action "toggleFullScreen"}} alt="{{alt}}" class="width-100" src={{src}}>
+    <img onclick={{action "toggleFullScreen"}} alt="{{alt}}" class="overlay-image" src={{src}}>
   </ModalDialog>
 {{/if}}
 <img alt="{{alt}}" class="width-100" src={{src}}>

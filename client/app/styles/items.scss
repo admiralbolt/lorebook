@@ -76,9 +76,13 @@ $input-font-size: 1.8rem;
 .full-screen-container {
   background-color: $background !important;
   border-radius: 0px !important;
-  max-width: 100%;
   padding: 2px !important;
-  width: 100%;
+
+  .overlay-image {
+    object-fit: contain;
+    max-height: 95vh;
+    max-width: 95vw;
+  }
 }
 
 .full-screen-overlay {
