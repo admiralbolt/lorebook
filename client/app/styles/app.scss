@@ -18,8 +18,8 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  width: 100%;
   position: relative;
+  width: 100%;
 }
 
 // https://stackoverflow.com/questions/20340138/remove-blue-border-from-css-custom-styled-button-in-chrome
@@ -93,8 +93,8 @@ audio:focus {
 }
 
 .main-content {
-  padding: 5px 15px !important;
   height: 100%;
+  padding: 5px 15px !important;
   position: relative;
 }
 
@@ -107,8 +107,8 @@ audio:focus {
 }
 
 .hot-link {
-  text-decoration: none !important;
   display: inline-block;
+  text-decoration: none !important;
 
   &:hover {
     filter: brightness(80%);

@@ -16,12 +16,8 @@
   .world-map {
     opacity: 0.7;
     position: relative;
-    width: 2048px;
+    max-width: 2048px;
     z-index: 0;
-
-    @media (max-width: 500px) {
-      width: 1400px;
-    }
   }
 
   .remove-item {
