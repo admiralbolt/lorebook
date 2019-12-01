@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 
 let WIDTH_THRESHOLD = 500;
 let IMAGE_WIDTH = 2048;
+let MAIN_CONTENT_PADDING = 30;
 
 export default Component.extend({
   api_data: service('api-data'),
@@ -13,22 +14,29 @@ export default Component.extend({
   // The scale to apply to the world map image.
   scale: 1.0,
 
+  // Bounds for the scale value. Max scale will always be 50% larger than the
+  // original value. Minimum scale will be calculated based on the device screen
+  // size. The minimum image size should be effectively 100% viewport width.
+  min_scale: 0.5,
+  max_scale: 1.5,
+
   // A property for tracking the previous scale value as tracked by the pinch
   // event. The event always starts with a scale = 1, and as you zoom in / out
   // the scale changes.
   eventScale: 1.0,
-  event: {},
 
+  // Manually track hammer element for touch gestures.
   hammer: null,
 
   init() {
     this._super(...arguments);
     this.set('scale', (window.innerWidth > WIDTH_THRESHOLD) ? 1.0 : 0.5);
+    this.set('min_scale', (window.innerWidth - MAIN_CONTENT_PADDING) / IMAGE_WIDTH);
+    console.log(this.get('min_scale'));
   },
 
   didInsertElement() {
     this._super(...arguments);
-    console.log('didinsert');
 
     // All of this is a really hacky work around because for some ungodly
     // reason, you can't enable scrolling and pinch gestures at the same time.
@@ -36,15 +44,16 @@ export default Component.extend({
     // difficult and gross instead of easy like a fucking library should be.
     this.hammer = new Hammer(document.getElementById('map-wrapper'), {touchAction: 'pan-x pan-y'});
     this.element.addEventListener('touchstart', function(event) {
-      if (event.touches.length >= 2) {
-        this.hammer.get('pinch').set({enable: true});
-      }
+      if (event.touches.length < 2) return;
+
+      this.hammer.get('pinch').set({enable: true});
     }.bind(this));
     this.element.addEventListener('touchend', function(event) {
-      if (event.touches.length < 2) {
-        this.hammer.get('pinch').set({enable: false});
-      }
+      if (event.touches.length >= 2) return;
+
+      this.hammer.get('pinch').set({enable: false});
     }.bind(this));
+
     this.hammer.on('pinch', function(event) {
       this.pinch(event);
     }.bind(this));
@@ -72,7 +81,9 @@ export default Component.extend({
     let scale = this.get('scale');
     let prevEventScale = this.get('eventScale');
     let currentEventScale = event.scale;
-    this.set('scale', scale + (currentEventScale - prevEventScale) * scale);
+    let newScale = scale + (currentEventScale - prevEventScale) * scale;
+    newScale = Math.max(Math.min(newScale, this.get('max_scale')), this.get('min_scale'));
+    this.set('scale', newScale);
     this.set('eventScale', currentEventScale || 1.0);
   },
   pinchEnd: function(event) {
@@ -96,17 +107,8 @@ export default Component.extend({
     pinchEnd: function(event) {
       this.set('eventScale', 1.0);
     },
-    pan: function(event) {
-      // this.set('event', event);
-    },
     dragOver: function(event) {
       event.preventDefault();
-    },
-    highlight: function() {
-      this.set('show', true);
-    },
-    hide: function() {
-      this.set('show', false);
     },
     removeItem: function(event) {
       let api_data = this.get('store');
