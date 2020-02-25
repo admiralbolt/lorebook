@@ -33,8 +33,8 @@ export default Component.extend({
   hammer: null,
 
   // Attributes passed to click menu.
-  menu_x: 0,
-  menu_y: 0,
+  menuX: 0,
+  menuY: 0,
   visible: false,
 
   init() {
@@ -73,8 +73,10 @@ export default Component.extend({
   },
 
   click(event) {
-    this.set('menu_x', event.clientX);
-    this.set('menu_y', event.clientY);
+    if (!this.get('session').isAuthenticated) return;
+
+    this.set('menuX', event.clientX);
+    this.set('menuY', event.clientY);
     this.toggleProperty('menu_visible');
   },
 
@@ -133,6 +135,12 @@ export default Component.extend({
       place.set('x', null);
       place.set('y', null);
       place.save();
+    },
+    mapItemClick: function(place) {
+      if (!this.get('session').isAuthenticated) return;
+
+      event.stopPropagation();
+      console.log(place);
     }
   }
 });

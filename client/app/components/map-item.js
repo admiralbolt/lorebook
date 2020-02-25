@@ -17,6 +17,15 @@ export default Component.extend({
   dragStartX: null,
   dragStartY: null,
 
+  // Click function passed from world component, used to display menu for
+  // editing existing world items.
+  itemClick: null,
+
+  click(event) {
+    event.preventDefault();
+    this.get('itemClick')(this.get('place'));
+  },
+
   didInsertElement() {
     this._super(...arguments);
     let mapItem = this.element.getElementsByClassName('map-item')[0];
