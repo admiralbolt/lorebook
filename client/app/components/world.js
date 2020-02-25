@@ -11,6 +11,10 @@ export default Component.extend({
   api_data: service('api-data'),
   session: service('session'),
 
+  places: computed('api_data', function() {
+    return this.get('api_data').getAllRecords('place');
+  }),
+
   // The scale to apply to the world map image.
   scale: 1.0,
 

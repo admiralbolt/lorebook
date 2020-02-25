@@ -46,6 +46,11 @@ export default Service.extend({
   setActiveModel(model) {
     this.set('activeModel', model);
     this.reloadMenu();
+  },
+
+  getAllRecords(modelName) {
+    let records = this.get('store').peekAll(modelName);
+    return records.length === 0 ? this.get('store').findAll(modelName) : records;
   }
 
 });
