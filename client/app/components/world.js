@@ -35,7 +35,7 @@ export default Component.extend({
   // Attributes passed to click menu.
   menuX: 0,
   menuY: 0,
-  visible: false,
+  menuVisible: false,
 
   init() {
     this._super(...arguments);
@@ -77,7 +77,8 @@ export default Component.extend({
 
     this.set('menuX', event.clientX);
     this.set('menuY', event.clientY);
-    this.toggleProperty('menu_visible');
+    console.log(`X: ${this.get('menuX')}, Y: ${this.get('menuY')}`);
+    this.toggleProperty('menuVisible');
   },
 
   width: computed('scale', function() {
