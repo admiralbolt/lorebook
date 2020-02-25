@@ -2,12 +2,11 @@
 @import "nav.scss";
 
 .map-wrapper {
+  height: calc(100vh - #{$nav-height} - 10px);
   max-width: 100%;
   overflow: scroll;
   position: relative;
   top: 0;
-
-  height: calc(100vh - #{$nav-height} - 10px);
 
   @media (max-width: 500px) {
     height: calc(100vh - #{$nav-height-mobile} - 10px);
@@ -15,22 +14,22 @@
 
   .world-map {
     cursor: pointer;
+    max-width: 2048px;
     opacity: 0.7;
     position: relative;
-    max-width: 2048px;
     z-index: 0;
   }
 
   .remove-item {
+    align-items: center;
     border: 3px solid red;
-    width: 100%;
-    position: fixed;
-    height: 3.3rem;
-    z-index: 3;
     bottom: 0px;
     display: flex;
-    align-items: center;
+    height: 3.3rem;
     justify-content: center;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
 
     span {
       color: red;
@@ -90,8 +89,26 @@
 
 .map-menu {
   align-items: center;
+  background-color: $background;
+  border-radius: 5px;
+  color: white;
   display: flex;
+  flex-direction: column;
+  max-height: 8rem;
+  padding: 3px;
   position: absolute;
+  width: 10rem;
   z-index: 2000;
-  transform: translate(0, -$nav_height);
+
+  .menu-item {
+    display: flex;
+    font-size: 1.3rem;
+    justify-content: center;
+    padding: 5px;
+    width: 100%;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  }
 }

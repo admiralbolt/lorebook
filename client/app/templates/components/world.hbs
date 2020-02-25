@@ -7,10 +7,10 @@
     <img width="{{width}}" alt="World Map" class="world-map" src="/assets/world_map.jpg">
     {{#each places as |place|}}
       {{#if (and (not-eq place.x null) (not-eq place.y null))}}
-        <MapItem @place={{place}} @itemClick={{action 'mapItemClick'}} />
+        <MapItem @place={{place}} @itemClick={{action "mapItemClick"}} />
       {{/if}}
     {{/each}}
   </div>
 </div>
 
-<MapMenu @x={{menuX}} @y={{menuY}} @visible={{menuVisible}} />
+<MapMenu @addMapItem={{action "addMapItem"}} @places={{places}} @x={{menuX}} @y={{menuY}} @visible={{menuVisible}} />

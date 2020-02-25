@@ -1,5 +1,9 @@
 {{#if visible}}
   <div style={{position}} class="map-menu">
-    <h1 onclick="alert('cool');">COOL</h1>
+    {{#each placesToAdd as |place|}}
+      <div {{action "addMapItem" place}} class="menu-item">
+        {{place.name}}
+      </div>
+    {{/each}}
   </div>
 {{/if}}

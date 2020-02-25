@@ -7,6 +7,10 @@ let WIDTH_THRESHOLD = 500;
 let IMAGE_WIDTH = 2048;
 let MAIN_CONTENT_PADDING = 30;
 
+// We need to offset the menuY based on the height of the navbar.
+// This should stay in sync with the definition in nav.scss.
+let NAVBAR_REM = 5;
+
 export default Component.extend({
   api_data: service('api-data'),
   session: service('session'),
@@ -76,8 +80,7 @@ export default Component.extend({
     if (!this.get('session').isAuthenticated) return;
 
     this.set('menuX', event.clientX);
-    this.set('menuY', event.clientY);
-    console.log(`X: ${this.get('menuX')}, Y: ${this.get('menuY')}`);
+    this.set('menuY', event.clientY - NAVBAR_REM * parseFloat(getComputedStyle(document.documentElement).fontSize));
     this.toggleProperty('menuVisible');
   },
 
@@ -137,11 +140,22 @@ export default Component.extend({
       place.set('y', null);
       place.save();
     },
+    // Function called when clicking on a sub world item.
     mapItemClick: function(place) {
       if (!this.get('session').isAuthenticated) return;
 
       event.stopPropagation();
       console.log(place);
+    },
+    // Function called when clicking on the menu to add an item.
+    addMapItem: function(place) {
+      if (!this.get('session').isAuthenticated) return;
+
+      event.stopPropagation();
+      place.set('x', this.get('menuX'));
+      place.set('y', this.get('menuY'));
+      place.save();
+      this.set('menuVisible', false);
     }
   }
 });
