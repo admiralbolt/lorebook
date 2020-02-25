@@ -1,6 +1,6 @@
 {{#if visible}}
   <div style={{position}} class="map-menu">
-    {{#each placesToAdd as |place|}}
+    {{#each places as |place|}}
       <div {{action "addMapItem" place}} class="menu-item">
         {{place.name}}
       </div>

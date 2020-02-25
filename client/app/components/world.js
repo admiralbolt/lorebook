@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { filter } from '@ember/object/computed';
 import { htmlSafe } from '@ember/template';
 import { inject as service } from '@ember/service';
 
@@ -15,6 +16,11 @@ export default Component.extend({
     return this.get('api_data').getAllRecords('place');
   }),
 
+  // A list of places that aren't on the map already.
+  placesToAdd: filter('places', function(places) {
+    return places.get('x') == null && places.get('y') == null;
+  }),
+
   // Attributes passed to click menu.
   menuX: 0,
   menuY: 0,
@@ -22,6 +28,9 @@ export default Component.extend({
 
   click(event) {
     if (!this.get('session').isAuthenticated) return;
+
+    // Only pop up the menu if there are places to add.
+    if (this.get('placesToAdd').length == 0) return;
 
     this.set('menuX', event.clientX);
     this.set('menuY', event.clientY - NAVBAR_REM * parseFloat(getComputedStyle(document.documentElement).fontSize));

@@ -5,7 +5,7 @@ import { filter } from '@ember/object/computed';
 
 export default Component.extend({
 
-  // All the places.
+  // All the places not on the map already.
   places: null,
 
   // A function passed from the world component used for adding places to
@@ -21,11 +21,6 @@ export default Component.extend({
 
   position: computed('x', 'y', function() {
     return new htmlSafe(`left: ${this.get('x')}px; top: ${this.get('y')}px;`);
-  }),
-
-  // A list of all places that aren't currently on the map.
-  placesToAdd: filter('places', function(places) {
-    return places.get('x') == null && places.get('y') == null;
   }),
 
   actions: {
