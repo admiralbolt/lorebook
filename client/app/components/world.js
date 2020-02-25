@@ -16,7 +16,7 @@ export default Component.extend({
   session: service('session'),
 
   places: computed('api_data', function() {
-    return this.get('api_data').get('store').findAll('place');
+    return this.get('api_data').getAllRecords('place');
   }),
 
   // Bounds for the scale value. Max scale will always be 50% larger than the
@@ -38,11 +38,6 @@ export default Component.extend({
 
   didInsertElement() {
     this._super(...arguments);
-    this.get('places').then(function(places) {
-      places.forEach((place) => {
-        console.log(`${place.name}, ${place.x}, ${place.y}`);
-      });
-    });
   },
 
   click(event) {
