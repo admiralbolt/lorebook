@@ -1,6 +1,6 @@
 <div id="map-wrapper" class="map-wrapper">
   <div class="full">
-    <img width="{{width}}" alt="World Map" class="world-map" src="/assets/world_map.jpg">
+    <img alt="World Map" class="world-map" src="/assets/world_map.jpg">
     {{#each places as |place|}}
       {{#if (and (not-eq place.x null) (not-eq place.y null))}}
         <MapItem @place={{place}} @itemClick={{action "mapItemClick"}} />
