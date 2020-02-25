@@ -27,16 +27,20 @@ export default Component.extend({
   // A property for tracking the previous scale value as tracked by the pinch
   // event. The event always starts with a scale = 1, and as you zoom in / out
   // the scale changes.
-  eventScale: 1.0,
+  event_scale: 1.0,
 
   // Manually track hammer element for touch gestures.
   hammer: null,
+
+  // Attributes passed to click menu.
+  menu_x: 0,
+  menu_y: 0,
+  visible: false,
 
   init() {
     this._super(...arguments);
     this.set('scale', (window.innerWidth > WIDTH_THRESHOLD) ? 1.0 : 0.5);
     this.set('min_scale', (window.innerWidth - MAIN_CONTENT_PADDING) / IMAGE_WIDTH);
-    console.log(this.get('min_scale'));
   },
 
   didInsertElement() {
@@ -52,6 +56,7 @@ export default Component.extend({
 
       this.hammer.get('pinch').set({enable: true});
     }.bind(this));
+
     this.element.addEventListener('touchend', function(event) {
       if (event.touches.length >= 2) return;
 
@@ -61,19 +66,26 @@ export default Component.extend({
     this.hammer.on('pinch', function(event) {
       this.pinch(event);
     }.bind(this));
+
     this.hammer.on('pinchend', function(event) {
       this.pinchEnd(event);
     }.bind(this));
+  },
+
+  click(event) {
+    this.set('menu_x', event.clientX);
+    this.set('menu_y', event.clientY);
+    this.toggleProperty('menu_visible');
   },
 
   width: computed('scale', function() {
     return IMAGE_WIDTH * this.get('scale');
   }),
 
-  debugDisplay: computed('scale', 'eventScale', 'event', function() {
+  debugDisplay: computed('scale', 'event_scale', 'event', function() {
     let d = '';
     d += `scale: ${this.get('scale')} <br>`;
-    d += `eventScale: ${this.get('eventScale')} <br>`;
+    d += `event_scale: ${this.get('event_scale')} <br>`;
     let e = this.get('event');
     for (let prop in e.gesture) {
       d += `event.gesture.${prop} = ${event.gesture[prop]}`;
@@ -83,15 +95,15 @@ export default Component.extend({
 
   pinch: function(event) {
     let scale = this.get('scale');
-    let prevEventScale = this.get('eventScale');
+    let prevEventScale = this.get('event_scale');
     let currentEventScale = event.scale;
     let newScale = scale + (currentEventScale - prevEventScale) * scale;
     newScale = Math.max(Math.min(newScale, this.get('max_scale')), this.get('min_scale'));
     this.set('scale', newScale);
-    this.set('eventScale', currentEventScale || 1.0);
+    this.set('event_scale', currentEventScale || 1.0);
   },
   pinchEnd: function(event) {
-    this.set('eventScale', 1.0);
+    this.set('event_scale', 1.0);
   },
 
   actions: {
@@ -101,15 +113,15 @@ export default Component.extend({
     },
     pinch: function(event) {
       let scale = this.get('scale');
-      let prevEventScale = this.get('eventScale');
+      let prevEventScale = this.get('event_scale');
       let currentEventScale = event.gesture.scale;
       this.set('scale', scale + (currentEventScale - prevEventScale) * scale);
-      this.set('eventScale', currentEventScale || 1.0);
+      this.set('event_scale', currentEventScale || 1.0);
     },
     // When we stop pinching, we need to reset our previous scale value back to
     // the default.
     pinchEnd: function(event) {
-      this.set('eventScale', 1.0);
+      this.set('event_scale', 1.0);
     },
     dragOver: function(event) {
       event.preventDefault();
