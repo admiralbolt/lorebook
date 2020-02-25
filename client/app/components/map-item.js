@@ -33,7 +33,7 @@ export default Component.extend({
     this.set('offsetY', mapItem.offsetHeight / 2);
   },
 
-  position: computed('place.{x,y}', 'offset', function() {
+  position: computed('place.{x,y}', 'offsetX', 'offsetY', function() {
     let x = this.get('place.x');
     let y = this.get('place.y');
     if (window.innerWidth < WIDTH_THRESHOLD) {
