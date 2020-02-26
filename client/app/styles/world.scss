@@ -117,3 +117,19 @@
     }
   }
 }
+
+.map-item-menu {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  z-index: 2000;
+
+  .delete {
+    cursor: pointer;
+    color: rgb(240, 90, 90);
+    font-size: 1.5rem;
+  }
+}

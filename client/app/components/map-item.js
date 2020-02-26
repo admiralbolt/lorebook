@@ -23,7 +23,7 @@ export default Component.extend({
 
   click(event) {
     event.preventDefault();
-    this.get('itemClick')(this.get('place'));
+    this.get('itemClick')(event, this.get('place'));
   },
 
   didInsertElement() {

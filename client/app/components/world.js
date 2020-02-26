@@ -21,10 +21,12 @@ export default Component.extend({
     return places.get('x') == null && places.get('y') == null;
   }),
 
-  // Attributes passed to click menu.
+  // Attributes passed to click menus.
   menuX: 0,
   menuY: 0,
   menuVisible: false,
+  itemMenuVisible: false,
+  clickedPlace: null,
 
   click(event) {
     if (!this.get('session').isAuthenticated) return;
@@ -32,29 +34,32 @@ export default Component.extend({
     // Only pop up the menu if there are places to add.
     if (this.get('placesToAdd').length == 0) return;
 
+    if (this.get('itemMenuVisible')) {
+      this.set('itemMenuVisible', false);
+      return;
+    }
+
     this.set('menuX', event.clientX);
     this.set('menuY', event.clientY - NAVBAR_REM * parseFloat(getComputedStyle(document.documentElement).fontSize));
     this.toggleProperty('menuVisible');
   },
 
   actions: {
-    dragOver: function(event) {
-      event.preventDefault();
-    },
-    removeItem: function(event) {
-      let api_data = this.get('store');
-      let placeId = event.dataTransfer.getData('text');
-      let place = api_data.peekRecord('place', placeId) || api_data.findRecord('place', placeId);
+    deleteMapItem: function(place) {
       place.set('x', null);
       place.set('y', null);
       place.save();
     },
     // Function called when clicking on a sub world item.
-    mapItemClick: function(place) {
+    mapItemClick: function(event, place) {
       if (!this.get('session').isAuthenticated) return;
 
       event.stopPropagation();
-      console.log(place);
+      this.set('menuX', event.clientX + 20);
+      this.set('menuY', event.clientY - NAVBAR_REM * parseFloat(getComputedStyle(document.documentElement).fontSize) - 20);
+      this.set('clickedPlace', place);
+      this.set('menuVisible', false);
+      this.toggleProperty('itemMenuVisible');
     },
     // Function called when clicking on the menu to add an item.
     addMapItem: function(place) {

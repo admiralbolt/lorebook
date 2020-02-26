@@ -9,4 +9,8 @@
   </div>
 </div>
 
+{{!-- Menu used for adding new places to the map --}}
 <MapMenu @addMapItem={{action "addMapItem"}} @places={{placesToAdd}} @x={{menuX}} @y={{menuY}} @visible={{menuVisible}} />
+
+{{!-- Menu used for editing / deleting existing map items --}}
+<MapItemMenu @deleteMapItem={{action "deleteMapItem"}} @x={{menuX}} @y={{menuY}} @visible={{itemMenuVisible}} @place={{clickedPlace}} />
