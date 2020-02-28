@@ -3,6 +3,7 @@ import { computed } from '@ember/object';
 import { filter } from '@ember/object/computed';
 import { htmlSafe } from '@ember/template';
 import { inject as service } from '@ember/service';
+import { next } from '@ember/runloop';
 
 // We need to offset the menuY based on the height of the navbar.
 // This should stay in sync with the definition in nav.scss.
@@ -28,6 +29,10 @@ export default Component.extend({
   itemMenuVisible: false,
   clickedPlace: null,
 
+  // Starting location from url params.
+  initialX: null,
+  initialY: null,
+
   click(event) {
     if (!this.get('session').isAuthenticated) return;
 
@@ -42,6 +47,24 @@ export default Component.extend({
     this.set('menuX', event.clientX);
     this.set('menuY', event.clientY - NAVBAR_REM * parseFloat(getComputedStyle(document.documentElement).fontSize));
     this.toggleProperty('menuVisible');
+  },
+
+  didInsertElement() {
+    this._super(...arguments);
+    if (this.get('initialX') == null || this.get('initialY') == null) return;
+
+    let mapWrapper = this.element.getElementsByClassName('map-wrapper')[0];
+    // So the math here is kinda complicated.
+    // We have a max width / height set on the image based on the screen size:
+    // 2048 normally, 1400 for mobile.
+    // The actual view div itself has a width / height based on the screen size,
+    // that will need to be dynamically calculated.
+    // We want to subtract half of the view width from the x position,
+    // and half of the view height from the y position.
+
+    next(this, function() {
+      mapWrapper.scrollTo(this.get('initialX'), this.get('initialY'));
+    });
   },
 
   actions: {
