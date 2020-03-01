@@ -109,8 +109,9 @@ export default Component.extend({
         this.get('router').transitionTo('place', place);
       }
 
-      this.set('menuX', event.clientX + 20);
-      this.set('menuY', event.clientY - NAVBAR_REM * parseFloat(getComputedStyle(document.documentElement).fontSize) - 20);
+      // TODO: Figure out this magical offset.
+      this.set('menuX', place.get('x') - 5);
+      this.set('menuY', place.get('y'));
       this.set('clickedPlace', place);
       this.set('menuVisible', false);
       this.toggleProperty('itemMenuVisible');

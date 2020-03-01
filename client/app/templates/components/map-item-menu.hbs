@@ -1,5 +1,12 @@
 {{#if visible}}
   <div style={{position}} class="map-item-menu">
+    <div class="menu-button">
       <ion-icon {{action "deleteMapItem" place}} name="trash" class="delete"></ion-icon>
+    </div>
+    <div class="menu-button">
+      <LinkTo @route={{"places" place}}>
+        <ion-icon name="link" class="link"></ion-icon>
+      </LinkTo>
+    </div>
   </div>
 {{/if}}

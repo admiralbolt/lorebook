@@ -6,11 +6,16 @@
         <MapItem @place={{place}} @itemClick={{action "mapItemClick"}} />
       {{/if}}
     {{/each}}
+
+
+  {{!-- Menu used for editing / deleting existing map items --}}
+  {{!-- Positioning is easier when we leave it inside the full class. --}}
+  <MapItemMenu @deleteMapItem={{action "deleteMapItem"}} @x={{menuX}} @y={{menuY}} @visible={{itemMenuVisible}} @place={{clickedPlace}} />
+
+
   </div>
 </div>
 
+
 {{!-- Menu used for adding new places to the map --}}
 <MapMenu @addMapItem={{action "addMapItem"}} @places={{placesToAdd}} @x={{menuX}} @y={{menuY}} @visible={{menuVisible}} />
-
-{{!-- Menu used for editing / deleting existing map items --}}
-<MapItemMenu @deleteMapItem={{action "deleteMapItem"}} @x={{menuX}} @y={{menuY}} @visible={{itemMenuVisible}} @place={{clickedPlace}} />
