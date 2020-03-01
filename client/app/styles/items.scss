@@ -13,9 +13,17 @@ $input-font-size: 1.8rem;
     font-size: 1.1rem;
   }
 
+  .title-row {
+    height: 100%;
+    position: relative;
+  }
+
   .item-title {
+    align-items: center;
+    display: flex;
     font-size: 2.1rem;
     font-weight: bold;
+    justify-content: center;
     text-align: center;
     width: 100%;
 
@@ -35,6 +43,28 @@ $input-font-size: 1.8rem;
 
     @media (max-width: 500px) {
       font-size: 0.9rem;
+    }
+  }
+
+  .map-link {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: absolute;
+
+    a {
+      align-items: center;
+      color: rgb(130, 130, 240);
+      display: flex;
+      font-size: 1.8rem;
+      height: 100%;
+      justify-content: center;
+      text-decoration: none;
+
+      @media (max-width: 500px) {
+        font-size: 1.4rem;
+      }
     }
   }
 
@@ -79,9 +109,10 @@ $input-font-size: 1.8rem;
   padding: 2px !important;
 
   .overlay-image {
-    object-fit: contain;
     max-height: 95vh;
     max-width: 95vw;
+
+    object-fit: contain;
   }
 }
 

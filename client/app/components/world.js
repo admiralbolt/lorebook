@@ -9,6 +9,12 @@ import { next } from '@ember/runloop';
 // This should stay in sync with the definition in nav.scss.
 let NAVBAR_REM = 5;
 
+// This is based on the pixel amounts set in world.scss.
+// Mobile map is set to 1400px width.
+// Full screen map is set to 2048px width.
+let MOBILE_SCALE = 0.68359375;
+let WIDTH_THRESHOLD = 500;
+
 export default Component.extend({
   api_data: service('api-data'),
   session: service('session'),
@@ -55,10 +61,21 @@ export default Component.extend({
 
     let mapWrapper = this.element.getElementsByClassName('map-wrapper')[0];
 
+    console.log(`X: ${this.get('initialX')}, Y: ${this.get('initialY')}`);
+
     next(this, function() {
       // We want to scrollTo the x / y position but subtract half of the
-      // div width from the x, and half from the y.
-      mapWrapper.scrollTo(this.get('initialX') - mapWrapper.offsetWidth / 2, this.get('initialY') - mapWrapper.offsetHeight / 2);
+      // div width from the x, and half from the y. We also need to account
+      // for the scale if the client is mobile.
+      let x = this.get('initialX');
+      let y = this.get('initialY');
+      if (window.innerWidth < WIDTH_THRESHOLD) {
+        x *= MOBILE_SCALE;
+        y *= MOBILE_SCALE;
+      }
+      x -= mapWrapper.offsetWidth / 2;
+      y -= mapWrapper.offsetHeight / 2;
+      mapWrapper.scrollTo(x, y);
     });
   },
 

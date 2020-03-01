@@ -1,15 +1,16 @@
 <ItemDetail @modelName="place" @componentName="place-form" @route="places" @model={{model}}>
-  <div class="row">
+  <div class="row title-row">
     <div class="item-title place-color">
       {{model.name}}
-
-      <ion-icon class="place-color" name="locate"></ion-icon>
-
     </div>
 
-  </div>
-
-  <div class="row">
+    {{#if (and (not-eq model.x null) (not-eq model.y null))}}
+      <div class="map-link">
+        <LinkTo @route="world" @query={{hash x=model.x y=model.y}}>
+          <ion-icon name="locate"></ion-icon>
+        </LinkTo>
+      </div>
+    {{/if}}
   </div>
 
   {{#if model.image_file}}
