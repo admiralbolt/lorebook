@@ -18,6 +18,7 @@ let WIDTH_THRESHOLD = 500;
 export default Component.extend({
   api_data: service('api-data'),
   session: service('session'),
+  router: service(),
 
   places: computed('api_data', function() {
     return this.get('api_data').getAllRecords('place');
@@ -35,12 +36,20 @@ export default Component.extend({
   itemMenuVisible: false,
   clickedPlace: null,
 
+  // Previously clicked place, used on mobile to link to a place. We only
+  // want to route them if the tooltip is open for a place and they click
+  // on it again.
+  previouslyClickedPlace: null,
+
   // Starting location from url params.
   initialX: null,
   initialY: null,
 
   click(event) {
-    if (!this.get('session').isAuthenticated) return;
+    if (!this.get('session').isAuthenticated) {
+      this.set('previouslyClickedPlace', null);
+      return;
+    }
 
     // Only pop up the menu if there are places to add.
     if (this.get('placesToAdd').length == 0) return;
@@ -87,9 +96,19 @@ export default Component.extend({
     },
     // Function called when clicking on a sub world item.
     mapItemClick: function(event, place) {
-      if (!this.get('session').isAuthenticated) return;
-
       event.stopPropagation();
+
+      if (!this.get('session').isAuthenticated) {
+        // Only route immeidately if not on mobile. We only route for mobile if
+        // they click again while the tooltip is open.
+        if (window.innerWidth < WIDTH_THRESHOLD && this.get('previouslyClickedPlace') != place) {
+          this.set('previouslyClickedPlace', place);
+          return;
+        }
+
+        this.get('router').transitionTo('place', place);
+      }
+
       this.set('menuX', event.clientX + 20);
       this.set('menuY', event.clientY - NAVBAR_REM * parseFloat(getComputedStyle(document.documentElement).fontSize) - 20);
       this.set('clickedPlace', place);
