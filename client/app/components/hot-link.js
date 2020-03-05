@@ -13,12 +13,11 @@ export default Component.extend({
 
   didReceiveAttrs() {
     this._super(...arguments);
-    var parent = this;
     if (isNone(this.get('text'))) return;
 
     this.get('links').getLinks().then(function(data) {
-      parent._tokenize(data);
-    });
+      this._tokenize(data);
+    }.bind(this));
   },
 
   // There are few cases we need to think of. Aliases / names of other items
@@ -44,20 +43,18 @@ export default Component.extend({
     let matches = [];
 
     links.forEach(link => {
-      link.aliases.forEach(alias => {
-        let indexes = this._findAllIndices(alias);
-        indexes.forEach(index => {
-          // Interesting note here, return acts like continue in lambda functions.
-          if (this._isStartInMatch(matches, index)) return;
+      let indexes = this._findAllIndices(link.name);
+      indexes.forEach(index => {
+        // Interesting note here, return acts like continue in lambda functions.
+        if (this._isStartInMatch(matches, index)) return;
 
-          let end = index + alias.length;
-          matches.push({
-            start: index,
-            end: end,
-            word: alias,
-            model: link.model,
-            id: link.id
-          });
+        let end = index + link.name.length;
+        matches.push({
+          start: index,
+          end: end,
+          word: link.name,
+          model: link.model,
+          id: link.id
         });
       });
     });

@@ -88,18 +88,23 @@ def links(request):
   for model in models.LINKABLE_MODELS:
     all_objects = model.objects.all()
     data = all_objects if request.user.is_authenticated else all_objects.filter(visible=True)
+    # We want to sort ALL links based on their length that way only a single link
+    # gets matched. So we create a seperate entry for each alias-item combo,
+    # then sort at the end.
     for item in data:
-      link = {
-        "aliases": [item.name],
+      link_data.append({
+        "name": item.name,
         "model": models.MODEL_NAME_MAP[type(item)],
         "id": item.id
-      }
+      })
       if hasattr(item, "aliases"):
         for alias in item.aliases.splitlines():
-          link["aliases"].append(alias)
-        link["aliases"].sort(key=len, reverse=True)
-      link_data.append(link)
-
+          link_data.append({
+            "name": alias,
+            "model": models.MODEL_NAME_MAP[type(item)],
+            "id": item.id
+          })
+    link_data.sort(key=lambda link : len(link["name"]), reverse=True)
   return JsonResponse(link_data, safe=False)
 
 
