@@ -51,13 +51,13 @@ export default Component.extend({
       return;
     }
 
-    // Only pop up the menu if there are places to add.
-    if (this.get('placesToAdd').length == 0) return;
-
     if (this.get('itemMenuVisible')) {
       this.set('itemMenuVisible', false);
       return;
     }
+
+    // Only pop up the menu if there are places to add.
+    if (this.get('placesToAdd').length == 0) return;
 
     this.set('menuX', event.clientX);
     this.set('menuY', event.clientY - NAVBAR_REM * parseFloat(getComputedStyle(document.documentElement).fontSize));
