@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 
 let HIDE_SIDEBAR_ROUTES = ['login', 'world'];
 
@@ -9,9 +10,7 @@ export default Controller.extend({
   api_data: service('api-data'),
   router: service('router'),
 
-  menu: computed('api_data.menuItems.@each.name', function() {
-    return this.get('api_data.menuItems').sortBy('name');
-  }),
+  menu: alias('api_data.menuItems'),
 
   displayMenu: computed('router.currentRouteName', function() {
     return !HIDE_SIDEBAR_ROUTES.includes(this.router.currentRouteName);
