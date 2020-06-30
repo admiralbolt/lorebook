@@ -55,7 +55,6 @@ INSTALLED_APPS = [
   'django.contrib.staticfiles',
   'api',
   'rest_framework',
-  'gm2m',
   'corsheaders',
   'rest_framework.authtoken',
 ]
@@ -169,5 +168,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-

@@ -10,7 +10,7 @@ export default Controller.extend({
   api_data: service('api-data'),
   router: service('router'),
 
-  menu: alias('api_data.menuItems'),
+  menu: alias('api_data.sortedMenuItems'),
 
   displayMenu: computed('router.currentRouteName', function() {
     return !HIDE_SIDEBAR_ROUTES.includes(this.router.currentRouteName);

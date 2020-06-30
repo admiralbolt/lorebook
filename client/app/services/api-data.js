@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';
+import { sort } from '@ember/object/computed';
 
 export default Service.extend({
   store: service(),
@@ -12,6 +13,16 @@ export default Service.extend({
   // with only one item. This tracks which models have been fully loaded.
   warmModels: null,
   menuItems: null,
+
+  sortedMenuItems: sort('menuItems', function(a, b) {
+    let sortKey = this.get('activeModel') == 'session' ? 'ordinal' : 'name';
+    if (a[sortKey] > b[sortKey]) {
+      return 1;
+    } else if (a[sortKey] < b[sortKey]) {
+      return - 1;
+    }
+    return 0;
+  }),
 
   init() {
     this._super(...arguments);
@@ -32,14 +43,7 @@ export default Service.extend({
     // Otherwise warm it up!
     this.get('store').findAll(this.get('activeModel')).then(function(records) {
       this.get('warmModels').add(this.get('activeModel'));
-      let menuItems = [];
-      records.forEach((record) => {
-        menuItems.push({
-          id: record.id,
-          name: record.name
-        });
-      });
-      this.set('menuItems', menuItems);
+      this.set('menuItems', records);
     }.bind(this));
   },
 
