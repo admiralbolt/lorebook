@@ -26,16 +26,6 @@ class Beast(NamedModel):
   image_file = models.FileField(upload_to="beasts/", blank=True)
 
 
-class Song(NamedModel):
-  """Music makes the world go round."""
-  artist = models.CharField(max_length=255, blank=True)
-  flavor = models.TextField(default="", blank=True)
-  # Whether or not to loop the song continuously. This is generally true for
-  # things like battle & ambient music.
-  loop = models.BooleanField(default=False)
-  sound_file = models.FileField(upload_to="music/", blank=True)
-
-
 class Place(NamedModel):
   """Cities, dungeons, and features the players have been to along the way."""
   description = models.TextField(default="", blank=True)
@@ -85,14 +75,13 @@ class Lore(NamedModel):
   text = models.TextField(default="", blank=True)
 
 
-ADMIN_MODELS = [Beast, Lore, NPC, Place, Session, Song]
-LINKABLE_MODELS = [Beast, Lore, Place, NPC, Song]
-SEARCHABLE_MODELS = [Beast, Lore, Place, NPC, Session, Song]
+ADMIN_MODELS = [Beast, Lore, NPC, Place, Session]
+LINKABLE_MODELS = [Beast, Lore, Place, NPC]
+SEARCHABLE_MODELS = [Beast, Lore, Place, NPC, Session]
 MODEL_NAME_MAP = {
   Beast: "beast",
   Lore: "lore",
   NPC: "npc",
   Place: "place",
-  Session: "session",
-  Song: "song"
+  Session: "session"
 }

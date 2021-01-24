@@ -23,8 +23,7 @@ export function formatModelName(modelName) {
     'lore': 'Lore',
     'place': 'Place',
     'npc': 'NPC',
-    'session': 'Sesh',
-    'song': 'Song'
+    'session': 'Sesh'
   }[modelName] || modelName;
 }
 
@@ -35,7 +34,6 @@ export function formatModelNamePlural(modelName) {
     'lore': 'Lore',
     'place': 'Places',
     'npc': 'NPCs',
-    'session': 'Seshes',
-    'song': 'Songs'
+    'session': 'Seshes'
   }[modelName] || modelName;
 }

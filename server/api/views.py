@@ -69,16 +69,6 @@ class SessionViewSet(viewsets.ModelViewSet):
     return sessions if self.request.user.is_authenticated else sessions.filter(visible=True)
 
 
-class SongViewSet(viewsets.ModelViewSet):
-  """View set for songs."""
-  resource_name = "songs"
-  queryset = models.Song.objects.all()
-  serializer_class = serializers.SongSerializer
-
-  def get_queryset(self):
-    songs = models.Song.objects.order_by("name")
-    return songs if self.request.user.is_authenticated else songs.filter(visible=True)
-
 @api_view(["GET"])
 @authentication_classes([TokenAuthentication])
 @permission_classes([AllowAny])
@@ -106,23 +96,6 @@ def links(request):
           })
     link_data.sort(key=lambda link : len(link["name"]), reverse=True)
   return JsonResponse(link_data, safe=False)
-
-
-@api_view(["POST"])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
-def upload_song(request):
-  """Save a sound file to a song."""
-  try:
-    song = models.Song.objects.get(id=request.GET.get("id"))
-  except ObjectDoesNotExist:
-    return JsonResponse({
-      "status": "failure",
-      "message": f"Could not find song with id = {request.GET.get('id')}"
-    })
-  f = request.data["file"]
-  song.sound_file.save(f.name, f, save=True)
-  return JsonResponse({"status": "success", "message": ""})
 
 
 @api_view(["POST"])

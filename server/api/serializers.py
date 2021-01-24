@@ -76,11 +76,3 @@ class SessionSerializer(serializers.ModelSerializer):
   class Meta:
     model = models.Session
     fields = "__all__"
-
-
-class SongSerializer(serializers.ModelSerializer):
-  """Serialize a song..."""
-
-  class Meta:
-    model = models.Song
-    fields = "__all__"

@@ -14,13 +14,8 @@ Router.map(function() {
   this.route('npc', {
     path: 'npcs/:id'
   });
-  this.route('songs');
-  this.route('song', {
-    path: 'songs/:id'
-  });
   this.route('login');
   this.route('npc-create');
-  this.route('song-create');
   this.route('places');
   this.route('place', {
     path: 'places/:id'

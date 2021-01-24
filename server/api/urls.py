@@ -16,13 +16,11 @@ router.register(r"lores", views.LoreViewSet)
 router.register(r"npcs", views.NPCViewSet)
 router.register(r"places", views.PlaceViewSet)
 router.register(r"sessions", views.SessionViewSet)
-router.register(r"songs", views.SongViewSet)
 
 urlpatterns = [
   path("api-auth-token/", obtain_auth_token),
   path("links/", views.links),
   path("beasts/upload/", views.upload_beast),
-  path("songs/upload/", views.upload_song),
   path("places/upload/", views.upload_place),
   path("search/", search.search),
   url(r"^", include(router.urls)),
