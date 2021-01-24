@@ -2,7 +2,9 @@
 
 module.exports = function(environment) {
   let ENV = {
-    host: 'http://localhost:8000',
+    // I still haven't figured out a way to make this work on mobile besides
+    // just updating the entry to whatever my ip gets assinged to :shrug:.
+    host: 'http://192.168.86.216:8000',
     modulePrefix: 'client',
     environment,
     rootURL: '/',
